@@ -33,11 +33,5 @@
 			</ul>			
 		</div>  
 		
-		<div style="text-align: center;">
-			<nav>
-			  <ul class="pagination">
-			    ${pageCode }
-			 </ul>
-			</nav>
-		</div>			
+		
 </div>
