@@ -23,7 +23,7 @@ import ssm.blog.service.BlogTypeService;
 import ssm.blog.util.ResponseUtil;
 
 /**
- * @Description 管理员文章类别Controller层
+ * @Description 
  * @author songml
  *
  */
@@ -36,7 +36,7 @@ public class BlogTypeAdminController {
 	@Resource
 	private BlogService blogService;
 
-	// 分页查询文章类别
+
 	@RequestMapping("/listBlogType")
 	public String listBlogType(
 			@RequestParam(value = "page", required = false) String page,
@@ -61,15 +61,15 @@ public class BlogTypeAdminController {
 		return null;
 	}
 
-	// 添加和更新文章类别
+
 	@RequestMapping("/save")
 	public String save(BlogType blogType, HttpServletResponse response)
 			throws Exception {
 
-		int resultTotal = 0; // 接收返回结果记录数
-		if (blogType.getId() == null) { // 说明是第一次插入
+		int resultTotal = 0; //
+		if (blogType.getId() == null) { //
 			resultTotal = blogTypeService.addBlogType(blogType);
-		} else { // 有id表示修改
+		} else { //
 			resultTotal = blogTypeService.updateBlogType(blogType);
 		}
 
@@ -83,7 +83,7 @@ public class BlogTypeAdminController {
 		return null;
 	}
 
-	// 文章类别信息删除
+	//
 	@RequestMapping("/delete")
 	public String deleteBlog(
 			@RequestParam(value = "ids", required = false) String ids,
@@ -93,8 +93,8 @@ public class BlogTypeAdminController {
 		JSONObject result = new JSONObject();
 		for (int i = 0; i < idsStr.length; i++) {
 			int id = Integer.parseInt(idsStr[i]);
-			if(blogService.getBlogByTypeId(id) > 0) { //说明该类别中有文章
-				result.put("exist", "该类别下有文章，不能删除!");
+			if(blogService.getBlogByTypeId(id) > 0) { //
+				result.put("exist", "cannot delete");
 			} else {
 				blogTypeService.deleteBlogType(id);
 			}		

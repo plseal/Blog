@@ -24,7 +24,7 @@ import ssm.blog.service.LinkService;
 import ssm.blog.util.ResponseUtil;
 
 /**
- * @Description 管理员系统controller层
+ * @Description 
  * @author songml
  *
  */
@@ -41,7 +41,7 @@ public class SystemAdminController {
 	@Resource
 	private BlogService blogService;
 
-	// 刷新系统缓存
+
 	@RequestMapping("/refreshSystemCache")
 	public String refreshSystemCache(
 			HttpServletRequest request,
@@ -49,20 +49,19 @@ public class SystemAdminController {
 
 		ServletContext application = RequestContextUtils.getWebApplicationContext(request).getServletContext();
 		
-		// 获取博主信息
+
 		Blogger blogger = bloggerService.getBloggerData();
 		blogger.setPassword(null);
 		application.setAttribute("blogger", blogger);
 
-		// 获取友情链接信息
+
 		List<Link> linkList = linkService.getLinkData(); 
 		application.setAttribute("linkList", linkList);
 
-		// 获取文章类别信息
+
 		List<BlogType> blogTypeList = blogTypeService.getBlogTypeData();
 		application.setAttribute("blogTypeList", blogTypeList);
 
-		// 获取文章信息，按照时间分类的
 		List<Blog> blogTimeList = blogService.getBlogData();
 		application.setAttribute("blogTimeList", blogTimeList);
 		

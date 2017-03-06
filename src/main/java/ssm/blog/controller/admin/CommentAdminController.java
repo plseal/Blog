@@ -22,7 +22,7 @@ import ssm.blog.util.DateJsonValueProcessor;
 import ssm.blog.util.ResponseUtil;
 
 /**
- * @Description 管理员评论Controller层
+ * @Description 
  * @author songml
  *
  */
@@ -33,7 +33,6 @@ public class CommentAdminController {
 	@Resource
 	private CommentService commentService;
 
-	// 后台分页查询评论信息
 	@RequestMapping("/listComment")
 	public String listBlog(
 			@RequestParam(value = "page", required = false) String page,
@@ -61,7 +60,7 @@ public class CommentAdminController {
 		return null;
 	}
 
-	// 评论审核
+
 	@RequestMapping("/review")
 	public String review(
 			@RequestParam(value = "ids", required = false) String ids,
@@ -81,7 +80,7 @@ public class CommentAdminController {
 		return null;
 	}
 
-	// 评论信息删除
+
 	@RequestMapping("/deleteComment")
 	public String deleteBlog(
 			@RequestParam(value = "ids", required = false) String ids,

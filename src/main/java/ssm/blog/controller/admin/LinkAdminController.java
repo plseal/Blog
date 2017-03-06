@@ -20,7 +20,7 @@ import ssm.blog.service.LinkService;
 import ssm.blog.util.ResponseUtil;
 
 /**
- * @Description 管理员友情链接Controller层
+ * @Description 
  * @author songml
  *
  */
@@ -30,7 +30,7 @@ public class LinkAdminController {
 
 	@Resource
 	private LinkService linkService;
-	// 分页查询友情链接
+
 	@RequestMapping("/listLink")
 	public String listLink(
 			@RequestParam(value = "page", required = false) String page,
@@ -54,15 +54,15 @@ public class LinkAdminController {
 		return null;
 	}
 
-	// 添加和更新友情链接
+
 	@RequestMapping("/save")
 	public String save(Link link, HttpServletResponse response)
 			throws Exception {
 
-		int resultTotal = 0; // 接收返回结果记录数
-		if (link.getId() == null) { // 说明是第一次插入
+		int resultTotal = 0;
+		if (link.getId() == null) { 
 			resultTotal = linkService.addLink(link);
-		} else { // 有id表示修改
+		} else { 
 			resultTotal = linkService.updateLink(link);
 		}
 
@@ -76,7 +76,7 @@ public class LinkAdminController {
 		return null;
 	}
 
-	// 友情链接信息删除
+
 	@RequestMapping("/delete")
 	public String deleteLink(
 			@RequestParam(value = "ids", required = false) String ids,

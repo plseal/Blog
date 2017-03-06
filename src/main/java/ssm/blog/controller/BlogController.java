@@ -23,7 +23,7 @@ import ssm.blog.util.PageUtil;
 import ssm.blog.util.StringUtil;
 
 /**
- * @Description 博客Controller层
+ * @Description 
  * @author songml
  *
  */
@@ -38,15 +38,14 @@ public class BlogController {
 
 	private BlogIndex blogIndex = new BlogIndex();
 
-	// 请求博客详细信息
+	
 	@RequestMapping("/articles/{id}")
 	public ModelAndView details(@PathVariable("id") Integer id,
 			HttpServletRequest request) {
 
 		ModelAndView modelAndView = new ModelAndView();
-		Blog blog = blogService.findById(id); // 根据id获取博客
+		Blog blog = blogService.findById(id); 
 
-		// 获取关键字
 		String keyWords = blog.getKeyWord();
 		if (StringUtil.isNotEmpty(keyWords)) {
 			String[] strArray = keyWords.split(" ");
@@ -58,10 +57,9 @@ public class BlogController {
 		}
 
 		modelAndView.addObject("blog", blog);
-		blog.setClickHit(blog.getClickHit() + 1); // 将博客访问量加1
-		blogService.update(blog); // 更新博客
+		blog.setClickHit(blog.getClickHit() + 1); 
+		blogService.update(blog); 
 
-		// 查询评论信息
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("blogId", blog.getId());
 		map.put("state", 1);
@@ -71,7 +69,6 @@ public class BlogController {
 		modelAndView.addObject("commonPage", "foreground/blog/blogDetail.jsp");
 		modelAndView.addObject("title", blog.getTitle() + " ");
 
-		// 存入上一篇和下一篇的显示代码
 		modelAndView.addObject("pageCode", PageUtil.getPrevAndNextPageCode(
 				blogService.getPrevBlog(id), blogService.getNextBlog(id),
 				request.getServletContext().getContextPath()));
@@ -81,7 +78,6 @@ public class BlogController {
 		return modelAndView;
 	}
 
-	// 根据关键字查询博客信息
 	@RequestMapping("/search")
 	public ModelAndView search(
 			@RequestParam(value = "q", required = false) String q,
@@ -91,10 +87,10 @@ public class BlogController {
 		int pageSize = 10;
 		ModelAndView modelAndView = new ModelAndView();
 		List<Blog> blogIndexList = blogIndex.searchBlog(q);
-		if(page == null) { //page为空表示第一次搜索
+		if(page == null) { 
 			page = "1";
 		}
-		int fromIndex = (Integer.parseInt(page) - 1) * pageSize; // 开始索引
+		int fromIndex = (Integer.parseInt(page) - 1) * pageSize; 
 		int toIndex = blogIndexList.size() >= Integer.parseInt(page) * pageSize ? Integer
 				.parseInt(page) * pageSize
 				: blogIndexList.size();
@@ -102,10 +98,10 @@ public class BlogController {
 		modelAndView.addObject("pageCode", PageUtil.getUpAndDownPageCode(
 				Integer.parseInt(page), blogIndexList.size(), q, pageSize,
 				request.getServletContext().getContextPath()));
-		modelAndView.addObject("q", q); // 用于数据的回显
-		modelAndView.addObject("resultTotal", blogIndexList.size()); // 查询到的总记录数
+		modelAndView.addObject("q", q); 
+		modelAndView.addObject("resultTotal", blogIndexList.size()); 
 		modelAndView.addObject("commonPage", "foreground/blog/searchResult.jsp");
-		modelAndView.addObject("title", "搜索'" + q + "'的结果 ");
+		modelAndView.addObject("title", "search'" + q + "'result");
 		modelAndView.setViewName("mainTemp");
 		return modelAndView;
 	}

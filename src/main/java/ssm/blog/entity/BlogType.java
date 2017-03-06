@@ -1,7 +1,7 @@
 package ssm.blog.entity;
 
 /**
- * @Description 文章类型实体
+ * @Description
  * @author songml
  *
  */
@@ -11,7 +11,7 @@ public class BlogType {
 	private String typeName;
 	private String orderNum;
 	
-	private Integer blogCount; //统计不同类型的文章数量的
+	private Integer blogCount; 
 	
 	public Integer getId() {
 		return id;

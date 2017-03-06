@@ -21,7 +21,7 @@ import ssm.blog.util.DateUtil;
 import ssm.blog.util.ResponseUtil;
 
 /**
- * @Description 管理员博主Controller层，需要身份认证
+ * @Description
  * @author songml
  *
  */
@@ -32,7 +32,7 @@ public class BloggerAdminController {
 	@Resource
 	private BloggerService bloggerService;
 	
-	// 查询博主信息
+
 	@RequestMapping("/findBlogger")
 	public String findBlogger(HttpServletResponse response) throws Exception {
 		
@@ -42,7 +42,7 @@ public class BloggerAdminController {
 		return null;
 	}
 	
-	//修改博主信息
+
 	@RequestMapping("/save")
 	public String save(
 			@RequestParam("imageFile") MultipartFile imageFile,
@@ -50,8 +50,8 @@ public class BloggerAdminController {
 			HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		
-		if(!imageFile.isEmpty()) { //如果用户有传过照片，就更新
-			String filePath = request.getServletContext().getRealPath("/"); //获取服务器根路径
+		if(!imageFile.isEmpty()) {
+			String filePath = request.getServletContext().getRealPath("/"); 
 			String imageName = DateUtil.getCurrentDateStr() + "." + imageFile.getOriginalFilename().split("\\.")[1];
 			imageFile.transferTo(new File(filePath + "static/userImages/" + imageName));
 			blogger.setImagename(imageName);
@@ -67,7 +67,7 @@ public class BloggerAdminController {
 		return null;
 	}
 	
-	//修改博主密码
+
 	@RequestMapping("/modifyPassword")
 	public String modifyPassword(
 			@RequestParam("password") String password,
@@ -86,7 +86,7 @@ public class BloggerAdminController {
 		return null;
 	}
 	
-	// 退出
+
 	@RequestMapping("/logout")
 	public String logout() throws Exception {
 		

@@ -26,7 +26,7 @@ import ssm.blog.util.PageUtil;
 import ssm.blog.util.StringUtil;
 
 /**
- * @Description 主页Controller
+ * @Description Controller
  * @author songml
  *
  */
@@ -39,7 +39,7 @@ public class IndexController {
 	@Resource
 	private BlogTypeService blogTypeService;
 	/**
-	 * @Description 请求主页
+	 * @Description 
 	 * @return
 	 */
 	@RequestMapping("/index")
@@ -56,43 +56,42 @@ public class IndexController {
 		if (StringUtil.isEmpty(page)) {
 			page = "1";
 		}
-		// 获取分页的bean
-		PageBean pageBean = new PageBean(Integer.parseInt(page), 10); //每页显示10条数据
 
-		// map中封装起始页和每页的记录
+		PageBean pageBean = new PageBean(Integer.parseInt(page), 10); 
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("start", pageBean.getStart());
 		map.put("pageSize", pageBean.getPageSize());
 		map.put("typeId", typeId);
 		map.put("releaseDateStr", releaseDateStr);
 
-		// 获取博客信息
+
 		List<Blog> blogList = blogService.listBlog(map);		
 
 		for(Blog blog : blogList) {
 			List<String> imageList = blog.getImageList();
-			String blogInfo = blog.getContent(); //获取博客内容
-			Document doc = Jsoup.parse(blogInfo); //将博客内容(网页中也就是一些html)转为jsoup的Document
-			Elements jpgs = doc.select("img[src$=.jpg]");//获取<img>标签中所有后缀是.jpg的元素
+			String blogInfo = blog.getContent(); 
+			Document doc = Jsoup.parse(blogInfo); 
+			Elements jpgs = doc.select("img[src$=.jpg]");
 			for(int i = 0; i < jpgs.size(); i++) {
-				Element jpg = jpgs.get(i); //获取到单个元素
-				imageList.add(jpg.toString()); //把图片信息存到imageList中
+				Element jpg = jpgs.get(i); 
+				imageList.add(jpg.toString()); 
 				if(i == 2)
-					break; //只存三张图片信息
+					break; 
 			}
 		}
 		
-		// 分页
+
 		StringBuffer param = new StringBuffer();
-		//拼接参数，主要对于点击文章分类或者日期分类后，查出来的分页，要拼接具体的参数
+
 		if(StringUtil.isNotEmpty(typeId)) {
 			param.append("typeId=" + typeId + "&");
 		}
 		if(StringUtil.isNotEmpty(releaseDateStr)) {
 			param.append("releaseDateStr=" + releaseDateStr + "&");
 		}
-		modelAndView.addObject("pageCode", PageUtil.genPagination( //调用代码生成的工具类生成前台显示
-				request.getContextPath() + "/index.html", //还是请求该controller的index方法
+		modelAndView.addObject("pageCode", PageUtil.genPagination( 
+				request.getContextPath() + "/index.html", 
 				blogService.getTotal(map), 
 				Integer.parseInt(page), 10,
 				param.toString()));
@@ -100,7 +99,7 @@ public class IndexController {
 		modelAndView.addObject("blogList", blogList);
 		modelAndView.addObject("blogTypeName",blogType.getTypeName() );
 		modelAndView.addObject("commonPage", "foreground/blog/blogList.jsp");
-		modelAndView.addObject("title", "主页");
+		modelAndView.addObject("title", "home");
 		modelAndView.setViewName("mainTemp");
 		logger.info("["+this.getClass()+"][index][end]");
 		return modelAndView;

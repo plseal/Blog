@@ -25,7 +25,7 @@ import ssm.blog.util.ResponseUtil;
 import ssm.blog.util.StringUtil;
 
 /**
- * @Description 管理员文章Controller层
+ * @Description 
  * @author songml
  *
  */
@@ -39,16 +39,15 @@ public class BlogAdminController {
 	private CommentService commentService;
 	
 	private BlogIndex blogIndex = new BlogIndex();
-	
-	//添加和更新文章
+
 	@RequestMapping("/save")
 	public String save(Blog blog, HttpServletResponse response) throws Exception {
 		
-		int resultTotal = 0; //接收返回结果记录数
-		if(blog.getId() == null) { //说明是第一次插入
+		int resultTotal = 0; 
+		if(blog.getId() == null) { 
 			resultTotal = blogService.addBlog(blog);
-			blogIndex.addIndex(blog); //添加文章的索引
-		} else { //有id表示修改
+			blogIndex.addIndex(blog); 
+		} else { 
 			resultTotal = blogService.update(blog);
 			blogIndex.updateIndex(blog);
 		}
@@ -63,7 +62,7 @@ public class BlogAdminController {
 		return null;
 	}
 	
-	//后台分页查询文章信息
+
 	@RequestMapping("/listBlog")
 	public String listBlog(
 			@RequestParam(value="page", required=false)String page,
@@ -73,7 +72,7 @@ public class BlogAdminController {
 		
 		PageBean pageBean = new PageBean(Integer.parseInt(page), Integer.parseInt(rows));
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("title", StringUtil.formatLike(s_blog.getTitle())); //模糊查询
+		map.put("title", StringUtil.formatLike(s_blog.getTitle())); 
 		map.put("start", pageBean.getStart());
 		map.put("pageSize", pageBean.getPageSize());
 		List<Blog> blogList = blogService.listBlog(map);
@@ -89,7 +88,7 @@ public class BlogAdminController {
 		return null;
 	}
 	
-	// 文章信息删除
+
 	@RequestMapping("/delete")
 	public String deleteBlog(
 			@RequestParam(value="ids", required=false)String ids,
@@ -108,7 +107,7 @@ public class BlogAdminController {
 		return null;
 	}
 	
-	//通过id获取文章实体
+	
 	@RequestMapping("/findById")
 	public String findById(
 			@RequestParam(value="id", required=false)String id,

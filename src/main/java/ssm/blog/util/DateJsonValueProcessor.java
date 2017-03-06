@@ -6,7 +6,7 @@ import net.sf.json.JsonConfig;
 import net.sf.json.processors.JsonValueProcessor;
 
 /**
- * json-lib 日期处理类
+ * json-lib
  * @author Administrator
  *
  */
