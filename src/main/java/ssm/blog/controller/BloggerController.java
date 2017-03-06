@@ -13,50 +13,39 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-
 import ssm.blog.entity.Blogger;
 import ssm.blog.service.BloggerService;
 import ssm.blog.util.CryptographyUtil;
 
 /**
- * @Description ²©Ö÷Controller²ã£¬Ç°Ì¨²¿·Ö£¬²»ĞèÒªÈÏÖ¤
+ * @Description åšä¸»Controllerå±‚ï¼Œå‰å°éƒ¨åˆ†ï¼Œä¸éœ€è¦è®¤è¯
  * @author Ni Shengwu
  *
  */
 @Controller
 @RequestMapping("/blogger")
 public class BloggerController {
-	
 	private static Logger logger = Logger.getLogger(BloggerController.class);
-	
 	@Resource
 	private BloggerService bloggerService;
 	
 	@RequestMapping("/login")
 	public String login(Blogger blogger, HttpServletRequest request) {
 		logger.info("["+this.getClass()+"][login][start]");
-		//Subject subject = SecurityUtils.getSubject(); //»ñÈ¡µ±Ç°µÇÂ½µÄÖ÷Ìå
-		String newPassword = CryptographyUtil.md5(blogger.getPassword(), "javacoder");//½«ÃÜÂëÊ¹ÓÃmd5¼ÓÃÜ
-		//½«ÓÃ»§ĞÅÏ¢·â×°µ½tokenÖĞ
+		Subject subject = SecurityUtils.getSubject(); //è·å–å½“å‰ç™»é™†çš„ä¸»ä½“
+		String newPassword = CryptographyUtil.md5(blogger.getPassword(), "javacoder");//å°†å¯†ç ä½¿ç”¨md5åŠ å¯†
+		logger.info("["+this.getClass()+"][login][start]:"+newPassword);
+		//å°†ç”¨æˆ·ä¿¡æ¯å°è£…åˆ°tokenä¸­
 		UsernamePasswordToken token = new UsernamePasswordToken(blogger.getUsername(), newPassword);
 		try {
-			//subject.login(token); //»áµ÷ÓÃMyRealmÖĞµÄdoGetAuthenticationInfo·½·¨½øĞĞÉí·İÈÏÖ¤
-			if ("lingzhu".equals(blogger.getUsername())) {
-				logger.info("["+this.getClass()+"][login][end] goto main.jsp");
-				return "/admin/main";
-			} else {
-				request.setAttribute("bloger", blogger);
-				request.setAttribute("errorInfo", "ÓÃ»§Ãû»òÃÜÂë´íÎó");
-				logger.info("["+this.getClass()+"][login][end]");
-				return "login";
-			}
-				
-			
+			subject.login(token); //ä¼šè°ƒç”¨MyRealmä¸­çš„doGetAuthenticationInfoæ–¹æ³•è¿›è¡Œèº«ä»½è®¤è¯
+			logger.info("["+this.getClass()+"][login][end]");
+			return "redirect:/admin/main.jsp";
 		} catch (AuthenticationException e) {
 			e.printStackTrace();
 			request.setAttribute("bloger", blogger);
-			request.setAttribute("errorInfo", "ÓÃ»§Ãû»òÃÜÂë´íÎó");
-			logger.info("["+this.getClass()+"][login][end]");
+			request.setAttribute("errorInfo", "ç”¨æˆ·åæˆ–å¯†ç é”™è¯¯");
+			logger.info("["+this.getClass()+"][login][end]error");
 			return "login";
 		} 
 
@@ -68,7 +57,7 @@ public class BloggerController {
 		Blogger blogger = bloggerService.getBloggerData();
 		modelAndView.addObject("blogger", blogger);
 		modelAndView.addObject("commonPage", "foreground/blogger/bloggerInfo.jsp");
-		modelAndView.addObject("title", "¹ØÓÚ±¾ÏµÍ³ - ôáÖşµÄÎÄÕÂ¹ÜÀí");
+		modelAndView.addObject("title", "å…³äº");
 		modelAndView.setViewName("mainTemp");
 		return modelAndView;
 	}
@@ -76,8 +65,8 @@ public class BloggerController {
 	@RequestMapping("/myalbum")
 	public ModelAndView myAlbum() {
 		ModelAndView modelAndView = new ModelAndView();
-		//ÒªĞ´Ò»¸öÏà²áµÄservice»ñÈ¡Ïà²á
-		//Òª½¨Ò»¸öÏà²á±í
+		//è¦å†™ä¸€ä¸ªç›¸å†Œçš„serviceè·å–ç›¸å†Œ
+		//è¦å»ºä¸€ä¸ªç›¸å†Œè¡¨
 		//....
 		modelAndView.addObject("commonPage", "foreground/blogger/myAlbum.jsp");
 		modelAndView.setViewName("mainTemp");

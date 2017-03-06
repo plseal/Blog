@@ -6,7 +6,7 @@ import java.util.Map;
 import ssm.blog.entity.BlogType;
 
 /**
- * @Description 文章类别Service接口
+ * @Description 鏂囩珷绫诲埆Service鎺ュ彛
  * @author Ni Shengwu
  *
  */
@@ -14,18 +14,20 @@ public interface BlogTypeService {
 
 	public List<BlogType> getBlogTypeData();
 
-	// 分页查询文章类别信息
+	// 鍒嗛〉鏌ヨ鏂囩珷绫诲埆淇℃伅
 	public List<BlogType> listBlogType(Map<String, Object> map);
-
-	// 获取总记录数
+	
+	
+	public BlogType findById(Integer i);
+	// 鑾峰彇鎬昏褰曟暟
 	public Long getTotal(Map<String, Object> map);
 	
-	// 添加文章类别
+	// 娣诲姞鏂囩珷绫诲埆
 	public Integer addBlogType(BlogType blogType);
 	
-	// 更新文章类别
+	// 鏇存柊鏂囩珷绫诲埆
 	public Integer updateBlogType(BlogType blogType);
 	
-	// 删除文章类别
+	// 鍒犻櫎鏂囩珷绫诲埆
 	public Integer deleteBlogType(Integer id);
 }

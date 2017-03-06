@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -17,25 +18,28 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ssm.blog.entity.Blog;
+import ssm.blog.entity.BlogType;
 import ssm.blog.entity.PageBean;
 import ssm.blog.service.BlogService;
+import ssm.blog.service.BlogTypeService;
 import ssm.blog.util.PageUtil;
 import ssm.blog.util.StringUtil;
 
 /**
- * @Description Ö÷Ò³Controller
+ * @Description ä¸»é¡µController
  * @author Ni Shengwu
  *
  */
 @Controller
 @RequestMapping("/")
 public class IndexController {
-
+	private static Logger logger = Logger.getLogger(IndexController.class);
 	@Resource
 	private BlogService blogService;
-
+	@Resource
+	private BlogTypeService blogTypeService;
 	/**
-	 * @Description ÇëÇóÖ÷Ò³
+	 * @Description è¯·æ±‚ä¸»é¡µ
 	 * @return
 	 */
 	@RequestMapping("/index")
@@ -44,58 +48,61 @@ public class IndexController {
 			@RequestParam(value = "typeId", required = false) String typeId,
 			@RequestParam(value = "releaseDateStr", required = false) String releaseDateStr,
 			HttpServletRequest request) throws Exception {
-
+		
+		logger.info("["+this.getClass()+"][index][start]");
+		
 		ModelAndView modelAndView = new ModelAndView();
 
 		if (StringUtil.isEmpty(page)) {
 			page = "1";
 		}
-		// »ñÈ¡·ÖÒ³µÄbean
-		PageBean pageBean = new PageBean(Integer.parseInt(page), 10); //Ã¿Ò³ÏÔÊ¾10ÌõÊı¾İ
+		// è·å–åˆ†é¡µçš„bean
+		PageBean pageBean = new PageBean(Integer.parseInt(page), 10); //æ¯é¡µæ˜¾ç¤º10æ¡æ•°æ®
 
-		// mapÖĞ·â×°ÆğÊ¼Ò³ºÍÃ¿Ò³µÄ¼ÇÂ¼
+		// mapä¸­å°è£…èµ·å§‹é¡µå’Œæ¯é¡µçš„è®°å½•
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("start", pageBean.getStart());
 		map.put("pageSize", pageBean.getPageSize());
 		map.put("typeId", typeId);
 		map.put("releaseDateStr", releaseDateStr);
 
-		// »ñÈ¡ÎÄÕÂĞÅÏ¢
+		// è·å–åšå®¢ä¿¡æ¯
 		List<Blog> blogList = blogService.listBlog(map);		
 
 		for(Blog blog : blogList) {
 			List<String> imageList = blog.getImageList();
-			String blogInfo = blog.getContent(); //»ñÈ¡ÎÄÕÂÄÚÈİ
-			Document doc = Jsoup.parse(blogInfo); //½«ÎÄÕÂÄÚÈİ(ÍøÒ³ÖĞÒ²¾ÍÊÇÒ»Ğ©html)×ªÎªjsoupµÄDocument
-			Elements jpgs = doc.select("img[src$=.jpg]");//»ñÈ¡<img>±êÇ©ÖĞËùÓĞºó×ºÊÇ.jpgµÄÔªËØ
+			String blogInfo = blog.getContent(); //è·å–åšå®¢å†…å®¹
+			Document doc = Jsoup.parse(blogInfo); //å°†åšå®¢å†…å®¹(ç½‘é¡µä¸­ä¹Ÿå°±æ˜¯ä¸€äº›html)è½¬ä¸ºjsoupçš„Document
+			Elements jpgs = doc.select("img[src$=.jpg]");//è·å–<img>æ ‡ç­¾ä¸­æ‰€æœ‰åç¼€æ˜¯.jpgçš„å…ƒç´ 
 			for(int i = 0; i < jpgs.size(); i++) {
-				Element jpg = jpgs.get(i); //»ñÈ¡µ½µ¥¸öÔªËØ
-				imageList.add(jpg.toString()); //°ÑÍ¼Æ¬ĞÅÏ¢´æµ½imageListÖĞ
+				Element jpg = jpgs.get(i); //è·å–åˆ°å•ä¸ªå…ƒç´ 
+				imageList.add(jpg.toString()); //æŠŠå›¾ç‰‡ä¿¡æ¯å­˜åˆ°imageListä¸­
 				if(i == 2)
-					break; //Ö»´æÈıÕÅÍ¼Æ¬ĞÅÏ¢
+					break; //åªå­˜ä¸‰å¼ å›¾ç‰‡ä¿¡æ¯
 			}
 		}
 		
-		// ·ÖÒ³
+		// åˆ†é¡µ
 		StringBuffer param = new StringBuffer();
-		//Æ´½Ó²ÎÊı£¬Ö÷Òª¶ÔÓÚµã»÷ÎÄÕÂ·ÖÀà»òÕßÈÕÆÚ·ÖÀàºó£¬²é³öÀ´µÄ·ÖÒ³£¬ÒªÆ´½Ó¾ßÌåµÄ²ÎÊı
+		//æ‹¼æ¥å‚æ•°ï¼Œä¸»è¦å¯¹äºç‚¹å‡»æ–‡ç« åˆ†ç±»æˆ–è€…æ—¥æœŸåˆ†ç±»åï¼ŒæŸ¥å‡ºæ¥çš„åˆ†é¡µï¼Œè¦æ‹¼æ¥å…·ä½“çš„å‚æ•°
 		if(StringUtil.isNotEmpty(typeId)) {
 			param.append("typeId=" + typeId + "&");
 		}
 		if(StringUtil.isNotEmpty(releaseDateStr)) {
 			param.append("releaseDateStr=" + releaseDateStr + "&");
 		}
-		modelAndView.addObject("pageCode", PageUtil.genPagination( //µ÷ÓÃ´úÂëÉú³ÉµÄ¹¤¾ßÀàÉú³ÉÇ°Ì¨ÏÔÊ¾
-				request.getContextPath() + "/index.html", //»¹ÊÇÇëÇó¸ÃcontrollerµÄindex·½·¨
+		modelAndView.addObject("pageCode", PageUtil.genPagination( //è°ƒç”¨ä»£ç ç”Ÿæˆçš„å·¥å…·ç±»ç”Ÿæˆå‰å°æ˜¾ç¤º
+				request.getContextPath() + "/index.html", //è¿˜æ˜¯è¯·æ±‚è¯¥controllerçš„indexæ–¹æ³•
 				blogService.getTotal(map), 
 				Integer.parseInt(page), 10,
 				param.toString()));
-		
+		BlogType blogType = blogTypeService.findById(Integer.parseInt(typeId));
 		modelAndView.addObject("blogList", blogList);
+		modelAndView.addObject("blogTypeName",blogType.getTypeName() );
 		modelAndView.addObject("commonPage", "foreground/blog/blogList.jsp");
-		modelAndView.addObject("title", "Ö÷Ò³ -ôáÖşµÄÎÄÕÂ¹ÜÀí");
+		modelAndView.addObject("title", "ä¸»é¡µ");
 		modelAndView.setViewName("mainTemp");
-
+		logger.info("["+this.getClass()+"][index][end]");
 		return modelAndView;
 
 	}
