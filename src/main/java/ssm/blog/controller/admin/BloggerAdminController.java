@@ -22,7 +22,7 @@ import ssm.blog.util.ResponseUtil;
 
 /**
  * @Description 管理员博主Controller层，需要身份认证
- * @author Ni Shengwu
+ * @author songml
  *
  */
 @Controller

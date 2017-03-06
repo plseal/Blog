@@ -3,7 +3,7 @@ package ssm.blog.entity;
 
 /**
  * @Description ²©Ö÷ÊµÌå
- * @author Ni Shengwu
+ * @author songml
  *
  */
 public class Blogger {

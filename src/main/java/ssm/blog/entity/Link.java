@@ -2,7 +2,7 @@ package ssm.blog.entity;
 
 /**
  * @Description 友情链接实体
- * @author Ni Shengwu
+ * @author songml
  *
  */
 public class Link {

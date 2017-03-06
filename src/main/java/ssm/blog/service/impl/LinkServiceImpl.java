@@ -13,7 +13,7 @@ import ssm.blog.service.LinkService;
 
 /**
  * @Description 友情链接Service实现类
- * @author Ni Shengwu
+ * @author songml
  *
  */
 @Service("linkService")

@@ -4,7 +4,7 @@ import java.util.Date;
 
 /**
  * @Description ΖΐΒΫΚµΜε
- * @author Ni Shengwu
+ * @author songml
  *
  */
 public class Comment {

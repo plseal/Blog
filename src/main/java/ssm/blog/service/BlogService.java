@@ -7,7 +7,7 @@ import ssm.blog.entity.Blog;
 
 /**
  * @Description ндубService╫с©з
- * @author Ni Shengwu
+ * @author songml
  *
  */
 public interface BlogService {

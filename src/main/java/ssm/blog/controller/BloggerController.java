@@ -19,7 +19,7 @@ import ssm.blog.util.CryptographyUtil;
 
 /**
  * @Description 博主Controller层，前台部分，不需要认证
- * @author Ni Shengwu
+ * @author songml
  *
  */
 @Controller

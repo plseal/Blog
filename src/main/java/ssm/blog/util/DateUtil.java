@@ -5,14 +5,14 @@ import java.util.Date;
 
 /**
  * @Description 日期工具类
- * @author Ni Shengwu
+ * @author songml
  *
  */
 public class DateUtil {
 
 	/**
 	 * 日期对象转字符串
-	 * @author Ni Shengwu
+	 * @author songml
 	 * @param date
 	 * @param format
 	 * @return
@@ -28,7 +28,7 @@ public class DateUtil {
 	
 	/**
 	 * 字符串转日期对象
-	 * @author Ni Shengwu
+	 * @author songml
 	 * @param str
 	 * @param format
 	 * @return

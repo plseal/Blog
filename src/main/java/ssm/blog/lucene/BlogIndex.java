@@ -38,7 +38,7 @@ import ssm.blog.util.StringUtil;
 
 /**
  * @Description ÎÄÕÂË÷ÒıÀà
- * @author Ni Shengwu
+ * @author songml
  *
  */
 public class BlogIndex {

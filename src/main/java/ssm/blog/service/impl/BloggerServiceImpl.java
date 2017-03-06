@@ -10,7 +10,7 @@ import ssm.blog.service.BloggerService;
 
 /**
  * @Description 博主Service实现类
- * @author Ni Shengwu
+ * @author songml
  *
  */
 @Service("bloggerService")

@@ -7,7 +7,7 @@ import ssm.blog.entity.Link;
 
 /**
  * @Description 友情链接Service接口
- * @author Ni Shengwu
+ * @author songml
  *
  */
 public interface LinkService {

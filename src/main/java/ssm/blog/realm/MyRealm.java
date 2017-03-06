@@ -16,7 +16,7 @@ import ssm.blog.service.BloggerService;
 
 /**
  * @Description ×Ô¶¨Òårealm
- * @author Ni Shengwu
+ * @author songml
  *
  */
 public class MyRealm extends AuthorizingRealm {

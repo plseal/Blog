@@ -7,7 +7,7 @@ import ssm.blog.entity.Comment;
 
 /**
  * @Description 用户评论service接口
- * @author Ni Shengwu
+ * @author songml
  *
  */
 public interface CommentService {

@@ -7,7 +7,7 @@ import ssm.blog.entity.BlogType;
 
 /**
  * @Description 文章类别dao接口
- * @author Ni Shengwu
+ * @author songml
  *
  */
 public interface BlogTypeDao {

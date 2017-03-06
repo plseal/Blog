@@ -24,7 +24,7 @@ import ssm.blog.util.ResponseUtil;
 
 /**
  * @Description 管理员文章类别Controller层
- * @author Ni Shengwu
+ * @author songml
  *
  */
 @Controller

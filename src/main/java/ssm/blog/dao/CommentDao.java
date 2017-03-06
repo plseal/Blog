@@ -7,7 +7,7 @@ import ssm.blog.entity.Comment;
 
 /**
  * @Description ÆÀÂÛdao½Ó¿Ú
- * @author Ni Shengwu
+ * @author songml
  *
  */
 public interface CommentDao {

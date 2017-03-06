@@ -27,7 +27,7 @@ import ssm.blog.util.StringUtil;
 
 /**
  * @Description 主页Controller
- * @author Ni Shengwu
+ * @author songml
  *
  */
 @Controller

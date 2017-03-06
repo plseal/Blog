@@ -2,7 +2,7 @@ package ssm.blog.entity;
 
 /**
  * @Description 文章类型实体
- * @author Ni Shengwu
+ * @author songml
  *
  */
 public class BlogType {

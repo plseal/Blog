@@ -13,7 +13,7 @@ import ssm.blog.service.CommentService;
 
 /**
  * @Description 用户评论service实现类
- * @author Ni Shengwu
+ * @author songml
  *
  */
 @Service("commentService")

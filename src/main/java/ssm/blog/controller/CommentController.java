@@ -19,7 +19,7 @@ import ssm.blog.util.ResponseUtil;
 
 /**
  * @Description 评论的controller
- * @author Ni Shengwu
+ * @author songml
  *
  */
 @Controller
