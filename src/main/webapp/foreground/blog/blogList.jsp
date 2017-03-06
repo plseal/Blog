@@ -4,7 +4,7 @@
 
 <div class="data_list">
   		<div class="data_list_title">
-			<img src="${pageContext.request.contextPath}/static/images/list_icon.png"/>&nbsp;最新文章
+			<img src="${pageContext.request.contextPath}/static/images/list_icon.png"/>&nbsp;${blogTypeName }
 		</div>	
 		<div class="datas">
 			<ul>	

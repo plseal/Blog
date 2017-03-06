@@ -1,0 +1,7 @@
+eclipse.preferences.version=1
+encoding//src/main/java/ssm/blog/controller/BlogController.java=UTF-8
+encoding//src/main/java/ssm/blog/controller/BloggerController.java=UTF-8
+encoding//src/main/java/ssm/blog/controller/CommentController.java=UTF-8
+encoding//src/main/java/ssm/blog/controller/IndexController.java=UTF-8
+encoding//src/main/java/ssm/blog/entity/BlogType.java=UTF-8
+encoding//src/main/java/ssm/blog/service/BlogTypeService.java=UTF-8

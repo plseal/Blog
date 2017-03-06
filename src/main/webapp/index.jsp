@@ -24,103 +24,12 @@
 
 <body>
 	<div class="container">
-		<div class="row">
-			<div class="col-md-4">
-				<div class="blog"><strong>翎筑的文章</strong></div>
-			</div>
-			<div class="col-md-8">
-				<iframe style="float:right" width="420" scrolling="no" height="60" frameborder="0"
-					allowtransparency="true"
-					src="http://i.tianqi.com/index.php?c=code&id=12&icon=1&num=5"></iframe>
-			</div>
-		</div>
+
 		
-		<div class="row" style="padding-top: 10px">
-			<div class="col-md-12">
-				<nav class="navbar navbar-default">
-				  <div class="container-fluid">				    
-				    <!-- Collect the nav links, forms, and other content for toggling -->
-				    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				      <ul class="nav navbar-nav">
-				      	<li class="active"><a class="navbar-brand" href="#">文章首页</a></li>
-				        <li><a class="navbar-brand" href="#">关于博主</a></li>
-				        <li><a class="navbar-brand" href="#">我的相册</a></li>
-				        <li><a class="navbar-brand" href="#">资源小站</a></li>
-				        <li><a class="navbar-brand" href="#">程序人生</a></li>
-				        <li><a class="navbar-brand" href="#">CSDN</a></li>
-				      </ul>
-				      <form class="navbar-form navbar-right" role="search">
-				        <div class="form-group">
-				          <input type="text" class="form-control" placeholder="请输入要查询的关键字">
-				        </div>
-				        <button type="submit" class="btn btn-default">搜索</button>
-				      </form>
-				    </div><!-- /.navbar-collapse -->
-				  </div><!-- /.container-fluid -->
-				</nav>
-			</div>
-		</div>
+
 		
 		<div class="row">	
-		  <div class="col-md-3">
-		  	<div class="data_list">
-				<div class="data_list_title">
-					<img src="${pageContext.request.contextPath}/static/images/user_icon.png"/>
-					博主信息
-				</div>
-				<div class="user_image">
-					<img src="${pageContext.request.contextPath}/static/userImages/${blogger.imagename}"/>
-				</div>
-				<div class="nickName">${blogger.nickname }</div>
-				<div class="userSign">${blogger.sign }</div>
-			</div>	
-			
-			<div class="data_list">
-				<div class="data_list_title">
-					<img src="${pageContext.request.contextPath}/static/images/byType_icon.png"/>
-					文章分类
-				</div>
-				<div class="datas">
-					<ul>						
-							<c:forEach items="${blogTypeList }" var="blogType">
-								<li><span><a href="#">${blogType.typeName }（${blogType.blogCount }）</a></span></li>		
-							</c:forEach>					
-					</ul>
-				</div>
-			</div>
-			
-			<div class="data_list">
-				<div class="data_list_title">
-					<img src="${pageContext.request.contextPath}/static/images/byDate_icon.png"/>
-					文章存档
-				</div>
-				<div class="datas">
-					<ul>						
-							<c:forEach items="${blogList }" var="blog">							
-								<li><span><a href="#">${blog.releaseDateStr }（${blog.blogCount }）</a></span></li>						
-							</c:forEach>						
-					</ul>
-				</div>
-			</div>
-			
-			<div class="data_list">
-				<div class="data_list_title">
-					<img src="${pageContext.request.contextPath}/static/images/link_icon.png"/>
-					友情链接
-				</div>
-				<div class="datas">
-					<ul>						
-						<c:forEach items="${linkList }" var="link">
-							<li><span><a href="${link.linkurl }" target="_blank">${link.linkname }</a></span></li>
-						</c:forEach>											
-					</ul>
-				</div>
-			</div>
-			
-			  	
-		  </div>
-		  	  
-		  <div class="col-md-9">
+	  	  
 		  	<div class="data_list">
 		  		<div class="data_list_title">
 					<img src="${pageContext.request.contextPath}/static/images/list_icon.png"/>&nbsp;最新文章
@@ -133,7 +42,7 @@
 						  		<img alt="文章类型" src="${pageContext.request.contextPath}/static/userImages/yuan.jpg">
 						  		<a href="#">这是一篇测试文章</a>
 						  	</span>
-						  	<span class="summary">摘要: 这是用来测试的静态数据，为了多搞一点数据，于是我开始喋喋不休的说一些废话，包括我很帅之类的，虽然我一直强调自己要低调，但不知为何，自己的容颜非得和内心背道而驰....</span>
+						  	
 						  	<span class="img">
 						  		
 							  		<a href="#"><img src="${pageContext.request.contextPath}/static/userImages/dog.jpg" title="dog" alt="dog.jpg" width="823" height="489" style="width: 823px; height: 489px;"></a>
@@ -155,7 +64,7 @@
 						  		<img alt="文章类型" src="${pageContext.request.contextPath}/static/userImages/yuan.jpg">
 						  		<a href="#">这是一篇测试文章</a>
 						  	</span>
-						  	<span class="summary">摘要: 这是用来测试的静态数据，为了多搞一点数据，于是我开始喋喋不休的说一些废话，包括我很帅之类的，虽然我一直强调自己要低调，但不知为何，自己的容颜非得和内心背道而驰....</span>
+						  	
 						  	<span class="img">
 						  		
 							  		<a href="#"><img src="${pageContext.request.contextPath}/static/userImages/dog.jpg" title="dog.jpg" alt="dog.jpg" width="823" height="489" style="width: 823px; height: 489px;"></a>
@@ -177,7 +86,7 @@
 						  		<img alt="文章类型" src="${pageContext.request.contextPath}/static/userImages/yuan.jpg">
 						  		<a href="#">这是一篇测试文章</a>
 						  	</span>
-						  	<span class="summary">摘要: 这是用来测试的静态数据，为了多搞一点数据，于是我开始喋喋不休的说一些废话，包括我很帅之类的，虽然我一直强调自己要低调，但不知为何，自己的容颜非得和内心背道而驰....</span>
+						  	
 						  	<span class="img">
 						  		
 							  		<a href="#"><img src="${pageContext.request.contextPath}/static/userImages/dog.jpg" title="dog.jpg" alt="dog.jpg" width="823" height="489" style="width: 823px; height: 489px;"></a>
@@ -196,7 +105,7 @@
 					</ul>
 				</div>  		
 		  	</div>
-		  </div>
+
 		  
 		</div>
 		

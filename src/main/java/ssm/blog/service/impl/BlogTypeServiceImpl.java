@@ -28,6 +28,10 @@ public class BlogTypeServiceImpl implements BlogTypeService {
 		return blogTypeDao.getBlogTypeData();
 	}
 
+	public BlogType findById(Integer id) {
+		return blogTypeDao.findById(id);
+	};
+	
 	public List<BlogType> listBlogType(Map<String, Object> map) {
 		return blogTypeDao.listBlogType(map);
 	}
