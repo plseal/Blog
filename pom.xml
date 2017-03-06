@@ -5,7 +5,7 @@
   <artifactId>Blog</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
-  
+
   <dependencies>
   
   	<!-- 添加sevlet支持 -->

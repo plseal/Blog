@@ -18,7 +18,7 @@ import ssm.blog.service.BloggerService;
 import ssm.blog.util.CryptographyUtil;
 
 /**
- * @Description 博主Controller层，前台部分，不需要认证
+ * @Description 
  * @author songml
  *
  */
@@ -32,19 +32,19 @@ public class BloggerController {
 	@RequestMapping("/login")
 	public String login(Blogger blogger, HttpServletRequest request) {
 		logger.info("["+this.getClass()+"][login][start]");
-		Subject subject = SecurityUtils.getSubject(); //获取当前登陆的主体
-		String newPassword = CryptographyUtil.md5(blogger.getPassword(), "javacoder");//将密码使用md5加密
+		Subject subject = SecurityUtils.getSubject(); //
+		String newPassword = CryptographyUtil.md5(blogger.getPassword(), "javacoder");//
 		logger.info("["+this.getClass()+"][login][start]:"+newPassword);
-		//将用户信息封装到token中
+		//
 		UsernamePasswordToken token = new UsernamePasswordToken(blogger.getUsername(), newPassword);
 		try {
-			subject.login(token); //会调用MyRealm中的doGetAuthenticationInfo方法进行身份认证
+			subject.login(token); //
 			logger.info("["+this.getClass()+"][login][end]");
 			return "redirect:/admin/main.jsp";
 		} catch (AuthenticationException e) {
 			e.printStackTrace();
 			request.setAttribute("bloger", blogger);
-			request.setAttribute("errorInfo", "用户名或密码错误");
+			request.setAttribute("errorInfo", "user name or password is wrong");
 			logger.info("["+this.getClass()+"][login][end]error");
 			return "login";
 		} 
@@ -57,7 +57,7 @@ public class BloggerController {
 		Blogger blogger = bloggerService.getBloggerData();
 		modelAndView.addObject("blogger", blogger);
 		modelAndView.addObject("commonPage", "foreground/blogger/bloggerInfo.jsp");
-		modelAndView.addObject("title", "关于");
+		modelAndView.addObject("title", "about");
 		modelAndView.setViewName("mainTemp");
 		return modelAndView;
 	}
@@ -65,9 +65,6 @@ public class BloggerController {
 	@RequestMapping("/myalbum")
 	public ModelAndView myAlbum() {
 		ModelAndView modelAndView = new ModelAndView();
-		//要写一个相册的service获取相册
-		//要建一个相册表
-		//....
 		modelAndView.addObject("commonPage", "foreground/blogger/myAlbum.jsp");
 		modelAndView.setViewName("mainTemp");
 		return modelAndView;
@@ -76,8 +73,7 @@ public class BloggerController {
 	@RequestMapping("/resource")
 	public ModelAndView resource() {
 		ModelAndView modelAndView = new ModelAndView();
-		//
-		//....
+
 		modelAndView.addObject("commonPage", "foreground/blogger/resource.jsp");
 		modelAndView.setViewName("mainTemp");
 		return modelAndView;
