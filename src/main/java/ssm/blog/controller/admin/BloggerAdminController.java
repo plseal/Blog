@@ -29,7 +29,7 @@ import ssm.blog.util.ResponseUtil;
 @RequestMapping("/admin/blogger")
 public class BloggerAdminController {
 
-	@Resource
+	@Resource 
 	private BloggerService bloggerService;
 	
 
