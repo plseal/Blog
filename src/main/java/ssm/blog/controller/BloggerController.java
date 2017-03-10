@@ -34,13 +34,13 @@ public class BloggerController {
 		logger.info("["+this.getClass()+"][login][start]");
 		Subject subject = SecurityUtils.getSubject(); //
 		String newPassword = CryptographyUtil.md5(blogger.getPassword(), "javacoder");//
-		logger.info("["+this.getClass()+"][login][start]:"+newPassword);
+		//logger.info("["+this.getClass()+"][login][start]:"+newPassword);
 		//
 		UsernamePasswordToken token = new UsernamePasswordToken(blogger.getUsername(), newPassword);
 		try {
 			subject.login(token); //
 			logger.info("["+this.getClass()+"][login][end]");
-			return "redirect:/admin/main.jsp";
+			return "main";
 		} catch (AuthenticationException e) {
 			e.printStackTrace();
 			request.setAttribute("bloger", blogger);

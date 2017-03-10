@@ -58,7 +58,9 @@ public class IndexController {
 		}
 
 		PageBean pageBean = new PageBean(Integer.parseInt(page), 10); 
-
+		if (typeId == null) {
+			typeId ="1";
+		}
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("start", pageBean.getStart());
 		map.put("pageSize", pageBean.getPageSize());

@@ -31,12 +31,10 @@
   	<load-on-startup>1</load-on-startup>
   	<async-supported>true</async-supported>
   </servlet>
+
   <servlet-mapping>
   	<servlet-name>springMVC</servlet-name>
   	<url-pattern>*.do</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>springMVC</servlet-name>
   	<url-pattern>*.html</url-pattern> <!-- 伪静态 -->
   </servlet-mapping>
  

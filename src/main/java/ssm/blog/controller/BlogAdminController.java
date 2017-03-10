@@ -1,4 +1,4 @@
-package ssm.blog.controller.admin;
+package ssm.blog.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -11,10 +11,14 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
+import ssm.blog.controller.IndexController;
 import ssm.blog.entity.Blog;
 import ssm.blog.entity.PageBean;
 import ssm.blog.lucene.BlogIndex;
@@ -32,7 +36,7 @@ import ssm.blog.util.StringUtil;
 @Controller
 @RequestMapping("/admin/blog")
 public class BlogAdminController {
-
+	private static Logger logger = Logger.getLogger(BlogAdminController.class);
 	@Resource
 	private BlogService blogService;
 	@Resource
@@ -40,8 +44,17 @@ public class BlogAdminController {
 	
 	private BlogIndex blogIndex = new BlogIndex();
 
+
+	
+	
+	
 	@RequestMapping("/save")
 	public String save(Blog blog, HttpServletResponse response) throws Exception {
+		logger.info("["+this.getClass()+"][save][start]");
+		logger.info("["+this.getClass()+"][save][blogTitle]"+blog.getTitle());
+		logger.info("["+this.getClass()+"][save][blogTypeId]"+blog.getBlogTypeId());
+		logger.info("["+this.getClass()+"][save][getContentNoTag]"+blog.getContentNoTag());
+		
 		
 		int resultTotal = 0; 
 		if(blog.getId() == null) { 
@@ -59,10 +72,10 @@ public class BlogAdminController {
 			result.put("success", false);
 		}
 		ResponseUtil.write(response, result);
+		logger.info("["+this.getClass()+"][save][end]");
 		return null;
 	}
 	
-
 	@RequestMapping("/listBlog")
 	public String listBlog(
 			@RequestParam(value="page", required=false)String page,
