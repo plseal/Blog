@@ -11,6 +11,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,7 +43,19 @@ public class BlogController {
 	private CommentService commentService;
 	
 	public static final int pagesize = 8;
+	
+	@Value("#{setting[STR1]}")
+	private String STR1; 
 
+	@Value("#{setting[STR2]}")
+	private String STR2; 
+	
+	@Value("#{setting[STR3]}")
+	private String STR3; 
+	
+	@Value("#{setting[STR4]}")
+	private String STR4;
+	
 	private BlogIndex blogIndex = new BlogIndex();
 
 	
@@ -76,7 +89,7 @@ public class BlogController {
 		modelAndView.addObject("commonPage", "foreground/blog/blogDetail.jsp");
 		modelAndView.addObject("title", blog.getTitle() + " ");
 
-		modelAndView.addObject("pageCode", PageUtil.getPrevAndNextPageCode(
+		modelAndView.addObject("pageCode", getPrevAndNextPageCode(
 				blogService.getPrevBlog(id), blogService.getNextBlog(id),
 				request.getServletContext().getContextPath()));
 
@@ -167,7 +180,24 @@ public class BlogController {
 		logger.info("["+this.getClass()+"][blogManage][end]");
 		return mv;
 	}
-	
+	public String getPrevAndNextPageCode(Blog prev, Blog next, String projectContent) {
+		logger.info("[PageUtil][getPrevAndNextPageCode][start]");
+		StringBuffer pageCode = new StringBuffer();
+		if(prev == null || prev.getId() == null) {
+			pageCode.append("<p>" + STR1 + "</P>");
+		} else {
+			pageCode.append("<p>" + STR2 +"<a href='" + projectContent + "/blog/articles/" + prev.getId() + ".html'>" + prev.getTitle() + "</a></p>");
+		}
+		
+		if(next == null || next.getId() == null) {
+			pageCode.append("<p>" + STR3 + "</P>");
+		} else {
+			pageCode.append("<p>" + STR4 + "<a href='" + projectContent + "/blog/articles/" + next.getId() + ".html'>" + next.getTitle() + "</a></p>");
+		}
+		logger.info("[PageUtil][getPrevAndNextPageCode][pageCode.toString()]"+pageCode.toString());
+		logger.info("[PageUtil][getPrevAndNextPageCode][end]");
+		return pageCode.toString();
+	}
 
 	
 }

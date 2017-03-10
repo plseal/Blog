@@ -21,6 +21,8 @@
 	<!-- 扫描所有ssm.blog.controller包下面的所有controller -->
 	<context:component-scan base-package="ssm.blog.controller" />
 
+
+
 	<!-- 配置注解映射器和注解适配器 -->
 	<mvc:annotation-driven></mvc:annotation-driven>
 	

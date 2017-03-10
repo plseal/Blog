@@ -1,6 +1,7 @@
 package ssm.blog.util;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
 
 import ssm.blog.controller.BlogController;
 import ssm.blog.entity.Blog;
@@ -12,6 +13,11 @@ import ssm.blog.entity.Blog;
  */
 public class PageUtil {
 	private static Logger logger = Logger.getLogger(PageUtil.class);
+	
+
+	
+	
+	
 	/**
 	 * 生成分页代码
 	 * @param targetUrl 目标地址
@@ -20,6 +26,8 @@ public class PageUtil {
 	 * @param pageSize 每页大小
 	 * @return
 	 */
+	
+	
 	public static String genPagination(
 										String targetUrl, //目标url
 										long totalNum,    //总记录数
@@ -60,24 +68,7 @@ public class PageUtil {
 		}
 	}
 	
-	public static String getPrevAndNextPageCode(Blog prev, Blog next, String projectContent) {
-		logger.info("[PageUtil][getPrevAndNextPageCode][start]");
-		StringBuffer pageCode = new StringBuffer();
-		if(prev == null || prev.getId() == null) {
-			pageCode.append("<p>上一篇：无</P>");
-		} else {
-			pageCode.append("<p>上一篇：<a href='" + projectContent + "/blog/articles/" + prev.getId() + ".html'>" + prev.getTitle() + "</a></p>");
-		}
-		
-		if(next == null || next.getId() == null) {
-			pageCode.append("<p>下一篇：无</P>");
-		} else {
-			pageCode.append("<p>上一篇：<a href='" + projectContent + "/blog/articles/" + next.getId() + ".html'>" + next.getTitle() + "</a></p>");
-		}
-		logger.info("[PageUtil][getPrevAndNextPageCode][pageCode.toString()]"+pageCode.toString());
-		logger.info("[PageUtil][getPrevAndNextPageCode][end]");
-		return pageCode.toString();
-	}
+
 	
 	//Lucence搜索文章结果的分页
 	public static String getUpAndDownPageCode (
