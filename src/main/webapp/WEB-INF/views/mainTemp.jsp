@@ -32,11 +32,11 @@
 	<div class="container">
 	
 		<div class="row">
-			<jsp:include page="/foreground/common/head.jsp"/>
+			<jsp:include page="./foreground/common/head.jsp"/>
 		</div>
 	
 		<div class="row" style="padding-top: 20px">
-			<jsp:include page="/foreground/common/menu.jsp"/>
+			<jsp:include page="./foreground/common/menu.jsp"/>
 		</div>
 				
 		<div class="row">		  	  
@@ -44,12 +44,12 @@
 				  <jsp:include page="${commonPage }"/>
 			  </div>	
 			  <div class="col-md-3">		  	
-				  <jsp:include page="/foreground/blog/rightList.jsp"/>		  	
+				  <jsp:include page="./foreground/blog/rightList.jsp"/>		  	
 			  </div>		  
 		</div>
 		
 		<div class="row">
-			<jsp:include page="/foreground/common/footer.jsp"/>
+			<jsp:include page="./foreground/common/footer.jsp"/>
 		</div>
 		
 	</div>
