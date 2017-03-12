@@ -23,6 +23,7 @@
 			</a>
 		</li>
 		 -->
+		 <!-- 
 		<li <c:if test="${sidebar=='exams'}">class="active"</c:if> >
 			<a href="<%=request.getContextPath()%>/manager/exams">
 				<i class="icon-file"></i>
@@ -42,6 +43,7 @@
 				<span class="menu-text"> 获取accessToken </span>
 			</a>
 		</li>
+-->
 	</ul><!--/.nav-list-->
 	<div class="sidebar-collapse" id="sidebar-collapse">
 		<i class="icon-double-angle-left"></i>

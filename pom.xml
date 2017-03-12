@@ -13,6 +13,35 @@
         <version>2.4</version>
         <classifier>jdk15</classifier>
     </dependency> 
+    
+    <!-- 添加ueditor支持 -->
+	<dependency>
+		<groupId>commons-codec</groupId>
+		<artifactId>commons-codec</artifactId>
+		<version>1.9</version>
+	</dependency>
+	<dependency>
+		<groupId>commons-fileupload</groupId>
+		<artifactId>commons-fileupload</artifactId>
+		<version>1.3.1</version>
+	</dependency>
+	<dependency>
+		<groupId>commons-io</groupId>
+		<artifactId>commons-io</artifactId>
+		<version>2.4</version>
+	</dependency>
+	<dependency>
+		<groupId>org.json</groupId>
+		<artifactId>json</artifactId>
+		<version>20160212</version>
+	</dependency>
+	
+	<!-- 添加七牛支持 -->
+	<dependency>
+	    <groupId>com.qiniu</groupId>
+	    <artifactId>qiniu-java-sdk</artifactId>
+	    <version>7.0.8</version>
+	</dependency>
 
 	<!-- 添加jsp支持 -->
 	<dependency>

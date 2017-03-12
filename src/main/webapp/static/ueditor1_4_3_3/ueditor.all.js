@@ -13850,6 +13850,7 @@ UE.plugins['wordcount'] = function(){
     me.setOpt('wordCount',true);
     me.addListener('contentchange',function(){
         me.fireEvent('wordcount');
+
     });
     var timer;
     me.addListener('ready',function(){
@@ -23974,7 +23975,10 @@ UE.plugin.register('autosave', function (){
             },
 
             'contentchange': function () {
-
+                //关闭自动本地保存
+                if (!me.getOpt('enableAutoSave')) {
+                    return;
+                }
                 if ( !saveKey ) {
                     return;
                 }
