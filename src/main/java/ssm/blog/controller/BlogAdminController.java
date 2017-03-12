@@ -48,33 +48,7 @@ public class BlogAdminController {
 	
 	
 	
-	@RequestMapping("/save")
-	public String save(Blog blog, HttpServletResponse response) throws Exception {
-		logger.info("["+this.getClass()+"][save][start]");
-		logger.info("["+this.getClass()+"][save][blogTitle]"+blog.getTitle());
-		logger.info("["+this.getClass()+"][save][blogTypeId]"+blog.getBlogTypeId());
-		logger.info("["+this.getClass()+"][save][getContentNoTag]"+blog.getContentNoTag());
-		
-		
-		int resultTotal = 0; 
-		if(blog.getId() == null) { 
-			resultTotal = blogService.addBlog(blog);
-			blogIndex.addIndex(blog); 
-		} else { 
-			resultTotal = blogService.update(blog);
-			blogIndex.updateIndex(blog);
-		}
-		
-		JSONObject result = new JSONObject();
-		if(resultTotal > 0) {
-			result.put("success", true);
-		} else {
-			result.put("success", false);
-		}
-		ResponseUtil.write(response, result);
-		logger.info("["+this.getClass()+"][save][end]");
-		return null;
-	}
+
 	
 	@RequestMapping("/listBlog")
 	public String listBlog(
@@ -102,33 +76,8 @@ public class BlogAdminController {
 	}
 	
 
-	@RequestMapping("/delete")
-	public String deleteBlog(
-			@RequestParam(value="ids", required=false)String ids,
-			HttpServletResponse response) throws Exception {
-		
-		String[] idsStr = ids.split(",");
-		for(int i = 0; i < idsStr.length; i++) {
-			int id = Integer.parseInt(idsStr[i]);
-			commentService.deleteCommentByBlogId(id);
-			blogService.deleteBlog(id);
-			blogIndex.deleteIndex(idsStr[i]);
-		}
-		JSONObject result = new JSONObject();
-		result.put("success", true);
-		ResponseUtil.write(response, result);
-		return null;
-	}
+
 	
 	
-	@RequestMapping("/findById")
-	public String findById(
-			@RequestParam(value="id", required=false)String id,
-			HttpServletResponse response) throws Exception {
-		
-		Blog blog = blogService.findById(Integer.parseInt(id));
-		JSONObject result = JSONObject.fromObject(blog);
-		ResponseUtil.write(response, result);
-		return null;
-	}
+
 }

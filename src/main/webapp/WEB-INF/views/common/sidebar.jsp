@@ -5,22 +5,24 @@
 	<ul class="nav nav-list">
 		<li <c:if test="${sidebar=='writeBlog'}">class="active"</c:if> >
 			<a href="<%=request.getContextPath()%>/blog/to_writeBlog.do">
-				<i class="icon-file-alt"></i>
+				<i class="fa fa-file-o"></i>
 				<span class="menu-text"> 发布文章 </span>
 			</a>
 		</li>
 		<li <c:if test="${sidebar=='blogManage'}">class="active"</c:if> >
-			<a href="<%=request.getContextPath()%>/blog/to_blogManage.do">
-				<i class="icon-list-alt"></i>
+			<a href="<%=request.getContextPath()%>/blog/to_blogManage.do?pagenum=1">
+				<i class="fa fa-list-alt"></i>
 				<span class="menu-text"> 文章管理 </span>
 			</a>
 		</li>
-		<li <c:if test="${sidebar=='exams'}">class="active"</c:if> >
-			<a href="<%=request.getContextPath()%>/manager/exams">
-				<i class="icon-file"></i>
-				<span class="menu-text"> 审核评论 </span>
+		<!-- 
+		<li <c:if test="${sidebar=='test'}">class="active"</c:if> >
+			<a href="<%=request.getContextPath()%>/blog/to_test.do">
+				<i class="fa fa-paper-plane"></i>
+				<span class="menu-text"> test </span>
 			</a>
 		</li>
+		 -->
 		<li <c:if test="${sidebar=='exams'}">class="active"</c:if> >
 			<a href="<%=request.getContextPath()%>/manager/exams">
 				<i class="icon-file"></i>

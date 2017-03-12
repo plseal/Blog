@@ -9,6 +9,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import net.sf.json.JSONObject;
 import ssm.blog.entity.Blog;
 import ssm.blog.entity.Comment;
 import ssm.blog.entity.PageBean;
@@ -26,6 +28,7 @@ import ssm.blog.lucene.BlogIndex;
 import ssm.blog.service.BlogService;
 import ssm.blog.service.CommentService;
 import ssm.blog.util.PageUtil;
+import ssm.blog.util.ResponseUtil;
 import ssm.blog.util.StringUtil;
 
 /**
@@ -42,7 +45,7 @@ public class BlogController {
 	@Resource
 	private CommentService commentService;
 	
-	public static final int pagesize = 8;
+	public static final int pagesize = 10;
 	
 	@Value("#{setting[STR1]}")
 	private String STR1; 
@@ -57,7 +60,89 @@ public class BlogController {
 	private String STR4;
 	
 	private BlogIndex blogIndex = new BlogIndex();
+	
+	@RequestMapping("/findById")
+	public String findById(
+			String blog_id,
+			HttpServletResponse response) throws Exception {
+		logger.info("["+this.getClass()+"][findById][start]");
+		logger.info("["+this.getClass()+"][findById][blog_id]"+blog_id);
+		Blog blog = blogService.findById(Integer.parseInt(blog_id));
+		JSONObject result = JSONObject.fromObject(blog);
+		ResponseUtil.write(response, result);
+		logger.info("["+this.getClass()+"][findById][end]");
+		return null;
+	}
+	
+	@RequestMapping("/to_modifyBlog")
+	public ModelAndView to_modifyBlog(
+			String pagenum,
+			String blog_id
+			) throws Exception {
+		logger.info("["+this.getClass()+"][to_modifyBlog][start]");
+		ModelAndView mv=new ModelAndView();
 
+		logger.info("["+this.getClass()+"][to_modifyBlog][pagenum]"+pagenum);
+		logger.info("["+this.getClass()+"][to_modifyBlog][blog_id]"+blog_id);
+		
+		mv.setViewName("modifyBlog");
+		mv.addObject("sidebar","modifyBlog");
+		mv.addObject("blog_id",blog_id);
+		mv.addObject("pagenum",pagenum);
+
+		logger.info("["+this.getClass()+"][to_modifyBlog][end]");
+		return mv;
+	}
+	
+
+	@RequestMapping("/save")
+	public String save(Blog blog, HttpServletResponse response) throws Exception {
+		logger.info("["+this.getClass()+"][save][start]");
+		logger.info("["+this.getClass()+"][save][blog.getId()]"+blog.getId());
+		logger.info("["+this.getClass()+"][save][blog.getTitle()]"+blog.getTitle());
+		logger.info("["+this.getClass()+"][save][blog.getBlogTypeId()]"+blog.getBlogTypeId());
+		logger.info("["+this.getClass()+"][save][blog.getContentNoTag()]"+blog.getContentNoTag());
+		
+		
+		int resultTotal = 0; 
+		if(blog.getId() == null) { 
+			resultTotal = blogService.addBlog(blog);
+			blogIndex.addIndex(blog); 
+		} else { 
+			resultTotal = blogService.update(blog);
+			blogIndex.updateIndex(blog);
+		}
+		
+		JSONObject result = new JSONObject();
+		if(resultTotal > 0) {
+			result.put("success", true);
+		} else {
+			result.put("success", false);
+		}
+		ResponseUtil.write(response, result);
+		logger.info("["+this.getClass()+"][save][end]");
+		return null;
+	}
+	
+	@RequestMapping(value="/to_test")
+	public ModelAndView to_test(
+			
+			
+			) throws Exception{
+		logger.info("["+this.getClass()+"][to_test][start]");
+		
+
+		ModelAndView mv=new ModelAndView();
+
+		
+		
+		mv.setViewName("test");
+		mv.addObject("sidebar","test");
+		
+		logger.info("["+this.getClass()+"][to_test][end]");
+		return mv;
+	}
+	
 	
 	@RequestMapping("/articles/{id}")
 	public ModelAndView details(@PathVariable("id") Integer id,
@@ -138,49 +223,44 @@ public class BlogController {
 	}
 	
 	@RequestMapping(value="/to_blogManage")
-	public ModelAndView blogManage(
-			HttpServletRequest request
-			){
-		logger.info("["+this.getClass()+"][blogManage][start]");
-		String pagenum =request.getParameter("pagenum");
-		ModelAndView mv=new ModelAndView();
-		mv.setViewName("blogManage");
+	public ModelAndView to_blogManage(
+			String pagenum,
+			String blog_id
+			) throws Exception{
+		logger.info("["+this.getClass()+"][to_blogManage][start]");
 		
-		mv.addObject("sidebar","blogManage");
-		logger.info("["+this.getClass()+"][blogManage][pagenum11]"+pagenum);
-		if (pagenum ==null){
-			pagenum ="1";
+		//delete blog
+		if (blog_id != null) {
+			int id = Integer.parseInt(blog_id);
+			logger.info("["+this.getClass()+"][to_blogManage][delete][start]");
+			logger.info("["+this.getClass()+"][to_blogManage][delete][blog_id]"+id);
+			commentService.deleteCommentByBlogId(id);
+			blogService.deleteBlog(id);
+			blogIndex.deleteIndex(blog_id);
+			logger.info("["+this.getClass()+"][to_blogManage][delete][end]");
 		}
-		logger.info("["+this.getClass()+"][blogManage][pagenum]"+pagenum);
+		ModelAndView mv=new ModelAndView();
+
+		logger.info("["+this.getClass()+"][to_blogManage][pagenum]"+pagenum);
 		PageBean pageBean = new PageBean(Integer.parseInt(pagenum), pagesize);
 		Map<String, Object> map = new HashMap<String, Object>();
-		 
 		map.put("start", pageBean.getStart());
 		map.put("pageSize", pageBean.getPageSize());
 		List<Blog> blogList = blogService.listBlog(map);
-		List<Blog> blogListOut = null;
 		for (int i=0 ; i< blogList.size();i++) {
 			  SimpleDateFormat dateformat1=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			  blogList.get(i).setReleaseDateStr(dateformat1.format(blogList.get(i).getReleaseDate()));
-			
 		}
-		//logger.info("["+this.getClass()+"][blogManage][blog]"+blogList.get(0).getReleaseDateStr());
-
-		logger.info("["+this.getClass()+"][blogManage][blogList]"+blogList.size());
-		Long total = blogService.getTotal(map);
-		
+		//logger.info("["+this.getClass()+"][to_blogManage][blogList]"+blogList.size());
+		mv.setViewName("blogManage");
+		mv.addObject("sidebar","blogManage");
 		mv.addObject("blogList", blogList);
-		//result.put("rows", jsonArray);
-		//result.put("total", total);
-		//ResponseUtil.write(response, result);
 		mv.addObject("length", blogList.size());
-
 		mv.addObject("pagenum", pagenum);
-		
-		logger.info("["+this.getClass()+"][blogManage][end]");
+		logger.info("["+this.getClass()+"][to_blogManage][end]");
 		return mv;
 	}
-	public String getPrevAndNextPageCode(Blog prev, Blog next, String projectContent) {
+	private String getPrevAndNextPageCode(Blog prev, Blog next, String projectContent) {
 		logger.info("[PageUtil][getPrevAndNextPageCode][start]");
 		StringBuffer pageCode = new StringBuffer();
 		if(prev == null || prev.getId() == null) {

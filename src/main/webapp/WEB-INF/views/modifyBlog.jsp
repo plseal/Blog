@@ -3,7 +3,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<title>发布文章</title>
+		<title>编辑文章</title>
 		<meta name="description" content="" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<%@include file="/WEB-INF/views/common/css.jsp" %>
@@ -24,12 +24,14 @@
 					<div class="page-header position-relative">
 						<h1>
 							<small>
-								发布文章
+								编辑文章
 							</small>
 						</h1>
 					</div> 
 
 							<!--PAGE CONTENT BEGINS-->
+							<input type="hidden" id="id" name="id" class="form-control" value = "${blog_id}" placeholder="BLOGID" aria-describedby="basic-addon1">
+							<input type="hidden" id="pagenum" name="pagenum" class="form-control" value = "${pagenum}" aria-describedby="basic-addon1">
 							<form class="form-inline" method="post" >
 							<div class="input-group">
 							  <span class="input-group-addon" id="basic-addon1">文章标题：</span>
@@ -86,7 +88,26 @@
 	<script type="text/javascript">
 		//var UEDITOR_HOME_URL = "/Blog/";//从项目的根目录开始
 		var ue = UE.getEditor('editor');
+		ue.addListener("ready", function(){
+			//通过UE自己封装的ajax请求数据
+			UE.ajax.request("${pageContext.request.contextPath}/blog/findById.do",
+					{
+						method: "post",
+						async: false,
+						data: {"blog_id":"${blog_id}"},
+						onsuccess: function(result) { //根据id查询Blog，返回一个json格式的blog对象
+							result = eval("(" + result.responseText + ")");
+						
+							$("#title").val(result.title);
+							$("#keyWord").val(result.keyWord);							
+							
+							document.getElementById("blogTypeId").value = result.blogType.id;
+							UE.getEditor('editor').setContent(result.content);
+						}
+					});
+		});
 		function submitData() {
+			var pagenum = document.getElementById("pagenum").value;
 			var title = $("#title").val();
 			var blogTypeId = document.getElementById("blogTypeId").value;
 			var content = UE.getEditor('editor').getContent();
@@ -103,6 +124,7 @@
 			} else {
 				$.post("${pageContext.request.contextPath}/blog/save.do",
 						{
+							'id': '${blog_id}',
 							'title' : title,
 							'blogType.id' : blogTypeId,
 							'content' : content,
@@ -112,7 +134,7 @@
 						}, function(result) {
 							if (result.success) {
 								//$.messager.alert("系统提示", "文章发布成功！");
-								window.location.href='${pageContext.request.contextPath}/blog/to_blogManage.do?pagenum=1';
+								window.location.href='${pageContext.request.contextPath}/blog/to_blogManage.do?pagenum='+pagenum;
 								//clearValues();
 							} else {
 								alert("error");

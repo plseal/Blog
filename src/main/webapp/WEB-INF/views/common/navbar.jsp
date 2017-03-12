@@ -4,7 +4,7 @@
 		<div class="container-fluid">
 			<a href="<%=request.getContextPath()%>/login.jsp" class="brand">
 				<small>
-					<i class="icon-briefcase"></i>
+					<i class="fa fa-weixin"></i>
 					&nbsp;翎筑管理后台 
 				</small>
 			</a><!--/.brand-->

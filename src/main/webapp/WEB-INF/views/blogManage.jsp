@@ -31,7 +31,7 @@
 					</div> 
 
 							<!--PAGE CONTENT BEGINS-->
-							<form class="form-inline" method="get"  >
+							
 
 								
 								<table id="sample-table-1" class="table table-striped table-bordered table-hover">
@@ -51,7 +51,14 @@
 										<td><a target='_blank' href='${pageContext.request.contextPath}/blog/articles/${blog.id}.html'>${blog.title}</a></td>
 										<td>${blog.releaseDateStr}</td>
 										<td>${blog.blogType.typeName}</td>
-										<td>${blog.blogType.typeName}</td>
+										<td>
+										<button class="btn btn-info btn-small" onclick="javascript:window.location.href='<%=request.getContextPath() %>/blog/to_modifyBlog.do?pagenum=${pagenum}&blog_id=${blog.id}'">
+											编辑
+										</button>
+										<button class="btn btn-danger btn-small" onclick="javascript:window.location.href='<%=request.getContextPath() %>/blog/to_blogManage.do?pagenum=${pagenum}&blog_id=${blog.id}'">
+											删除
+										</button>
+										</td>
 										
 									</tr>
 								</c:forEach>
@@ -59,7 +66,7 @@
 							</table>
 		
 								
-						</form>
+						
 					 		<div class="dataTables_paginate paging_bootstrap pagination">
 							  <button class="btn btn-success btn-mini" onclick="javascript:window.location.href='<%=request.getContextPath() %>/blog/to_blogManage.do?pagenum=${pagenum-1}'" <c:if test="${pagenum <= 1}">disabled="disabled"</c:if>    >&laquo;</button>
 							  <button class="btn btn-success btn-mini" disabled="disabled">第 ${pagenum} 页</button>
