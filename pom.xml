@@ -13,7 +13,12 @@
         <version>2.4</version>
         <classifier>jdk15</classifier>
     </dependency> 
-    
+  	<!-- 添加sevlet支持 -->
+  	<dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>javax.servlet-api</artifactId>
+	    <version>3.1.0</version>
+	</dependency>
     <!-- 添加ueditor支持 -->
 	<dependency>
 		<groupId>commons-codec</groupId>
