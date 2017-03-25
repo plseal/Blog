@@ -18,6 +18,9 @@
 <!--ace scripts-->
 <script src="<%=request.getContextPath()%>/assets/js/ace-elements.min.js"></script>
 <script src="<%=request.getContextPath()%>/assets/js/ace.min.js"></script>
+
+<script src="<%=request.getContextPath()%>/assets/js/bootstrap-datetimepicker.js"></script>
+<script src="<%=request.getContextPath()%>/assets/js/bootstrap-datetimepicker.zh-CN.js"></script>
 <!--inline scripts related to this page-->
 
 

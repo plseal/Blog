@@ -6,6 +6,7 @@ encoding//src/main/java/ssm/blog/controller/CommentController.java=UTF-8
 encoding//src/main/java/ssm/blog/controller/IndexController.java=UTF-8
 encoding//src/main/java/ssm/blog/entity/Blog.java=UTF-8
 encoding//src/main/java/ssm/blog/entity/BlogType.java=UTF-8
+encoding//src/main/java/ssm/blog/entity/SexType.java=UTF-8
 encoding//src/main/java/ssm/blog/service/BlogTypeService.java=UTF-8
 encoding//src/main/java/ssm/blog/util/PageUtil.java=UTF-8
 encoding//src/main/java/ssm/blog/util/QiniuHelper.java=UTF-8
