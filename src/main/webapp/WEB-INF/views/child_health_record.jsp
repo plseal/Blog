@@ -7,7 +7,8 @@
     <title>儿童电子档案</title>
     <meta http-equiv="pragma" content="no-cache"/>   
     <meta http-equiv="Cache-Control" content="no-cache, must-revalidate"/>   
-    <meta http-equiv="expires" content="0"/> 
+    <meta http-equiv="expires" content="0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
     <link href="${pageContext.request.contextPath}/static/bootstrap3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="${pageContext.request.contextPath}/static/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 </head>
