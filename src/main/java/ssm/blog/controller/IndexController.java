@@ -1,5 +1,6 @@
 package ssm.blog.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ssm.blog.entity.Blog;
 import ssm.blog.entity.BlogType;
 import ssm.blog.entity.PageBean;
+import ssm.blog.entity.SexType;
 import ssm.blog.service.BlogService;
 import ssm.blog.service.BlogTypeService;
 import ssm.blog.util.PageUtil;
@@ -60,7 +62,7 @@ public class IndexController {
 		PageBean pageBean = new PageBean(Integer.parseInt(page), 10); 
 		if (typeId == null) {
 			typeId ="1";
-		}
+		} 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("start", pageBean.getStart());
 		map.put("pageSize", pageBean.getPageSize());
@@ -102,9 +104,30 @@ public class IndexController {
 		modelAndView.addObject("blogTypeName",blogType.getTypeName() );
 		modelAndView.addObject("commonPage", "foreground/blog/blogList.jsp");
 		modelAndView.addObject("title", "home");
-		modelAndView.setViewName("mainTemp");
+		//成长点滴
+		logger.info("["+this.getClass()+"][index][typeId]"+typeId);
+		if ("10".equals(typeId)) {
+			//性别
+			List<SexType> sexTypeList = new ArrayList<SexType>();
+			SexType sexType = new SexType();
+			sexType.setId(1);
+			sexType.setTypeName("男");
+			sexTypeList.add(sexType);
+			SexType sexType2 = new SexType();
+			sexType2.setId(0);
+			sexType2.setTypeName("女");
+			sexTypeList.add(sexType2);
+			modelAndView.addObject("sexTypeList", sexTypeList);
+	
+			modelAndView.setViewName("child_health_record");
+		} else {
+			modelAndView.setViewName("mainTemp");
+		}
+			
+		
 		logger.info("["+this.getClass()+"][index][end]");
 		return modelAndView;
 
 	}
+
 }
