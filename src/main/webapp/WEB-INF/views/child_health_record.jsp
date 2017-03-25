@@ -33,11 +33,10 @@
 			<div class="form-group">
 				 <label  class="col-sm-2 control-label">性别：</label>
 				<div class="col-sm-10 ">
-					<select id="sexTypeId" class="form-control"  name="sexType.id" check-type="required" required-message="请选择性别">
+					<select id="sexTypeId" class="form-control"  name="sexTypeId" check-type="required" required-message="请选择性别">
 						<option value=""></option>
-						<c:forEach items="${sexTypeList}" var="sexType">
-							<option value="${sexType.id}">${sexType.typeName}</option>
-						</c:forEach>
+						<option value="男">男</option>
+						<option value="女">女</option>
 					</select>
 					
 				</div>
