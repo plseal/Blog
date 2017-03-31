@@ -201,11 +201,20 @@ a {
 		return true;
 	}
 </SCRIPT>
+<script type="text/javascript">
+    document.onkeydown=function(event){
+        var e = event || window.event || arguments.callee.caller.arguments[0];
+         if(e && e.keyCode==13){ // enter 键
+        	 document.getElementById('login_form').submit();
+        }
+    }; 
+
+</script>
 </head>
 <body>
 	<DIV class="top_div"></DIV>
 	<form action="${pageContext.request.contextPath}/blogger/login.do"
-		method="post" onsubmit="return checkForm()">
+		method="post" id ="login_form" onsubmit="return checkForm()">
 		<DIV
 			style="background: rgb(255, 255, 255); margin: -100px auto auto; border: 1px solid rgb(231, 231, 231); border-image: none; width: 400px; height: 200px; text-align: center;">
 			<DIV style="width: 165px; height: 96px; position: absolute;">

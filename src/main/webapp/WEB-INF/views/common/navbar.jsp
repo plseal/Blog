@@ -2,7 +2,7 @@
 <div class="navbar">
 	<div class="navbar-inner">
 		<div class="container-fluid">
-			<a href="<%=request.getContextPath()%>/login.jsp" class="brand">
+			<a href="<%=request.getContextPath()%>/login.html" class="brand">
 				<small>
 					<i class="fa fa-weixin"></i>
 					&nbsp;翎筑管理后台 
