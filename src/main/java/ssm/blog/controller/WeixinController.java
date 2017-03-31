@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,7 +27,8 @@ public class WeixinController {
 	
 	public static int pagesize = 10;
 	
-
+	@Value("#{setting[WELCOME_CONTENT]}")
+	private String WELCOME_CONTENT; 
 	
 	
 	//接收微信公众号接收的消息，处理后再做相应的回复
@@ -43,7 +45,7 @@ public class WeixinController {
 			logger.info("["+this.getClass().getName()+"][replyMessage][message.getFromUserName()]"+message.getFromUserName());
 			request.getSession().setAttribute("open_id", message.getFromUserName());
 			//weixinService.addMessage(message);//保存接受消息到数据库
-			String replyContent = Reply.WELCOME_CONTENT;
+			String replyContent = WELCOME_CONTENT;
 			String type = message.getMsgType();
 			logger.info("["+this.getClass().getName()+"][replyMessage][message type]"+type);
 			if (type.equals(Message.TEXT)) {//仅处理文本回复内容
