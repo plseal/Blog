@@ -106,6 +106,7 @@ public class WeixinController {
 			reply.setCreateTime(new Date());
 			reply.setMsgType(Reply.TEXT);
 			reply.setContent(replyContent);
+			logger.info("["+this.getClass().getName()+"][replyMessage][replyContent]"+replyContent);
 			//weixinService.addReply(reply);//保存回复消息到数据库
 			//将回复消息序列化为xml形式
 			String back = WeixinUtil.replyToXml(reply);
