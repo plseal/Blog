@@ -32,7 +32,7 @@
 			<div class="form-group">
 				 <label  class="col-sm-2 control-label">货物重量(克)g：</label>
 				 <div class="col-sm-10 ">
-					<input type="text" class="form-control" id="cargo_weight" name="cargo_weight" value="1500" placeholder="请输入货物重量(克)" check-type="required number" required-message="请输入货物重量(克)">
+					<input type="text" class="form-control" id="cargo_weight" name="cargo_weight" value="0" placeholder="请输入货物重量(克)" check-type="required number" required-message="请输入货物重量(克)">
 				 </div>
 			</div>
 			
