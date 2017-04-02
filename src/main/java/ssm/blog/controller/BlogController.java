@@ -145,7 +145,7 @@ public class BlogController {
 	
 	
 	@RequestMapping("/articles/{id}")
-	public ModelAndView details(@PathVariable("id") Integer id,
+	public ModelAndView articles(@PathVariable("id") Integer id,
 			HttpServletRequest request) {
 		logger.info("["+this.getClass()+"][articles][start]");
 		ModelAndView modelAndView = new ModelAndView();
@@ -171,14 +171,14 @@ public class BlogController {
 		List<Comment> commentList = commentService.getCommentData(map);
 
 		modelAndView.addObject("commentList", commentList);
-		modelAndView.addObject("commonPage", "foreground/blog/blogDetail.jsp");
+		
 		modelAndView.addObject("title", blog.getTitle() + " ");
 
 		modelAndView.addObject("pageCode", getPrevAndNextPageCode(
 				blogService.getPrevBlog(id), blogService.getNextBlog(id),
 				request.getServletContext().getContextPath()));
 
-		modelAndView.setViewName("mainTemp");
+		modelAndView.setViewName("blogDetail");
 		logger.info("["+this.getClass()+"][articles][end]");
 		return modelAndView;
 	}
@@ -261,7 +261,7 @@ public class BlogController {
 		return mv;
 	}
 	private String getPrevAndNextPageCode(Blog prev, Blog next, String projectContent) {
-		logger.info("[PageUtil][getPrevAndNextPageCode][start]");
+		//logger.info("[PageUtil][getPrevAndNextPageCode][start]");
 		StringBuffer pageCode = new StringBuffer();
 		if(prev == null || prev.getId() == null) {
 			pageCode.append("<p>" + STR1 + "</P>");
@@ -275,7 +275,7 @@ public class BlogController {
 			pageCode.append("<p>" + STR4 + "<a href='" + projectContent + "/blog/articles/" + next.getId() + ".html'>" + next.getTitle() + "</a></p>");
 		}
 		logger.info("[PageUtil][getPrevAndNextPageCode][pageCode.toString()]"+pageCode.toString());
-		logger.info("[PageUtil][getPrevAndNextPageCode][end]");
+		//logger.info("[PageUtil][getPrevAndNextPageCode][end]");
 		return pageCode.toString();
 	}
 
