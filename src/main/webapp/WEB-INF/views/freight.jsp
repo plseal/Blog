@@ -51,7 +51,7 @@
 			</div>
 			
 			<div class="form-group">
-				 <label  class="col-sm-2 control-label">汇率（${banknm}）：</label>
+				 <label  class="col-sm-2 control-label">汇率（${banknm}&nbsp;现钞（日元）卖价）：</label>
 				 <div class="col-sm-10 ">
 					<input type="text" class="form-control" id="se_sell" name="se_sell"  value="${se_sell}" placeholder="${se_sell}" readonly  > 
 				 </div>

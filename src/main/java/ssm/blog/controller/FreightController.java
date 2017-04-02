@@ -82,10 +82,11 @@ public class FreightController {
         	//System.out.println(jsonObj3.getString("BOC"));
         	JSONObject jsonObj4;
         	jsonObj4 = JSONObject.fromObject(jsonObj3.getString("BOC"));
-        	System.out.println(jsonObj4.getString("banknm"));
-        	System.out.println(jsonObj4.getString("se_sell"));
+        	//System.out.println(jsonObj4.getString("banknm"));
+        	
         	banknm = jsonObj4.getString("banknm");
         	se_sell = jsonObj4.getString("se_sell");
+        	System.out.println(banknm + ":" + se_sell);
         }
 		
 		
