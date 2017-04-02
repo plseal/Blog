@@ -1,8 +1,11 @@
 package ssm.blog.controller;
 
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 
 import javax.annotation.Resource;
 
@@ -18,6 +21,7 @@ import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
 import ssm.blog.entity.AccessToken;
 import ssm.blog.service.AccessTokenService;
+import ssm.blog.service.ExchangeService;
 import ssm.blog.service.MenuService;
 import ssm.blog.util.WeixinUtil;
 
@@ -30,12 +34,27 @@ public class ManagerController {
 	@Resource(name="accessTokenService")
 	private AccessTokenService accessTokenService;
 	
+	@Resource(name="exchangeService")
+	private ExchangeService exchangeService;
+	
 	
 	@Value("#{setting[APPID]}")
 	private String strAPPID; 
 	
 	@Value("#{setting[APPSECRET]}")
 	private String strAPPSECRET; 
+	
+	@Value("#{setting[JUHE_APPKEY]}")
+	private String str_juhe_appkey; 
+	
+	@Value("#{setting[NOWAPI_APPKEY]}")
+	private String str_nowapi_appkey; 
+	
+	@Value("#{setting[NOWAPI_SIGN]}")
+	private String str_nowapi_sign; 
+	
+	
+
 	
 	@RequestMapping(value="/manager/get_access_token",method=RequestMethod.GET)
 	@ResponseBody
@@ -91,6 +110,46 @@ public class ManagerController {
         
 		//mv.addObject("sidebar","classes");
 		logger.info("["+this.getClass().getName()+"][get_union_id][end]"); 
+		return mv;
+	}
+	
+	@RequestMapping(value="/manager/get_exchange",method=RequestMethod.GET)
+	@ResponseBody
+	public ModelAndView get_exchange() throws FileNotFoundException, IOException{
+		
+		logger.info("["+this.getClass().getName()+"][get_exchange][start]"); 
+		ModelAndView mv=new ModelAndView();
+        
+        String strResult = exchangeService.getExchange().getExchange();
+         
+        mv.addObject("strResult", strResult);
+        
+        JSONObject jsonObj;
+        jsonObj  = JSONObject.fromObject(strResult);
+        if ("1".equals(jsonObj.getString("success"))) {
+        	System.out.println(jsonObj.getString("result"));
+        	JSONObject jsonObj2;
+        	jsonObj2 = JSONObject.fromObject(jsonObj.getString("result"));
+        	System.out.println(jsonObj2.getString("JPY"));
+        	JSONObject jsonObj3;
+        	jsonObj3 = JSONObject.fromObject(jsonObj2.getString("JPY"));
+        	System.out.println(jsonObj3.getString("BOC"));
+        	JSONObject jsonObj4;
+        	jsonObj4 = JSONObject.fromObject(jsonObj3.getString("BOC"));
+        	System.out.println(jsonObj4.getString("banknm"));
+        	System.out.println(jsonObj4.getString("se_sell"));
+        }
+            
+        
+
+        
+   
+        
+		mv.addObject("sidebar","get_exchange");
+        mv.setViewName("result");
+        
+
+		logger.info("["+this.getClass().getName()+"][get_exchange][end]"); 
 		return mv;
 	}
 	

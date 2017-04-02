@@ -38,6 +38,17 @@
 				<span class="menu-text"> 初始微信菜单 </span>
 			</a>
 		</li>
+		<li>
+			<br/>
+			&nbsp;&nbsp;以下为开发测试专用
+			<br/>
+		</li>
+		<li <c:if test="${sidebar=='get_exchange'}">class="active"</c:if> >
+			<a href="<%=request.getContextPath()%>/manager/get_exchange.do">
+				<i class="fa fa-list-alt"></i>
+				<span class="menu-text"> 汇率测试 </span>
+			</a>
+		</li>
 		<!-- 
 		<li <c:if test="${sidebar=='test'}">class="active"</c:if> >
 			<a href="<%=request.getContextPath()%>/blog/to_test.do">

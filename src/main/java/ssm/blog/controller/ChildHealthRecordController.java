@@ -51,7 +51,7 @@ public class ChildHealthRecordController {
 			@RequestParam(value = "releaseDateStr", required = false) String releaseDateStr,
 			HttpServletRequest request) throws Exception {
 		
-		logger.info("["+this.getClass()+"][index][start]");
+		logger.info("["+this.getClass()+"][detail][start]");
 		
 		ModelAndView modelAndView = new ModelAndView();
 
@@ -125,7 +125,7 @@ public class ChildHealthRecordController {
 		}
 			
 		
-		logger.info("["+this.getClass()+"][index][end]");
+		logger.info("["+this.getClass()+"][detail][end]");
 		return modelAndView;
 
 	}

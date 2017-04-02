@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>儿童电子档案</title>
+    <title>李田田的运费计算器</title>
     <meta http-equiv="pragma" content="no-cache"/>   
     <meta http-equiv="Cache-Control" content="no-cache, must-revalidate"/>   
     <meta http-equiv="expires" content="0"/>
@@ -20,70 +20,58 @@
         	<div class="page-header position-relative">
 				<h1>
 					<small>
-						成长点滴
+						李田田的运费计算器
 					</small>
 				</h1>
+				<h4>
+					<small>
+						结婚五周年纪念版
+					</small>
+				</h4>
            </div>
 			<div class="form-group">
-				 <label class="col-sm-2 control-label">姓名：</label>
-				<div class="col-sm-10">
-					<input type="text"  class="form-control" id="child_name" name="child_name" value="宋嘉诚"  placeholder="请输入姓名" check-type="required" required-message="请输入小朋友的名字">
-				</div>
-			</div>
-			<div class="form-group">
-				 <label  class="col-sm-2 control-label">性别：</label>
-				<div class="col-sm-10 ">
-					<select  class="form-control" id="child_sex"  name="child_sex" check-type="required" required-message="请选择性别">
-						<option value=""></option>
-						<option value="男" selected>男</option>
-						<option value="女">女</option>
-					</select>
-					
-				</div>
+				 <label  class="col-sm-2 control-label">货物重量(克)g：</label>
+				 <div class="col-sm-10 ">
+					<input type="text" class="form-control" id="cargo_weight" name="cargo_weight" value="1500" placeholder="请输入货物重量(克)" check-type="required number" required-message="请输入货物重量(克)">
+				 </div>
 			</div>
 			
 			<div class="form-group">
-				 <label  class="col-sm-2 control-label">生日：</label>
+				 <label  class="col-sm-2 control-label">货物重量(千克)kg：</label>
 				 <div class="col-sm-10 ">
-	                <div class="input-group date form_date " data-date="2013/06/29" data-date-format="yyyy/mm/dd" data-link-field="dtp_input2" data-link-format="yyyy/mm/dd">
-	                    <input  id="child_birth" class="form-control" size="16" type="text" value="" readonly >
-	                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-						<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-	                </div>
-					<input type="hidden" id="hid_child_birth" value="" check-type="required" required-message="请输入小朋友的生日"><br/>
+					<input type="text" class="form-control" id="cargo_weight_kg" name="cargo_weight_kg" value="0" readonly>
 				 </div>
+			</div>
+			
+			<div class="form-group">
+				 <label  class="col-sm-2 control-label">运费(根据货物重量自动生成)单位为日元：</label>
+				 <div class="col-sm-10 ">
+					<input type="text" class="form-control" id="result_freight" name="result_freight"  placeholder="" readonly  > 
+				 </div>
+			</div>
+			
+			<div class="form-group">
+				 <label  class="col-sm-2 control-label">汇率（${banknm}）：</label>
+				 <div class="col-sm-10 ">
+					<input type="text" class="form-control" id="se_sell" name="se_sell"  value="${se_sell}" placeholder="${se_sell}" readonly  > 
+				 </div>
+			</div>
+			
+			<div class="form-group">
+				 <label  class="col-sm-2 control-label">运费(根据货物重量自动生成)单位为人民币：</label>
+				 <div class="col-sm-10 ">
+					<input type="text" class="form-control" id="result_freight_CNY" name="result_freight_CNY"  placeholder="" readonly  > 
+				 </div>
+			</div>
+
+			
+			<div class="form-group">
+				 <label  class="col-sm-12 ">说明：起步价为每500克600日元。每增加100克，增加110日元</label>
+
 				 
 
 			</div>
 
-			<div class="form-group">
-				 <label  class="col-sm-2 control-label">年龄(根据生日自动生成)：</label>
-				 <div class="col-sm-10 ">
-					<input type="text" class="form-control" id="child_age" name="child_age"  placeholder="" readonly  > 
-				 </div>
-				 
-
-			</div>
-			
-			<div class="form-group">
-				 <label  class="col-sm-2 control-label">身高(厘米)：</label>
-				 <div class="col-sm-10 ">
-					<input type="text" class="form-control" id="child_height" name="child_height" value="100" placeholder="请输入身高" check-type="required number" required-message="请输入小朋友的身高">
-				 </div>
-			</div>
-
-			<div class="form-group">
-				 <label  class="col-sm-2 control-label">体重(公斤)：</label>
-				 <div class="col-sm-10 ">
-					<input type="text" class="form-control" id="child_height" name="child_height" value="15" placeholder="请输入体重" check-type="required number" required-message="请输入小朋友的体重">
-				 </div>
-			</div>
-
-		     <div class="form-group">
-		        <div class="col-sm-10 ">
-		          <button type="submit" class="btn btn-large btn-block btn-primary">提交</button>
-		        </div>
-		      </div>
 
         </fieldset>
     </form>
@@ -101,23 +89,26 @@
 $(function(){
    //bootstrap3-validation init：
    $("form").validation();
-   $("button[type='submit']").on('click',function(event){
-     // 2.最后要调用 valid()方法。
-     if ($("form").valid_(this,"error!")==false){
-       //$("#error-text").text("error!"); 1.0.4版本已将提示直接内置掉，简化前端。
-       return false;
-     }
-   })
+
    
-   $("#child_sex").on('change',function(event){
-     if ($("form").valid_one(this,"")==false){
-       return false;
-     }
-   })
    
-   $("#child_birth").on('change',function(event){
-   	   document.getElementById("hid_child_birth").value = $("#child_birth").val()
-		 if ($("form").valid_one(document.getElementById("hid_child_birth"),"")==false){
+   $("#cargo_weight").on('change',function(event){
+   	   
+   	   document.getElementById("cargo_weight_kg").value = $("#cargo_weight").val()/1000
+     	var se_sell =  $("#se_sell").val();
+   	   var weight =  $("#cargo_weight").val();
+   	
+   	   var result = 0;
+   	   if (weight <= 500) {
+			result = 600;
+   	   } else {
+   		   //alert(Math.round((weight-500)/100))
+   		    result = 600 + Math.round((weight-500)/100) * 110;
+   	   }
+       	document.getElementById("result_freight").value = result;
+       	document.getElementById("result_freight_CNY").value = Math.round(result/100*se_sell);
+   	   
+		 if ($("form").valid_one(document.getElementById("cargo_weight"),"")==false){
 		   return false;
 		 } 
    })

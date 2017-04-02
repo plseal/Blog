@@ -76,11 +76,12 @@ public class IndexController {
 			List<String> imageList = blog.getImageList();
 			String blogInfo = blog.getContent(); 
 			Document doc = Jsoup.parse(blogInfo); 
-			Elements jpgs = doc.select("img[src$=.jpg]");
+			Elements jpgs = doc.select("img");
 			for(int i = 0; i < jpgs.size(); i++) {
 				Element jpg = jpgs.get(i); 
+				logger.info("["+this.getClass()+"][index][jpg.toString()]"+jpg.toString());
 				imageList.add(jpg.toString()); 
-				if(i == 2)
+				if(i == 0)
 					break; 
 			}
 		}
@@ -101,6 +102,7 @@ public class IndexController {
 				param.toString()));
 		BlogType blogType = blogTypeService.findById(Integer.parseInt(typeId));
 		modelAndView.addObject("blogList", blogList);
+		
 		modelAndView.addObject("blogTypeName",blogType.getTypeName() );
 		modelAndView.addObject("commonPage", "foreground/blog/blogList.jsp");
 		modelAndView.addObject("title", "home");
