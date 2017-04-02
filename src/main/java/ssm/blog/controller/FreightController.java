@@ -72,6 +72,7 @@ public class FreightController {
         jsonObj  = JSONObject.fromObject(strResult);
         if ("1".equals(jsonObj.getString("success"))) {
         	
+        	
         	//System.out.println(jsonObj.getString("result"));
         	JSONObject jsonObj2;
         	jsonObj2 = JSONObject.fromObject(jsonObj.getString("result"));
