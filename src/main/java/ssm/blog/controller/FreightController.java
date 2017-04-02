@@ -71,13 +71,13 @@ public class FreightController {
         JSONObject jsonObj;
         jsonObj  = JSONObject.fromObject(strResult);
         if ("1".equals(jsonObj.getString("success"))) {
-        	System.out.println(jsonObj.getString("result"));
+        	//System.out.println(jsonObj.getString("result"));
         	JSONObject jsonObj2;
         	jsonObj2 = JSONObject.fromObject(jsonObj.getString("result"));
-        	System.out.println(jsonObj2.getString("JPY"));
+        	//System.out.println(jsonObj2.getString("JPY"));
         	JSONObject jsonObj3;
         	jsonObj3 = JSONObject.fromObject(jsonObj2.getString("JPY"));
-        	System.out.println(jsonObj3.getString("BOC"));
+        	//System.out.println(jsonObj3.getString("BOC"));
         	JSONObject jsonObj4;
         	jsonObj4 = JSONObject.fromObject(jsonObj3.getString("BOC"));
         	System.out.println(jsonObj4.getString("banknm"));
