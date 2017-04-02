@@ -64,6 +64,19 @@
 				 </div>
 			</div>
 
+			<div class="form-group">
+				 <label  class="col-sm-2 control-label">货物成本价，单位为日元：</label>
+				 <div class="col-sm-10 ">
+					<input type="text" class="form-control" id="mycost" name="mycost"  value="0" placeholder="请输入成本价（日元）" check-type="required number" required-message="请输入成本价（日元）">
+				 </div>
+			</div>
+			
+			<div class="form-group">
+				 <label  class="col-sm-2 control-label">包含运费的成本价,单位为人民币：</label>
+				 <div class="col-sm-10 ">
+					<input type="text" class="form-control" id="result_all_CNY" name="result_all_CNY"  placeholder="" readonly  > 
+				 </div>
+			</div>
 			
 			<div class="form-group">
 				 <label  class="col-sm-12 ">说明：起步价为每500克600日元。每增加100克，增加110日元</label>
@@ -94,12 +107,17 @@ $(function(){
    
    $("#cargo_weight").on('change',function(event){
    	   
+		 if ($("form").valid_one(document.getElementById("cargo_weight"),"")==false){
+		   return false;
+		 } 
    	   document.getElementById("cargo_weight_kg").value = $("#cargo_weight").val()/1000
      	var se_sell =  $("#se_sell").val();
    	   var weight =  $("#cargo_weight").val();
    	
    	   var result = 0;
-   	   if (weight <= 500) {
+   	 if (weight <= 0) {
+   		result = 0;
+   	 } else if (weight <= 500) {
 			result = 600;
    	   } else {
    		   //alert(Math.round((weight-500)/100))
@@ -107,10 +125,19 @@ $(function(){
    	   }
        	document.getElementById("result_freight").value = result;
        	document.getElementById("result_freight_CNY").value = Math.round(result/100*se_sell);
-   	   
-		 if ($("form").valid_one(document.getElementById("cargo_weight"),"")==false){
+       	var mycost = $("#mycost").val();
+		 document.getElementById("result_all_CNY").value = Math.round(mycost/100*se_sell)*1 + $("#result_freight_CNY").val()*1;
+   })
+   
+   $("#mycost").on('change',function(event){
+	 if ($("form").valid_one(document.getElementById("mycost"),"")==false){
 		   return false;
 		 } 
+	   var se_sell =  $("#se_sell").val();
+	   var mycost = $("#mycost").val();
+       	document.getElementById("result_all_CNY").value = Math.round(mycost/100*se_sell)*1 + $("#result_freight_CNY").val()*1;
+   	   
+	
    })
    
  
