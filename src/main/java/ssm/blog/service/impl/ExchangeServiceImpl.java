@@ -90,7 +90,7 @@ public class ExchangeServiceImpl implements ExchangeService {
 	        }
 	        byte b[]=out.toByteArray( );
 	        String strResult = new String(b,"utf-8");
-	        logger.info("["+this.getClass().getName()+"][getExchange][strResult]"+strResult);
+	        //logger.info("["+this.getClass().getName()+"][getExchange][strResult]"+strResult);
 			
 			ex.setExchange(strResult);
 			ex.setExpires_in(System.currentTimeMillis());

@@ -49,6 +49,12 @@
 				<span class="menu-text"> 汇率测试 </span>
 			</a>
 		</li>
+		<li <c:if test="${sidebar=='child_health_record'}">class="active"</c:if> >
+			<a href="<%=request.getContextPath()%>/index.html?typeId=10">
+				<i class="fa fa-list-alt"></i>
+				<span class="menu-text"> 成长点滴测试 </span>
+			</a>
+		</li>
 		<!-- 
 		<li <c:if test="${sidebar=='test'}">class="active"</c:if> >
 			<a href="<%=request.getContextPath()%>/blog/to_test.do">

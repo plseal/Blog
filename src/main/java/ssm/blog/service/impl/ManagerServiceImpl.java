@@ -31,7 +31,7 @@ public class ManagerServiceImpl implements ManagerService {
     	logger.info("["+this.getClass().getName()+"][get_union_id][start]");
 
         // 调用接口获取access_token
-        //AccessToken at = accessTokenService.getAccessToken(strAPPID, strAPPSECRET);
+
 
 
         logger.info("["+this.getClass().getName()+"][get_union_id][end]");

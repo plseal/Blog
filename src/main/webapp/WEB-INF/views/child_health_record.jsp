@@ -50,11 +50,9 @@
 	                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 						<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
 	                </div>
-					<input type="hidden" id="hid_child_birth" value="" check-type="required" required-message="请输入小朋友的生日"><br/>
+					<input type="text" id="hid_child_birth" name="hid_child_birth" style="display:none" value="" check-type="required" required-message="请输入小朋友的生日"><br/>
 				 </div>
-				 
-
-			</div>
+    		</div>
 
 			<div class="form-group">
 				 <label  class="col-sm-2 control-label">年龄(根据生日自动生成)：</label>
@@ -75,13 +73,15 @@
 			<div class="form-group">
 				 <label  class="col-sm-2 control-label">体重(公斤)：</label>
 				 <div class="col-sm-10 ">
-					<input type="text" class="form-control" id="child_height" name="child_height" value="15" placeholder="请输入体重" check-type="required number" required-message="请输入小朋友的体重">
+					<input type="text" class="form-control" id="child_weight" name="child_weight" value="15" placeholder="请输入体重" check-type="required number" required-message="请输入小朋友的体重">
 				 </div>
 			</div>
 
+
+
 		     <div class="form-group">
-		        <div class="col-sm-10 ">
-		          <button type="submit" class="btn btn-large btn-block btn-primary">提交</button>
+		        <div class="col-sm-12 ">
+		          <button type="submit" class="btn btn-lg btn-block btn-primary">提交</button>
 		        </div>
 		      </div>
 
@@ -122,7 +122,7 @@ $(function(){
 		 } 
    })
    
- 
+
 
 
 })
@@ -158,23 +158,25 @@ $(function(){
 	    //365
 	    var nowdate = new Date();
 	    var brithday = ev.date;
-		//var age =nowdate.getFullYear() - brithday.getFullYear();
-		//alert(age);
-		if (brithday != null) {
-			var age_of_days = DateDiff(brithday,nowdate);
-			var age_of_months = getMonths(brithday,nowdate);
-			//alert(age_of_days);
-			//12个月内精确到天
-			if (age_of_days < 365) {
-				document.getElementById("child_age").value = age_of_days + "天"
-			//1岁以上精确到月	
+	    //if (document.getElementById("child_age").value == null) {
+			//var age =nowdate.getFullYear() - brithday.getFullYear();
+			//alert(age);
+			if (brithday != null) {
+				var age_of_days = DateDiff(brithday,nowdate);
+				var age_of_months = getMonths(brithday,nowdate);
+				//alert(age_of_days);
+				//12个月内精确到天
+				if (age_of_days < 365) {
+					document.getElementById("child_age").value = age_of_days + "天"
+				//1岁以上精确到月	
+				} else {
+					document.getElementById("child_age").value = age_of_months + "月"
+				}
+			//clear
 			} else {
-				document.getElementById("child_age").value = age_of_months + "月"
+				document.getElementById("child_age").value = ""
 			}
-		//clear
-		} else {
-			document.getElementById("child_age").value = ""
-		}
+	    //}
 	});
 	
    //计算天数差的函数，通用  

@@ -20,70 +20,10 @@
         	<div class="page-header position-relative">
 				<h1>
 					<small>
-						成长点滴
+						提交成功
 					</small>
 				</h1>
            </div>
-			<div class="form-group">
-				 <label class="col-sm-2 control-label">姓名：</label>
-				<div class="col-sm-10">
-					<input type="text"  class="form-control" id="child_name" name="child_name" value="宋嘉诚"  placeholder="请输入姓名" check-type="required" required-message="请输入小朋友的名字">
-				</div>
-			</div>
-			<div class="form-group">
-				 <label  class="col-sm-2 control-label">性别：</label>
-				<div class="col-sm-10 ">
-					<select  class="form-control" id="child_sex"  name="child_sex" check-type="required" required-message="请选择性别">
-						<option value=""></option>
-						<option value="男" selected>男</option>
-						<option value="女">女</option>
-					</select>
-					
-				</div>
-			</div>
-			
-			<div class="form-group">
-				 <label  class="col-sm-2 control-label">生日：</label>
-				 <div class="col-sm-10 ">
-	                <div class="input-group date form_date " data-date="2013/06/29" data-date-format="yyyy/mm/dd" data-link-field="dtp_input2" data-link-format="yyyy/mm/dd">
-	                    <input  id="child_birth" class="form-control" size="16" type="text" value="" readonly >
-	                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-						<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-	                </div>
-					<input type="hidden" id="hid_child_birth" value="" check-type="required" required-message="请输入小朋友的生日"><br/>
-				 </div>
-				 
-
-			</div>
-
-			<div class="form-group">
-				 <label  class="col-sm-2 control-label">年龄(根据生日自动生成)：</label>
-				 <div class="col-sm-10 ">
-					<input type="text" class="form-control" id="child_age" name="child_age"  placeholder="" readonly  > 
-				 </div>
-				 
-
-			</div>
-			
-			<div class="form-group">
-				 <label  class="col-sm-2 control-label">身高(厘米)：</label>
-				 <div class="col-sm-10 ">
-					<input type="text" class="form-control" id="child_height" name="child_height" value="100" placeholder="请输入身高" check-type="required number" required-message="请输入小朋友的身高">
-				 </div>
-			</div>
-
-			<div class="form-group">
-				 <label  class="col-sm-2 control-label">体重(公斤)：</label>
-				 <div class="col-sm-10 ">
-					<input type="text" class="form-control" id="child_height" name="child_height" value="15" placeholder="请输入体重" check-type="required number" required-message="请输入小朋友的体重">
-				 </div>
-			</div>
-
-		     <div class="form-group">
-		        <div class="col-sm-10 ">
-		          <button type="submit" class="btn btn-large btn-block btn-primary">提交</button>
-		        </div>
-		      </div>
 
         </fieldset>
     </form>
