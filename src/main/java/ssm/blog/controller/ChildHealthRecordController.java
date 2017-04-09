@@ -1,5 +1,7 @@
 package ssm.blog.controller;
 
+import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ssm.blog.entity.ChildHealthRecord;
+import ssm.blog.entity.Message;
 import ssm.blog.service.BlogTypeService;
 import ssm.blog.service.ChildHealthRecordService;
+import ssm.blog.util.WeixinUtil;
 
 /**
  * @Description Controller
@@ -41,13 +45,14 @@ public class ChildHealthRecordController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		//String weixin_openid ="test_o08GJwa_rYPdbwV6jDi2ZTaXyJ6s";
-		String  weixin_openid =request.getSession().getAttribute("open_id").toString();
+		
+		Map<String, String> requestMap = WeixinUtil.parseXml(request);
+		Message message = WeixinUtil.mapToMessage(requestMap);
+		String  weixin_openid = message.getFromUserName();
+		logger.info("["+this.getClass().getName()+"][detail][weixin_openid]"+weixin_openid);
 		
 		modelAndView.addObject("title", "home");
 		
-		
-
-		logger.info("["+this.getClass()+"][detail][weixin_openid]"+weixin_openid);
 		
 		ChildHealthRecord chr = new ChildHealthRecord();
 		chr.setWeixin_openid(weixin_openid);
