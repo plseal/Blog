@@ -45,7 +45,7 @@ public class ChildHealthRecordController {
 		
 		ModelAndView modelAndView = new ModelAndView();
 		//String weixin_openid ="test_o08GJwa_rYPdbwV6jDi2ZTaXyJ6s";
-		
+		/*
 		Map<String, String> requestMap = WeixinUtil.parseXml(request);
 		Message message = WeixinUtil.mapToMessage(requestMap);
 		String  weixin_openid = message.getFromUserName();
@@ -64,10 +64,10 @@ public class ChildHealthRecordController {
 		chr.setChild_weight(request.getParameter("child_weight"));
 		
 		childHealthRecord.insert_chr(chr);
-		
+		*/
 		modelAndView.setViewName("child_health_record_detail");
 		
-			
+		
 		
 		logger.info("["+this.getClass()+"][detail][end]");
 		return modelAndView;
