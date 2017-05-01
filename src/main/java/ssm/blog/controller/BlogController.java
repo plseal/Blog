@@ -223,7 +223,8 @@ public class BlogController {
 		logger.info("["+this.getClass()+"][writeBlog][start]");
 		ModelAndView mv=new ModelAndView();
 		mv.setViewName("writeBlog");
-		
+	    List<BlogType> blogTypeList = blogTypeService.getBlogTypeData();
+		mv.addObject("blogTypeList",blogTypeList);
 		mv.addObject("sidebar","writeBlog");
 		logger.info("["+this.getClass()+"][writeBlog][end]");
 		return mv;
