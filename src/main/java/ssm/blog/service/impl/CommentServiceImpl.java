@@ -12,7 +12,7 @@ import ssm.blog.entity.Comment;
 import ssm.blog.service.CommentService;
 
 /**
- * @Description ÓÃ»§ÆÀÂÛserviceÊµÏÖÀà
+ * @Description ç”¨æˆ·è¯„è®ºserviceå®ç°ç±»
  * @author songml
  *
  */

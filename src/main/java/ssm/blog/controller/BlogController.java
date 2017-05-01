@@ -22,10 +22,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import net.sf.json.JSONObject;
 import ssm.blog.entity.Blog;
+import ssm.blog.entity.BlogType;
 import ssm.blog.entity.Comment;
 import ssm.blog.entity.PageBean;
 import ssm.blog.lucene.BlogIndex;
 import ssm.blog.service.BlogService;
+import ssm.blog.service.BlogTypeService;
 import ssm.blog.service.CommentService;
 import ssm.blog.util.PageUtil;
 import ssm.blog.util.ResponseUtil;
@@ -44,6 +46,8 @@ public class BlogController {
 	private BlogService blogService;
 	@Resource
 	private CommentService commentService;
+	@Resource
+	private BlogTypeService blogTypeService;
 	
 	public static final int pagesize = 10;
 	
@@ -67,6 +71,7 @@ public class BlogController {
 			HttpServletResponse response) throws Exception {
 		logger.info("["+this.getClass()+"][findById][start]");
 		logger.info("["+this.getClass()+"][findById][blog_id]"+blog_id);
+
 		Blog blog = blogService.findById(Integer.parseInt(blog_id));
 		JSONObject result = JSONObject.fromObject(blog);
 		ResponseUtil.write(response, result);
@@ -84,10 +89,12 @@ public class BlogController {
 
 		logger.info("["+this.getClass()+"][to_modifyBlog][pagenum]"+pagenum);
 		logger.info("["+this.getClass()+"][to_modifyBlog][blog_id]"+blog_id);
+	    List<BlogType> blogTypeList = blogTypeService.getBlogTypeData();
 		
 		mv.setViewName("modifyBlog");
 		mv.addObject("sidebar","modifyBlog");
 		mv.addObject("blog_id",blog_id);
+		mv.addObject("blogTypeList",blogTypeList);
 		mv.addObject("pagenum",pagenum);
 
 		logger.info("["+this.getClass()+"][to_modifyBlog][end]");
