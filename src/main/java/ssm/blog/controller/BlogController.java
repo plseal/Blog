@@ -220,13 +220,13 @@ public class BlogController {
 	
 	@RequestMapping(value="/to_writeBlog",method=RequestMethod.GET)
 	public ModelAndView writeBlog(){
-		logger.info("["+this.getClass()+"][writeBlog][start]");
+		logger.info("["+this.getClass()+"][to_writeBlog][start]");
 		ModelAndView mv=new ModelAndView();
 		mv.setViewName("writeBlog");
 	    List<BlogType> blogTypeList = blogTypeService.getBlogTypeData();
 		mv.addObject("blogTypeList",blogTypeList);
 		mv.addObject("sidebar","writeBlog");
-		logger.info("["+this.getClass()+"][writeBlog][end]");
+		logger.info("["+this.getClass()+"][to_writeBlog][end]");
 		return mv;
 	}
 	
