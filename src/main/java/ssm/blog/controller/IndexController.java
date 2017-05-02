@@ -22,8 +22,12 @@ import ssm.blog.entity.Blog;
 import ssm.blog.entity.BlogType;
 import ssm.blog.entity.PageBean;
 import ssm.blog.entity.SexType;
+import ssm.blog.entity.ChildHealthRecord;
+
 import ssm.blog.service.BlogService;
 import ssm.blog.service.BlogTypeService;
+import ssm.blog.service.ChildHealthRecordService;
+
 import ssm.blog.util.PageUtil;
 import ssm.blog.util.StringUtil;
 
@@ -40,6 +44,8 @@ public class IndexController {
 	private BlogService blogService;
 	@Resource
 	private BlogTypeService blogTypeService;
+	@Resource
+	private ChildHealthRecordService childHealthRecordService;
 	/**
 	 * @Description 
 	 * @return
@@ -109,19 +115,16 @@ public class IndexController {
 		//成长点滴
 		logger.info("["+this.getClass()+"][index][typeId]"+typeId);
 		if ("10".equals(typeId)) {
-			//性别
-			List<SexType> sexTypeList = new ArrayList<SexType>();
-			SexType sexType = new SexType();
-			sexType.setId(1);
-			sexType.setTypeName("男");
-			sexTypeList.add(sexType);
-			SexType sexType2 = new SexType();
-			sexType2.setId(0);
-			sexType2.setTypeName("女");
-			sexTypeList.add(sexType2);
-			modelAndView.addObject("sexTypeList", sexTypeList);
-	
-			modelAndView.setViewName("child_health_record");
+
+			
+			String weixin_openid ="test_o08GJwa_rYPdbwV6jDi2ZTaXyJ6s";
+			
+			ChildHealthRecord chr = new ChildHealthRecord();
+			chr.setWeixin_openid(weixin_openid);
+			List<ChildHealthRecord> child_health_record_list = childHealthRecordService.get_one_child_records(chr);
+
+			modelAndView.addObject("child_health_record_list", child_health_record_list);
+			modelAndView.setViewName("child_health_record_manage");
 		} else {
 			modelAndView.setViewName("mainTemp");
 		}

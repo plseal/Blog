@@ -8,9 +8,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="get_chr"  parameterType="ChildHealthRecord"   resultMap="chrMap"  >
 	   select id,weixin_openid,child_name,child_sex,child_birth,child_age,child_height,child_weight,update_date,create_time  
 	   from t_child_health_record
+	   where weixin_openid = #{weixin_openid} 
+	</select>
+	
+    <select id="get_one_chr_byid"  parameterType="ChildHealthRecord"   resultMap="chrMap"  >
+	   select id,weixin_openid,child_name,child_sex,child_birth,child_age,child_height,child_weight,update_date,create_time  
+	   from t_child_health_record
+	   where id = #{id} 
+	</select>
+	
+    <select id="get_one_child_records"  parameterType="ChildHealthRecord"   resultMap="chrMap"  >
+	   select id,weixin_openid,child_name,child_sex,child_birth,child_age,child_height,child_weight,update_date,create_time  
+	   from t_child_health_record
 	   where weixin_openid = #{weixin_openid}  
 	</select>
-
  
     <update id="update_chr" parameterType="ChildHealthRecord">
         update t_child_health_record set  child_name = #{child_name} 

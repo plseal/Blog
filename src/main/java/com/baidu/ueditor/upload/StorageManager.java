@@ -73,7 +73,7 @@ public class StorageManager {
 
 			//state = saveTmpFile(tmpFile, path);
 
-			//´æ´¢ÎÄ¼þµ½ÆßÅ£
+			//å­˜å‚¨æ–‡ä»¶åˆ°ä¸ƒç‰›
 			String key= QiniuHelper.UploadFile(tmpFile);
 
 			state = new BaseState(true);

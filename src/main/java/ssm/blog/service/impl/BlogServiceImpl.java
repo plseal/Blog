@@ -12,7 +12,7 @@ import ssm.blog.entity.Blog;
 import ssm.blog.service.BlogService;
 
 /**
- * @Description ÎÄÕÂServiceÊµÏÖÀà
+ * @Description æ–‡ç« Serviceå®ç°ç±»
  * @author songml
  *
  */

@@ -64,7 +64,10 @@ public class ChildHealthRecord {
 		this.child_weight = child_weight;
 	}
 
+
 	// ID
+	private String id;
+	
 	private String weixin_openid;
 	// 
 	private String child_name;
@@ -89,6 +92,13 @@ public class ChildHealthRecord {
 	public void setUpdate_date(String update_date) {
 		this.update_date = update_date;
 	}
+	
+	public String getId() {
+		return id;
+	}
 
+	public void setId(String id) {
+		this.id = id;
+	}
 	
 }

@@ -15,19 +15,19 @@
 
 <body>
 <div class="container">
-    <form action="${pageContext.request.contextPath}/child_health_record/detail.html" class="form-horizontal"  role="form">
+    <form action="${pageContext.request.contextPath}/child_health_record/to_child_health_record_manage.do?flg=update" class="form-horizontal"  role="form">
         <fieldset>
         	<div class="page-header position-relative">
 				<h1>
 					<small>
-						成长点滴
+						儿童电子档案更新
 					</small>
 				</h1>
            </div>
 			<div class="form-group">
 				 <label class="col-sm-2 control-label">姓名：</label>
 				<div class="col-sm-10">
-					<input type="text"  class="form-control" id="child_name" name="child_name" value="宋嘉诚"  placeholder="请输入姓名" check-type="required" required-message="请输入小朋友的名字">
+					<input type="text"  class="form-control" id="child_name" name="child_name" value="${chr_out.child_name}"  placeholder="请输入姓名" check-type="required" required-message="请输入小朋友的名字">
 				</div>
 			</div>
 			<div class="form-group">
@@ -45,19 +45,19 @@
 			<div class="form-group">
 				 <label  class="col-sm-2 control-label">生日：</label>
 				 <div class="col-sm-10 ">
-	                <div class="input-group date form_date " data-date="2013/06/29" data-date-format="yyyy/mm/dd" data-link-field="dtp_input2" data-link-format="yyyy/mm/dd">
+	                <div class="input-group date form_date " data-date="${chr_out.child_birth}" data-date-format="yyyy/mm/dd" data-link-field="dtp_input2" data-link-format="yyyy/mm/dd">
 	                    <input  id="child_birth" class="form-control" size="16" type="text" value="" readonly >
 	                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 						<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
 	                </div>
-					<input type="text" id="hid_child_birth" name="hid_child_birth" style="display:none" value="" check-type="required" required-message="请输入小朋友的生日"><br/>
+					<input type="text" id="hid_child_birth" name="hid_child_birth" style="display:none" value="${chr_out.child_birth}" check-type="required" required-message="请输入小朋友的生日"><br/>
 				 </div>
     		</div>
 
 			<div class="form-group">
 				 <label  class="col-sm-2 control-label">年龄(根据生日自动生成)：</label>
 				 <div class="col-sm-10 ">
-					<input type="text" class="form-control" id="child_age" name="child_age"  placeholder="" readonly  > 
+					<input type="text" class="form-control" id="child_age" name="child_age" value="${chr_out.child_age}" placeholder="" readonly  > 
 				 </div>
 				 
 
@@ -66,14 +66,14 @@
 			<div class="form-group">
 				 <label  class="col-sm-2 control-label">身高(厘米)：</label>
 				 <div class="col-sm-10 ">
-					<input type="text" class="form-control" id="child_height" name="child_height" value="100" placeholder="请输入身高" check-type="required number" required-message="请输入小朋友的身高">
+					<input type="text" class="form-control" id="child_height" name="child_height" value="${chr_out.child_height}" placeholder="请输入身高" check-type="required number" required-message="请输入小朋友的身高">
 				 </div>
 			</div>
 
 			<div class="form-group">
 				 <label  class="col-sm-2 control-label">体重(公斤)：</label>
 				 <div class="col-sm-10 ">
-					<input type="text" class="form-control" id="child_weight" name="child_weight" value="15" placeholder="请输入体重" check-type="required number" required-message="请输入小朋友的体重">
+					<input type="text" class="form-control" id="child_weight" name="child_weight" value="${chr_out.child_weight}" placeholder="请输入体重" check-type="required number" required-message="请输入小朋友的体重">
 				 </div>
 			</div>
 
