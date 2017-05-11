@@ -28,6 +28,7 @@
 				 <label class="col-sm-2 control-label">姓名：</label>
 				<div class="col-sm-10">
 					<input type="text"  class="form-control" id="child_name" name="child_name" value="宋嘉诚"  placeholder="请输入姓名" check-type="required" required-message="请输入小朋友的名字">
+					<input type="text" id="hid_flg" name="hid_flg" style="display:none" value="insert" >
 				</div>
 			</div>
 			<div class="form-group">

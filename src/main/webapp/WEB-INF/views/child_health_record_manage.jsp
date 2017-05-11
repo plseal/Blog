@@ -67,12 +67,7 @@
 							</table>
 		
 								
-						
-					 		<div class="dataTables_paginate paging_bootstrap pagination">
-							  <button class="btn btn-success btn-mini" onclick="javascript:window.location.href='<%=request.getContextPath() %>/blog/to_blogManage.do?pagenum=${pagenum-1}'" <c:if test="${pagenum <= 1}">disabled="disabled"</c:if>    >&laquo;</button>
-							  <button class="btn btn-success btn-mini" disabled="disabled">第 ${pagenum} 页</button>
-							  <button class="btn btn-success btn-mini" onclick="javascript:window.location.href='<%=request.getContextPath() %>/blog/to_blogManage.do?pagenum=${pagenum+1}'" <c:if test="${length < 8}">disabled="disabled"</c:if> >&raquo;</button>
-					 		</div>	
+
 
 		    
 		        <div class="col-sm-12 ">

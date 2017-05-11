@@ -24,10 +24,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
  
     <update id="update_chr" parameterType="ChildHealthRecord">
-        update t_child_health_record set  child_name = #{child_name} 
-        where weixin_openid = #{weixin_openid}  
+        update t_child_health_record set  child_name = #{child_name} ,child_sex = #{child_sex} ,child_birth = #{child_birth} ,child_age = #{child_age} ,child_height = #{child_height} ,
+		child_weight = #{child_weight} ,update_date = now() 
+        where  id = #{id} 
         
     </update>
+	
+	<delete id="delete_chr" parameterType="ChildHealthRecord">
+		delete from t_child_health_record where id=#{id}
+	</delete>
     
 	<insert id="insert_chr" parameterType="ChildHealthRecord" keyProperty="id" useGeneratedKeys="true">
 		INSERT INTO t_child_health_record VALUES(null,#{weixin_openid},#{child_name},#{child_sex},#{child_birth},#{child_age},#{child_height},#{child_weight},now(),now())

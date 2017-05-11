@@ -13,6 +13,8 @@ public interface ChildHealthRecordDao {
 
     public Integer insert_chr(ChildHealthRecord chr);
 	
+	public Integer delete_chr(ChildHealthRecord chr);
+	
 	public List<ChildHealthRecord> get_one_child_records(ChildHealthRecord chr);
 }
 

@@ -54,6 +54,7 @@
 	    <artifactId>javax.servlet-api</artifactId>
 	    <version>3.1.0</version>
 	</dependency>
+	
     <!-- 添加ueditor支持 -->
 	<dependency>
 		<groupId>commons-codec</groupId>
@@ -288,5 +289,6 @@
   </dependencies>
   <build>
     <finalName>Blog</finalName>
+
   </build>
 </project>

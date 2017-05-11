@@ -37,7 +37,6 @@ public class ChildHealthRecordController {
 	 */
 	@RequestMapping("/to_child_health_record_manage")
 	public ModelAndView to_child_health_record_manage(
-			@RequestParam(value = "page", required = false) String page,
 			@RequestParam(value = "typeId", required = false) String typeId,
 			@RequestParam(value = "releaseDateStr", required = false) String releaseDateStr,
 			HttpServletRequest request) throws Exception {
@@ -54,9 +53,12 @@ public class ChildHealthRecordController {
 		
 		modelAndView.addObject("title", "home");
 		*/
-		
+		String hid_flg = request.getParameter("hid_flg");
+		String id = request.getParameter("id");
+		logger.info("["+this.getClass()+"][to_child_health_record_manage][hid_flg]"+hid_flg);
 		ChildHealthRecord chr = new ChildHealthRecord();
 		chr.setWeixin_openid(weixin_openid);
+		chr.setId(id);
 		chr.setChild_name(request.getParameter("child_name"));
 		chr.setChild_sex(request.getParameter("child_sex"));
 		chr.setChild_birth(request.getParameter("hid_child_birth"));
@@ -64,7 +66,12 @@ public class ChildHealthRecordController {
 		chr.setChild_height(request.getParameter("child_height"));
 		chr.setChild_weight(request.getParameter("child_weight"));
 		
-		childHealthRecordService.insert_chr(chr);
+		if ("update".equals(hid_flg)) {
+			childHealthRecordService.update_chr(chr);
+		} else if ("insert".equals(hid_flg)) {
+			childHealthRecordService.insert_chr(chr);
+		}
+		
 		
 		modelAndView.setViewName("child_health_record_manage");
 		
@@ -130,7 +137,7 @@ public class ChildHealthRecordController {
 			HttpServletRequest request) throws Exception {
 		
 		logger.info("["+this.getClass()+"][to_update_chr][start]");
-		logger.info("["+this.getClass()+"][to_update_chr][chr_id]");
+		logger.info("["+this.getClass()+"][to_update_chr][chr_id]"+chr_id);
 		
 		
 		ModelAndView modelAndView = new ModelAndView();
@@ -161,5 +168,28 @@ public class ChildHealthRecordController {
 
 	}
 	
+	/**
+	 * @Description 
+	 * @return
+	 */
+	@RequestMapping("/to_delete_chr")
+	public ModelAndView to_delete_chr(
+			@RequestParam(value = "page", required = false) String page,
+			@RequestParam(value = "chr_id", required = false) String chr_id,
+			@RequestParam(value = "releaseDateStr", required = false) String releaseDateStr,
+			HttpServletRequest request) throws Exception {
+		
+		logger.info("["+this.getClass()+"][to_delete_chr][start1]");
+		logger.info("["+this.getClass()+"][to_delete_chr][chr_id]"+chr_id);
+		
+		
+		ChildHealthRecord chr = new ChildHealthRecord();
+		chr.setId(chr_id);
+		
+		childHealthRecordService.delete_chr(chr);
+		
+		logger.info("["+this.getClass()+"][to_delete_chr][end1]");
+		return  new ModelAndView("forward:to_child_health_record_manage.do", null);
 
+	}
 }

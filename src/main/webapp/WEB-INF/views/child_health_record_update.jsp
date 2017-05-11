@@ -15,8 +15,9 @@
 
 <body>
 <div class="container">
-    <form action="${pageContext.request.contextPath}/child_health_record/to_child_health_record_manage.do?flg=update" class="form-horizontal"  role="form">
-        <fieldset>
+    <form action="${pageContext.request.contextPath}/child_health_record/to_child_health_record_manage.do" class="form-horizontal"  role="form">
+        
+		<fieldset>
         	<div class="page-header position-relative">
 				<h1>
 					<small>
@@ -29,16 +30,18 @@
 				<div class="col-sm-10">
 					<input type="text"  class="form-control" id="child_name" name="child_name" value="${chr_out.child_name}"  placeholder="请输入姓名" check-type="required" required-message="请输入小朋友的名字">
 				</div>
+				<input type="text" id="hid_flg" name="hid_flg" style="display:none" value="update" >
+				<input type="text" id="id" name="id" style="display:none" value="${chr_out.id}" >
 			</div>
 			<div class="form-group">
 				 <label  class="col-sm-2 control-label">性别：</label>
 				<div class="col-sm-10 ">
 					<select  class="form-control" id="child_sex"  name="child_sex" check-type="required" required-message="请选择性别">
 						<option value=""></option>
-						<option value="男" selected>男</option>
-						<option value="女">女</option>
+						<option value="男" >男</option>
+						<option value="女" selected>女</option>
 					</select>
-					
+					<input type="text" id="hid_child_sex" name="hid_child_sex" style="display:none" value="${chr_out.child_sex}" >
 				</div>
 			</div>
 			
@@ -46,7 +49,7 @@
 				 <label  class="col-sm-2 control-label">生日：</label>
 				 <div class="col-sm-10 ">
 	                <div class="input-group date form_date " data-date="${chr_out.child_birth}" data-date-format="yyyy/mm/dd" data-link-field="dtp_input2" data-link-format="yyyy/mm/dd">
-	                    <input  id="child_birth" class="form-control" size="16" type="text" value="" readonly >
+	                    <input  id="child_birth" class="form-control" size="16" type="text" value="${chr_out.child_birth}" readonly >
 	                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 						<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
 	                </div>
@@ -99,6 +102,8 @@
 
 
 $(function(){
+	
+	$("#child_sex").val(document.getElementById("hid_child_sex").value);
    //bootstrap3-validation init：
    $("form").validation();
    $("button[type='submit']").on('click',function(event){

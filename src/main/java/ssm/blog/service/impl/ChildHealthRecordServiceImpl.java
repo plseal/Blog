@@ -61,14 +61,20 @@ public class ChildHealthRecordServiceImpl implements ChildHealthRecordService {
 	}
 
 	public Integer update_chr(ChildHealthRecord chr){
-		return childHealthRecordDao.update_chr(chr);//更新数据库
+		logger.info("["+this.getClass().getName()+"][update_chr][start]");
+		logger.info("["+this.getClass().getName()+"][update_chr][end]");
+		return childHealthRecordDao.update_chr(chr);//更新数据
 	}
 
 	public Integer insert_chr(ChildHealthRecord chr){
 		logger.info("["+this.getClass().getName()+"][insert_chr][start]");
 		logger.info("["+this.getClass().getName()+"][insert_chr][end]");
-		return childHealthRecordDao.insert_chr(chr);//insert数据库
+		return childHealthRecordDao.insert_chr(chr);//insert数据
 	}
 
-
+	public Integer delete_chr(ChildHealthRecord chr){
+		logger.info("["+this.getClass().getName()+"][delete_chr][start]");
+		logger.info("["+this.getClass().getName()+"][delete_chr][end]");
+		return childHealthRecordDao.delete_chr(chr);//delete数据
+	}
 }
