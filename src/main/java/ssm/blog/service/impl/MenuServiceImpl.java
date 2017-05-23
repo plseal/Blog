@@ -100,6 +100,7 @@ public class MenuServiceImpl implements MenuService {
 		// 将菜单对象转换成json字符串
 		String jsonMenu = JSONObject.fromObject(menu).toString();
 		// 调用接口创建菜单
+		logger.info("["+this.getClass().getName()+"][createMenu][jsonMenu]"+jsonMenu);
 		JSONObject jsonObject = WeixinUtil.httpRequest(url, "POST", jsonMenu);
 
 		if (null != jsonObject) {

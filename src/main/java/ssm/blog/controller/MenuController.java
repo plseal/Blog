@@ -83,6 +83,13 @@ public class MenuController {
 	@Value("#{setting[btn35Name]}")
 	private String btn35Name; 
 	
+	
+	@Value("#{setting[APPID]}")
+	private String strAPPID; 
+	
+	@Value("#{setting[APPSECRET]}")
+	private String strAPPSECRET; 
+	
 	@RequestMapping(value="/manager/create-menu",method=RequestMethod.GET)
 	@ResponseBody
 	public ModelAndView createMenu(){
@@ -166,7 +173,11 @@ public class MenuController {
         btn24.setName(btn24Name);
         btn24.setType("view");
         btn24.setKey("24");
-        btn24.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPE&state=STATE#wechat_redirect");
+        //snsapi_base不弹出授权页面，直接跳转，只能获取用户openid
+        String strURL ="https://open.weixin.qq.com/connect/oauth2/authorize?appid="+strAPPID+"&redirect_uri=http://www.lingzhu-med.com/Blog/weixin_oauth2/get_code.do&response_type=code&scope=snsapi_base&state=1#wechat_redirect";
+        //String strURL ="http://www.plseal.com/Blog/index.html?typeId=9";
+        logger.info("["+this.getClass().getName()+"][getMenu][strURL]"+strURL);
+        btn24.setUrl(strURL);
         
         CommonButton btn25 = new CommonButton();
         btn25.setName(btn25Name);
@@ -211,16 +222,18 @@ public class MenuController {
         mainBtn1.setName(mainBtn1Name);
         //一级下有2个子菜单
         mainBtn1.setSub_button(new CommonButton[] { btn11, btn12, btn13, btn14, btn15 });
+        //mainBtn1.setSub_button(new CommonButton[] { btn11 });
 
         
         ComplexButton mainBtn2 = new ComplexButton();
         mainBtn2.setName(mainBtn2Name);
         mainBtn2.setSub_button(new CommonButton[] { btn21, btn22, btn23, btn24, btn25 });
-
+        //mainBtn2.setSub_button(new CommonButton[] { btn21 });
         
         ComplexButton mainBtn3 = new ComplexButton();
         mainBtn3.setName(mainBtn3Name);
         mainBtn3.setSub_button(new CommonButton[] { btn31, btn32, btn33, btn34, btn35 });
+        //mainBtn3.setSub_button(new CommonButton[] { btn31 });
 
         
         /**
