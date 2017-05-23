@@ -77,7 +77,12 @@
 					<input type="text" class="form-control" id="child_weight" name="child_weight" value="15" placeholder="请输入体重" check-type="required number" required-message="请输入小朋友的体重">
 				 </div>
 			</div>
-
+			<div class="form-group">
+				 <label  class="col-sm-2 control-label">体检日期（例：20170101）：</label>
+				 <div class="col-sm-10 ">
+					<input type="text" class="form-control" id="update_date" name="update_date" value="" placeholder="请输入体检日期（例：20170101）" check-type="required number" required-message="请输入体检日期">
+				 </div>
+			</div>
 
 
 		     <div class="form-group">
@@ -129,7 +134,7 @@ $(function(){
 })
 </script>
 <script type="text/javascript">
-	
+	document.getElementById("update_date").value = 
 	//endDate limit to thisday
 	var year = new Date().getFullYear();
 	var month = new Date().getMonth() + 1;
@@ -198,7 +203,18 @@ $(function(){
 	        months = (year2 - year1) * 12 + (month2-month1) + 1;
 	    return months;    
 	}
+	Date.prototype.yyyymmdd = function() {
+	  var mm = this.getMonth() + 1; // getMonth() is zero-based
+	  var dd = this.getDate();
 
+	  return [this.getFullYear(),
+			  (mm>9 ? '' : '0') + mm,
+			  (dd>9 ? '' : '0') + dd
+			 ].join('');
+	};
+
+	var date = new Date();
+	alert(date.yyyymmdd());
 </script>
 
 </body>

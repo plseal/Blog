@@ -166,7 +166,7 @@ public class MenuController {
         btn24.setName(btn24Name);
         btn24.setType("view");
         btn24.setKey("24");
-        btn24.setUrl("http://www.plseal.com/Blog/index.html?typeId=9");
+        btn24.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPE&state=STATE#wechat_redirect");
         
         CommonButton btn25 = new CommonButton();
         btn25.setName(btn25Name);

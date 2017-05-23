@@ -79,7 +79,12 @@
 					<input type="text" class="form-control" id="child_weight" name="child_weight" value="${chr_out.child_weight}" placeholder="请输入体重" check-type="required number" required-message="请输入小朋友的体重">
 				 </div>
 			</div>
-
+			<div class="form-group">
+				 <label  class="col-sm-2 control-label">体检日期（例：20170101）：</label>
+				 <div class="col-sm-10 ">
+					<input type="text" class="form-control" id="update_date" name="update_date" value="${chr_out.update_date}" placeholder="请输入体检日期（例：20170101）" check-type="required number" required-message="请输入体检日期">
+				 </div>
+			</div>
 
 
 		     <div class="form-group">

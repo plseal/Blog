@@ -65,6 +65,7 @@ public class ChildHealthRecordController {
 		chr.setChild_age(request.getParameter("child_age"));
 		chr.setChild_height(request.getParameter("child_height"));
 		chr.setChild_weight(request.getParameter("child_weight"));
+		chr.setUpdate_date(request.getParameter("update_date"));
 		
 		if ("update".equals(hid_flg)) {
 			childHealthRecordService.update_chr(chr);
