@@ -53,10 +53,10 @@
 										<td>${chr.child_weight}kg</td>
 										<td>${chr.update_date}</td>
 										<td>
-										<button class="btn btn-info btn-small" onclick="javascript:window.location.href='<%=request.getContextPath() %>/child_health_record/to_update_chr.do?pagenum=${pagenum}&chr_id=${chr.id}&openid=${openid}''">
+										<button class="btn btn-info btn-small" onclick="javascript:window.location.href='<%=request.getContextPath() %>/child_health_record/to_update_chr.do?pagenum=${pagenum}&chr_id=${chr.id}'">
 											编辑
 										</button>
-										<button class="btn btn-danger btn-small" onclick="javascript:window.location.href='<%=request.getContextPath() %>/child_health_record/to_delete_chr.do?pagenum=${pagenum}&chr_id=${chr.id}&openid=${openid}''">
+										<button class="btn btn-danger btn-small" onclick="javascript:window.location.href='<%=request.getContextPath() %>/child_health_record/to_delete_chr.do?pagenum=${pagenum}&chr_id=${chr.id}'">
 											删除
 										</button>
 										</td>
