@@ -114,9 +114,10 @@ public class ChildHealthRecordController {
 		sexType2.setTypeName("女");
 		sexTypeList.add(sexType2);
 		mv.addObject("sexTypeList", sexTypeList);
-		String openid =request.getParameter("openid");
+		HttpSession session = request.getSession();
+		String openid = (String)session.getAttribute("openid");
 		logger.info("["+this.getClass()+"][to_insert_chr][openid]"+openid);
-		mv.addObject("openid", openid);
+
 		mv.setViewName("child_health_record_insert");
 		
 		
@@ -159,9 +160,9 @@ public class ChildHealthRecordController {
 		sexType2.setTypeName("女");
 		sexTypeList.add(sexType2);
 		mv.addObject("sexTypeList", sexTypeList);
-		String openid =request.getParameter("openid");
+		HttpSession session = request.getSession();
+		String openid = (String)session.getAttribute("openid");
 		logger.info("["+this.getClass()+"][to_insert_chr][openid]"+openid);
-		mv.addObject("openid", openid);
 		mv.setViewName("child_health_record_update");
 		
 		
@@ -186,9 +187,11 @@ public class ChildHealthRecordController {
 		ModelAndView mv = new ModelAndView();
 		
 		logger.info("["+this.getClass()+"][to_delete_chr][chr_id]"+chr_id);
-		String openid =request.getParameter("openid");
+		
+		
+		HttpSession session = request.getSession();
+		String openid = (String)session.getAttribute("openid");
 		logger.info("["+this.getClass()+"][to_insert_chr][openid]"+openid);
-		mv.addObject("openid", openid);
 		mv.setViewName("forward:to_child_health_record_manage.do");
 		ChildHealthRecord chr = new ChildHealthRecord();
 		chr.setId(chr_id);
