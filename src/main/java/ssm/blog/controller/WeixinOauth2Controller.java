@@ -84,7 +84,7 @@ public class WeixinOauth2Controller {
 		mv.addObject("openid", accessToken.getOpenid());
 		//初期画面
 		mv.addObject("hid_flg", "init");
-		mv.setViewName("forward:to_child_health_record_manage.do");
+		mv.setViewName("forward:../child_health_record/to_child_health_record_manage.do");
 		
 		logger.info("["+this.getClass()+"][get_code][end]");
 		return mv;
