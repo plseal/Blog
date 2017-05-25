@@ -16,6 +16,7 @@ import org.jsoup.select.Elements;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.sf.json.JSONObject;
@@ -23,6 +24,7 @@ import ssm.blog.entity.Blog;
 import ssm.blog.entity.BlogType;
 import ssm.blog.entity.PageBean;
 import ssm.blog.entity.SexType;
+import ssm.blog.entity.AccessToken;
 import ssm.blog.service.BlogService;
 import ssm.blog.service.BlogTypeService;
 import ssm.blog.service.ExchangeService;
@@ -47,6 +49,11 @@ public class WeixinOauth2Controller {
 	@Resource(name="exchangeService")
 	private ExchangeService exchangeService;
 	
+	@Value("#{setting[APPID]}")
+	private String strAPPID; 
+	
+	@Value("#{setting[APPSECRET]}")
+	private String strAPPSECRET; 
 	/**
 	 * @Description 
 	 * @return
