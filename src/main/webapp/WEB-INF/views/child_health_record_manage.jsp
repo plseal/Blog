@@ -36,8 +36,8 @@
 								<table id="sample-table-1" class="table table-striped table-bordered table-hover">
 								<thead>
 									<tr>
-										<th width="10%">ID</th>
-										<th width="10%">姓名</th>
+										
+										<th width="20%">姓名</th>
 										<th width="10%">身高</th>
 										<th width="10%">体重</th>
 										<th width="30%">录入日期</th>
@@ -47,7 +47,9 @@
 								<tbody>
 								<c:forEach items="${child_health_record_list}"  var="chr"  >
 									<tr>
+									<!--
 										<td><a target='_blank' href='${pageContext.request.contextPath}/blog/articles/${blog.id}.html'>${chr.id}</a></td>
+										-->
 										<td>${chr.child_name}</td>
 										<td>${chr.child_height}cm</td>
 										<td>${chr.child_weight}kg</td>
