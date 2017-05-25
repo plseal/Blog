@@ -70,8 +70,8 @@ public class WeixinOauth2Controller {
 		
 		String str_code = request.getParameter("code");//我们要的code
 		logger.info("["+this.getClass()+"][get_code][CODE]"+str_code);
-		
-		AccessToken accessToken = WeixinUtil.get_oauth2_access_token_from_url(strAPPID, strAPPSECRET,str_code);
+		WeixinUtil wu = new WeixinUtil();
+		AccessToken accessToken = wu.get_oauth2_access_token_from_url(strAPPID, strAPPSECRET,str_code);
 		logger.info("["+this.getClass()+"][get_code][openId]"+accessToken.getOpenid());
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("strResult", str_code);

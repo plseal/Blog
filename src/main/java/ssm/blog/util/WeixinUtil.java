@@ -266,7 +266,7 @@ public class WeixinUtil {
 	 * @param appsecret 密钥
 	 * @return
 	 */
-	public static AccessToken getAccessTokenFromURL(String appid, String appsecret) {
+	public AccessToken getAccessTokenFromURL(String appid, String appsecret) {
 		logger.info("[WeixinUtil][getAccessTokenFromURL][start]");
 		AccessToken accessToken = null;
 
@@ -296,7 +296,7 @@ public class WeixinUtil {
 	 * @param CODE
 	 * @return
 	 */
-	public static AccessToken get_oauth2_access_token_from_url(String appid, String appsecret, String code) {
+	public AccessToken get_oauth2_access_token_from_url(String appid, String appsecret, String code) {
 		logger.info("[WeixinUtil][get_oauth2_access_token_from_url][start]");
 		AccessToken accessToken = null;
 

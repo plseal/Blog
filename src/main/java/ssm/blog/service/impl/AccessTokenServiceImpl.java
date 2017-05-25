@@ -58,8 +58,8 @@ public class AccessTokenServiceImpl implements AccessTokenService {
 		//过期的话，需要去微信官方服务器再取一次
 		} else {
 			//System.out.println("无效重新创建");
-
-			accessToken = WeixinUtil.getAccessTokenFromURL(strAPPID, strAPPSECRET);
+			WeixinUtil wu = new WeixinUtil();
+			accessToken = wu.getAccessTokenFromURL(strAPPID, strAPPSECRET);
 			Map map2 = new HashMap();
 			accessToken.setCreate_time(System.currentTimeMillis());
 			
