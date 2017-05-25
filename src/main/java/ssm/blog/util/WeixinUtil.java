@@ -52,6 +52,8 @@ import org.slf4j.LoggerFactory;
 public class WeixinUtil {
 	// 获取access_token的接口地址（GET） 限200（次/天）
 	public final static String access_token_url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET";
+	// 获取oauth2_access_token的接口地址（GET） 限200（次/天）
+	public final static String oauth2_access_token_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code";
 
 	
 	private static Logger logger = LoggerFactory.getLogger(WeixinUtil.class);
@@ -286,6 +288,36 @@ public class WeixinUtil {
 		return accessToken;
 	}
 
+/**
+	 * 获取oauth2_access_token
+	 * 
+	 * @param appid 凭证
+	 * @param appsecret 密钥
+	 * @param CODE
+	 * @return
+	 */
+	public static AccessToken get_oauth2_access_token_from_url(String appid, String appsecret, String code) {
+		logger.info("[WeixinUtil][get_oauth2_access_token_from_url][start]");
+		AccessToken accessToken = null;
 
+		String requestUrl = access_token_url.replace("APPID", appid).replace("APPSECRET", appsecret).replace("CODE", code);
+		logger.info("[WeixinUtil][get_oauth2_access_token_from_url][requestUrl]"+requestUrl);
+		JSONObject jsonObject = httpRequest(requestUrl, "GET", null);
+		// 如果请求成功
+		if (null != jsonObject) {
+			try {
+				accessToken = new AccessToken();
+				accessToken.setAccess_token(jsonObject.getString("access_token"));
+				accessToken.setOpenid(jsonObject.getString("openid"));
+				accessToken.setExpires_in(jsonObject.getInt("expires_in"));
+			} catch (JSONException e) {
+				accessToken = null;
+				// 获取token失败
+				logger.error("LINGZHU:获取token失败 errcode:{} errmsg:{}", jsonObject.getInt("errcode"), jsonObject.getString("errmsg"));
+			}
+		}
+		logger.info("[WeixinUtil][get_oauth2_access_token_from_url][end]");
+		return accessToken;
+	}
 	
 }

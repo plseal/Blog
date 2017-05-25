@@ -39,6 +39,12 @@ public class AccessToken {
 	private Long create_time;
 	// 凭证有效时间，单位：秒
 	private int expires_in;
-
-	
+// openid
+	private String openid;
+	public String getOpenid() {
+		return openid;
+	}
+	public void setOpenid(String openid) {
+		this.openid = openid;
+	}
 }
