@@ -15,7 +15,7 @@
 
 <body>
 <div class="container">
-    <form action="${pageContext.request.contextPath}/child_health_record/to_child_health_record_manage.do?openid=${openid}" class="form-horizontal"  role="form">
+    <form action="${pageContext.request.contextPath}/child_health_record/to_child_health_record_manage.do" class="form-horizontal"  role="form">
         <fieldset>
         	<div class="page-header position-relative">
 				<h1>

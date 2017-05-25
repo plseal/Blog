@@ -71,7 +71,7 @@
 
 		    
 		        <div class="col-sm-12 ">
-		          <button type="button" class="btn btn-lg btn-block btn-primary" onclick="location.href = '<%=request.getContextPath() %>/child_health_record/to_insert_chr.do?openid=${openid}';">添加新档案</button>
+		          <button type="button" class="btn btn-lg btn-block btn-primary" onclick="location.href = '<%=request.getContextPath() %>/child_health_record/to_insert_chr.do';">添加新档案</button>
 		        </div>
 		      
 							<!--PAGE CONTENT ENDS-->
