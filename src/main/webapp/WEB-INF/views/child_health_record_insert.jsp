@@ -15,12 +15,12 @@
 
 <body>
 <div class="container">
-    <form action="${pageContext.request.contextPath}/child_health_record/to_child_health_record_manage.do" class="form-horizontal"  role="form">
+    <form action="${pageContext.request.contextPath}/child_health_record/to_child_health_record_manage.do?openid=${openid}" class="form-horizontal"  role="form">
         <fieldset>
         	<div class="page-header position-relative">
 				<h1>
 					<small>
-						成长点滴
+						录入儿童电子档案
 					</small>
 				</h1>
            </div>
@@ -29,6 +29,7 @@
 				<div class="col-sm-10">
 					<input type="text"  class="form-control" id="child_name" name="child_name" value="宋嘉诚"  placeholder="请输入姓名" check-type="required" required-message="请输入小朋友的名字">
 					<input type="text" id="hid_flg" name="hid_flg" style="display:none" value="insert" >
+					
 				</div>
 			</div>
 			<div class="form-group">

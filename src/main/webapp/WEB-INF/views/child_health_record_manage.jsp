@@ -53,10 +53,10 @@
 										<td>${chr.child_weight}kg</td>
 										<td>${chr.update_date}</td>
 										<td>
-										<button class="btn btn-info btn-small" onclick="javascript:window.location.href='<%=request.getContextPath() %>/child_health_record/to_update_chr.do?pagenum=${pagenum}&chr_id=${chr.id}'">
+										<button class="btn btn-info btn-small" onclick="javascript:window.location.href='<%=request.getContextPath() %>/child_health_record/to_update_chr.do?pagenum=${pagenum}&chr_id=${chr.id}&openid=${openid}''">
 											编辑
 										</button>
-										<button class="btn btn-danger btn-small" onclick="javascript:window.location.href='<%=request.getContextPath() %>/child_health_record/to_delete_chr.do?pagenum=${pagenum}&chr_id=${chr.id}'">
+										<button class="btn btn-danger btn-small" onclick="javascript:window.location.href='<%=request.getContextPath() %>/child_health_record/to_delete_chr.do?pagenum=${pagenum}&chr_id=${chr.id}&openid=${openid}''">
 											删除
 										</button>
 										</td>
@@ -71,7 +71,7 @@
 
 		    
 		        <div class="col-sm-12 ">
-		          <button type="button" class="btn btn-lg btn-block btn-primary" onclick="location.href = '<%=request.getContextPath() %>/child_health_record/to_insert_chr.do';">添加新档案</button>
+		          <button type="button" class="btn btn-lg btn-block btn-primary" onclick="location.href = '<%=request.getContextPath() %>/child_health_record/to_insert_chr.do?openid=${openid}';">添加新档案</button>
 		        </div>
 		      
 							<!--PAGE CONTENT ENDS-->

@@ -43,22 +43,15 @@ public class ChildHealthRecordController {
 		
 		logger.info("["+this.getClass()+"][to_child_health_record_manage][start]");
 		
-		ModelAndView modelAndView = new ModelAndView();
-		String weixin_openid =request.getParameter("openid");
-		logger.info("["+this.getClass()+"][to_child_health_record_manage][weixin_openid]"+weixin_openid);
-		/*
-		Map<String, String> requestMap = WeixinUtil.parseXml(request);
-		Message message = WeixinUtil.mapToMessage(requestMap);
-		String  weixin_openid = message.getFromUserName();
-		logger.info("["+this.getClass().getName()+"][to_child_health_record_manage][weixin_openid]"+weixin_openid);
-		
-		modelAndView.addObject("title", "home");
-		*/
+		ModelAndView mv = new ModelAndView();
+		String openid =request.getParameter("openid");
+		logger.info("["+this.getClass()+"][to_child_health_record_manage][openid]"+openid);
+
 		String hid_flg = request.getParameter("hid_flg");
 		String id = request.getParameter("id");
 		logger.info("["+this.getClass()+"][to_child_health_record_manage][hid_flg]"+hid_flg);
 		ChildHealthRecord chr = new ChildHealthRecord();
-		chr.setWeixin_openid(weixin_openid);
+		chr.setWeixin_openid(openid);
 		chr.setId(id);
 		chr.setChild_name(request.getParameter("child_name"));
 		chr.setChild_sex(request.getParameter("child_sex"));
@@ -76,7 +69,7 @@ public class ChildHealthRecordController {
 		//init情况下什么也不做
 		
 		
-		modelAndView.setViewName("child_health_record_manage");
+		mv.setViewName("child_health_record_manage");
 		
 		
 		
@@ -84,10 +77,10 @@ public class ChildHealthRecordController {
 		
 		List<ChildHealthRecord> child_health_record_list = childHealthRecordService.get_one_child_records(chr);
 
-		modelAndView.addObject("child_health_record_list", child_health_record_list);
-		
+		mv.addObject("child_health_record_list", child_health_record_list);
+		mv.addObject("openid", openid);
 		logger.info("["+this.getClass()+"][to_child_health_record_manage][end]");
-		return modelAndView;
+		return mv;
 
 	}
 	
@@ -103,8 +96,9 @@ public class ChildHealthRecordController {
 			HttpServletRequest request) throws Exception {
 		
 		logger.info("["+this.getClass()+"][to_insert_chr][start]");
+
 		
-		ModelAndView modelAndView = new ModelAndView();
+		ModelAndView mv = new ModelAndView();
 		
 
 		//性别
@@ -117,14 +111,16 @@ public class ChildHealthRecordController {
 		sexType2.setId(0);
 		sexType2.setTypeName("女");
 		sexTypeList.add(sexType2);
-		modelAndView.addObject("sexTypeList", sexTypeList);
-		
-		modelAndView.setViewName("child_health_record_insert");
+		mv.addObject("sexTypeList", sexTypeList);
+		String openid =request.getParameter("openid");
+		logger.info("["+this.getClass()+"][to_insert_chr][openid]"+openid);
+		mv.addObject("openid", openid);
+		mv.setViewName("child_health_record_insert");
 		
 		
 		
 		logger.info("["+this.getClass()+"][to_insert_chr][end]");
-		return modelAndView;
+		return mv;
 
 	}
 	
@@ -143,12 +139,12 @@ public class ChildHealthRecordController {
 		logger.info("["+this.getClass()+"][to_update_chr][chr_id]"+chr_id);
 		
 		
-		ModelAndView modelAndView = new ModelAndView();
+		ModelAndView mv = new ModelAndView();
 		ChildHealthRecord chr_in = new ChildHealthRecord();
 		chr_in.setId(chr_id);
 		ChildHealthRecord chr_out = childHealthRecordService.get_one_chr_byid(chr_in);
 
-		modelAndView.addObject("chr_out", chr_out);
+		mv.addObject("chr_out", chr_out);
 
 		//性别
 		List<SexType> sexTypeList = new ArrayList<SexType>();
@@ -160,14 +156,16 @@ public class ChildHealthRecordController {
 		sexType2.setId(0);
 		sexType2.setTypeName("女");
 		sexTypeList.add(sexType2);
-		modelAndView.addObject("sexTypeList", sexTypeList);
-		
-		modelAndView.setViewName("child_health_record_update");
+		mv.addObject("sexTypeList", sexTypeList);
+		String openid =request.getParameter("openid");
+		logger.info("["+this.getClass()+"][to_insert_chr][openid]"+openid);
+		mv.addObject("openid", openid);
+		mv.setViewName("child_health_record_update");
 		
 		
 		
 		logger.info("["+this.getClass()+"][to_update_chr][end]");
-		return modelAndView;
+		return mv;
 
 	}
 	
@@ -183,16 +181,20 @@ public class ChildHealthRecordController {
 			HttpServletRequest request) throws Exception {
 		
 		logger.info("["+this.getClass()+"][to_delete_chr][start1]");
+		ModelAndView mv = new ModelAndView();
+		
 		logger.info("["+this.getClass()+"][to_delete_chr][chr_id]"+chr_id);
-		
-		
+		String openid =request.getParameter("openid");
+		logger.info("["+this.getClass()+"][to_insert_chr][openid]"+openid);
+		mv.addObject("openid", openid);
+		mv.setViewName("forward:to_child_health_record_manage.do");
 		ChildHealthRecord chr = new ChildHealthRecord();
 		chr.setId(chr_id);
-		
+		chr.setWeixin_openid(openid);
 		childHealthRecordService.delete_chr(chr);
 		
 		logger.info("["+this.getClass()+"][to_delete_chr][end1]");
-		return  new ModelAndView("forward:to_child_health_record_manage.do", null);
+		return  mv;
 
 	}
 }
