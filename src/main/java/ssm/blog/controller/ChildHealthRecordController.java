@@ -4,6 +4,7 @@ import java.util.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -44,7 +45,8 @@ public class ChildHealthRecordController {
 		logger.info("["+this.getClass()+"][to_child_health_record_manage][start]");
 		
 		ModelAndView mv = new ModelAndView();
-		String openid =request.getParameter("openid");
+		HttpSession session = request.getSession();
+		String openid = (String)session.getAttribute("openid");
 		logger.info("["+this.getClass()+"][to_child_health_record_manage][openid]"+openid);
 
 		String hid_flg = request.getParameter("hid_flg");

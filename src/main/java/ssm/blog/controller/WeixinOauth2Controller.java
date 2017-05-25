@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.jsoup.Jsoup;
@@ -81,7 +82,10 @@ public class WeixinOauth2Controller {
 		AccessToken accessToken = get_oauth2_access_token_from_url(str_code);
 		logger.info("["+this.getClass()+"][get_code][openId]"+accessToken.getOpenid());
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("openid", accessToken.getOpenid());
+
+		HttpSession session = request.getSession();
+		session.setAttribute("openid",accessToken.getOpenid());
+
 		//初期画面
 		mv.addObject("hid_flg", "init");
 		mv.setViewName("forward:../child_health_record/to_child_health_record_manage.do");
