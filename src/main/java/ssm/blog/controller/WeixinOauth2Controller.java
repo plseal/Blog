@@ -80,26 +80,14 @@ public class WeixinOauth2Controller {
 		
 		AccessToken accessToken = get_oauth2_access_token_from_url(str_code);
 		logger.info("["+this.getClass()+"][get_code][openId]"+accessToken.getOpenid());
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("strResult", str_code);
-		
-
-
-		modelAndView.setViewName("result");
-		
-		String weixin_openid =accessToken.getOpenid();
-		
-		ChildHealthRecord chr = new ChildHealthRecord();
-		chr.setWeixin_openid(weixin_openid);
-		List<ChildHealthRecord> child_health_record_list = childHealthRecordService.get_one_child_records(chr);
-
-		modelAndView.addObject("child_health_record_list", child_health_record_list);
-		modelAndView.setViewName("child_health_record_manage");
-		
-		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("openid", accessToken.getOpenid());
+		//初期画面
+		mv.addObject("hid_flg", "init");
+		mv.setViewName("forward:to_child_health_record_manage.do");
 		
 		logger.info("["+this.getClass()+"][get_code][end]");
-		return modelAndView;
+		return mv;
 
 	}
 	

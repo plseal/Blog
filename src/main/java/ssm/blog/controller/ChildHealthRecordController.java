@@ -44,7 +44,8 @@ public class ChildHealthRecordController {
 		logger.info("["+this.getClass()+"][to_child_health_record_manage][start]");
 		
 		ModelAndView modelAndView = new ModelAndView();
-		String weixin_openid ="test_o08GJwa_rYPdbwV6jDi2ZTaXyJ6s";
+		String weixin_openid =request.getParameter("openid");
+		logger.info("["+this.getClass()+"][to_child_health_record_manage][weixin_openid]"+weixin_openid);
 		/*
 		Map<String, String> requestMap = WeixinUtil.parseXml(request);
 		Message message = WeixinUtil.mapToMessage(requestMap);
@@ -72,6 +73,7 @@ public class ChildHealthRecordController {
 		} else if ("insert".equals(hid_flg)) {
 			childHealthRecordService.insert_chr(chr);
 		}
+		//init情况下什么也不做
 		
 		
 		modelAndView.setViewName("child_health_record_manage");
