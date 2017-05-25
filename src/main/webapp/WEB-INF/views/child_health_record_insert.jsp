@@ -134,12 +134,13 @@ $(function(){
 })
 </script>
 <script type="text/javascript">
-	document.getElementById("update_date").value = 
+	
 	//endDate limit to thisday
 	var year = new Date().getFullYear();
 	var month = new Date().getMonth() + 1;
 	var day = new Date().getDate();
 	var today = year + "/" + month + "/" +day;
+	
 	//alert(today);
 	$('.form_date').datetimepicker({
         language:  'zh-CN',
@@ -214,7 +215,8 @@ $(function(){
 	};
 
 	var date = new Date();
-	alert(date.yyyymmdd());
+	//alert(date.yyyymmdd());
+	document.getElementById("update_date").value = date.yyyymmdd();
 </script>
 
 </body>
