@@ -25,9 +25,11 @@ import ssm.blog.entity.BlogType;
 import ssm.blog.entity.PageBean;
 import ssm.blog.entity.SexType;
 import ssm.blog.entity.AccessToken;
+import ssm.blog.entity.ChildHealthRecord;
 import ssm.blog.service.BlogService;
 import ssm.blog.service.BlogTypeService;
 import ssm.blog.service.ExchangeService;
+import ssm.blog.service.ChildHealthRecordService;
 import ssm.blog.util.PageUtil;
 import ssm.blog.util.StringUtil;
 import ssm.blog.util.WeixinUtil;
@@ -50,6 +52,9 @@ public class WeixinOauth2Controller {
 	
 	@Resource(name="exchangeService")
 	private ExchangeService exchangeService;
+	
+	@Resource
+	private ChildHealthRecordService childHealthRecordService;
 	
 	@Value("#{setting[APPID]}")
 	private String strAPPID; 
@@ -82,7 +87,14 @@ public class WeixinOauth2Controller {
 
 		modelAndView.setViewName("result");
 		
+		String weixin_openid =accessToken.getOpenid();
 		
+		ChildHealthRecord chr = new ChildHealthRecord();
+		chr.setWeixin_openid(weixin_openid);
+		List<ChildHealthRecord> child_health_record_list = childHealthRecordService.get_one_child_records(chr);
+
+		modelAndView.addObject("child_health_record_list", child_health_record_list);
+		modelAndView.setViewName("child_health_record_manage");
 		
 		
 		

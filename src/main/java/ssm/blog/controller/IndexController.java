@@ -117,14 +117,14 @@ public class IndexController {
 		if ("10".equals(typeId)) {
 
 			
-			String weixin_openid ="test_o08GJwa_rYPdbwV6jDi2ZTaXyJ6s";
+			//String weixin_openid ="test_o08GJwa_rYPdbwV6jDi2ZTaXyJ6s";
 			
-			ChildHealthRecord chr = new ChildHealthRecord();
-			chr.setWeixin_openid(weixin_openid);
-			List<ChildHealthRecord> child_health_record_list = childHealthRecordService.get_one_child_records(chr);
+			//ChildHealthRecord chr = new ChildHealthRecord();
+			//chr.setWeixin_openid(weixin_openid);
+			//List<ChildHealthRecord> child_health_record_list = childHealthRecordService.get_one_child_records(chr);
 
-			modelAndView.addObject("child_health_record_list", child_health_record_list);
-			modelAndView.setViewName("child_health_record_manage");
+			//modelAndView.addObject("child_health_record_list", child_health_record_list);
+			//modelAndView.setViewName("child_health_record_manage");
 		} else {
 			modelAndView.setViewName("mainTemp");
 		}

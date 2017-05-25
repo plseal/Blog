@@ -176,14 +176,14 @@ public class MenuController {
         //snsapi_base不弹出授权页面，直接跳转，只能获取用户openid
         String strURL ="https://open.weixin.qq.com/connect/oauth2/authorize?appid="+strAPPID+"&redirect_uri=http://www.lingzhu-med.com/Blog/weixin_oauth2/get_code.do&response_type=code&scope=snsapi_base&state=1#wechat_redirect";
         //String strURL ="http://www.plseal.com/Blog/index.html?typeId=9";
-        logger.info("["+this.getClass().getName()+"][getMenu][strURL]"+strURL);
+        //logger.info("["+this.getClass().getName()+"][getMenu][strURL]"+strURL);
         btn24.setUrl(strURL);
         
         CommonButton btn25 = new CommonButton();
         btn25.setName(btn25Name);
         btn25.setType("view");
         btn25.setKey("25");
-        btn25.setUrl("http://www.plseal.com/Blog/index.html?typeId=10");
+        btn25.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+strAPPID+"&redirect_uri=http://www.lingzhu-med.com/Blog/weixin_oauth2/get_code.do&response_type=code&scope=snsapi_base&state=1#wechat_redirect");
         
         CommonButton btn31 = new CommonButton();
         btn31.setName(btn31Name);
