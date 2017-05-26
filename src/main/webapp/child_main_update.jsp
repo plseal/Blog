@@ -65,7 +65,18 @@
 
 			</div>
 			
-
+			<div class="form-group">
+				 <label  class="col-sm-2 control-label">血型：</label>
+				 <div class="col-sm-10 ">
+					<select  class="form-control" id="child_blood"  name="child_blood" check-type="required" required-message="请选择血型">
+						<option value=""></option>
+						<option value="A" selected>A</option>
+						<option value="B">B</option>
+						<option value="O">O</option>
+						<option value="AB">AB</option>
+					</select>
+				 </div>
+			</div>
 
 
 		     <div class="form-group">

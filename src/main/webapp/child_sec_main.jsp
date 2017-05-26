@@ -25,11 +25,11 @@
 				</h1>
            </div>
 			
-			
 		        <div class="col-sm-12 ">
-		          <button type="button" class="btn btn-lg btn-block btn-primary" onclick="location.href = '<%=request.getContextPath() %>/child_thi_basic.jsp';">基本资料</button>
+		          <button type="button" class="btn btn-lg btn-block btn-primary" onclick="location.href = '<%=request.getContextPath() %>/child_thi_health_record.jsp';">体检记录</button>
 		        </div>
 				<br/>
+
 		        <div class="col-sm-12 ">
 		          <button type="button" class="btn btn-lg btn-block btn-primary" onclick="location.href = '<%=request.getContextPath() %>/child_thi_mother.jsp';">母亲资料</button>
 		        </div>
@@ -46,10 +46,7 @@
 		          <button type="button" class="btn btn-lg btn-block btn-primary" onclick="location.href = '<%=request.getContextPath() %>/child_thi_disease_record.jsp';">疾病记录</button>
 		        </div>
 				<br/>
-		        <div class="col-sm-12 ">
-		          <button type="button" class="btn btn-lg btn-block btn-primary" onclick="location.href = '<%=request.getContextPath() %>/child_thi_health_record.jsp';">体检记录</button>
-		        </div>
-				<br/>
+
 
         
     </form>
