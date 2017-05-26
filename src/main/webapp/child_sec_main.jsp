@@ -26,11 +26,11 @@
            </div>
 			
 		        <div class="col-sm-12 ">
-		          <button type="button" class="btn btn-lg btn-block btn-primary" onclick="location.href = '<%=request.getContextPath() %>/child_thi_health_record.jsp';">体检记录</button>
+		          <button type="button" class="btn btn-lg btn-block btn-primary" onclick="location.href = '<%=request.getContextPath() %>/child_thi_health_manage.jsp';">体检记录</button>
 		        </div>
 				<br/>
 		        <div class="col-sm-12 ">
-		          <button type="button" class="btn btn-lg btn-block btn-primary" onclick="location.href = '<%=request.getContextPath() %>/child_thi_disease_record.jsp';">疾病记录</button>
+		          <button type="button" class="btn btn-lg btn-block btn-primary" onclick="location.href = '<%=request.getContextPath() %>/child_thi_disease_manage.jsp';">疾病记录</button>
 		        </div>
 				<br/>
 		        <div class="col-sm-12 ">

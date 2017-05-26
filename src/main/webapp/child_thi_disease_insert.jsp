@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>儿童健康档案 三级界面</title>
+    <title>儿童健康档案 四级界面</title>
     <meta http-equiv="pragma" content="no-cache"/>   
     <meta http-equiv="Cache-Control" content="no-cache, must-revalidate"/>   
     <meta http-equiv="expires" content="0"/>
@@ -15,12 +15,12 @@
 
 <body>
 <div class="container">
-    <form action="${pageContext.request.contextPath}/child_sec_main.jsp" class="form-horizontal"  role="form">
+    <form action="${pageContext.request.contextPath}/child_thi_disease_manage.jsp" class="form-horizontal"  role="form">
         <fieldset>
         	<div class="page-header position-relative">
 				<h1>
 					<small>
-						儿童健康档案三级界面 体检记录（演示用）
+						儿童健康档案四级界面 新录入疾病记录（演示用）
 					</small>
 				</h1>
            </div>
@@ -34,46 +34,37 @@
 			<div class="form-group">
 				 <label  class="col-sm-2 control-label">时间：</label>
 				 <div class="col-sm-10 ">
-					<input type="text" class="form-control" id="me_date" name="me_date" value="2017/05/26" placeholder=""    > 
-				 </div>
-			</div>
-			
-			<div class="form-group">
-				 <label  class="col-sm-2 control-label">身高(厘米)：</label>
-				 <div class="col-sm-10 ">
-					<input type="text" class="form-control" id="me_height" name="me_height" value="100" placeholder="请输入身高" check-type="required number" required-message="请输入小朋友的身高">
-				 </div>
-			</div>
-
-			<div class="form-group">
-				 <label  class="col-sm-2 control-label">体重(公斤)：</label>
-				 <div class="col-sm-10 ">
-					<input type="text" class="form-control" id="me_weight" name="me_weight" value="15" placeholder="请输入体重" check-type="required number" required-message="请输入小朋友的体重">
+					<input type="text" class="form-control" id="disease_date" name="disease_date" value="2017/05/26" placeholder=""    > 
 				 </div>
 			</div>
 			<div class="form-group">
-				 <label  class="col-sm-2 control-label">头围(cm)：</label>
+				 <label  class="col-sm-2 control-label">发病起因：</label>
 				 <div class="col-sm-10 ">
-					<input type="text" class="form-control" id="me_head" name="me_head" value="15" placeholder="请输入头围" check-type="required number" required-message="请输入小朋友的头围">
+					<input type="text" class="form-control" id="disease_cause" name="disease_cause" value="流感传染" placeholder=""    > 
 				 </div>
 			</div>
 			<div class="form-group">
-				 <label  class="col-sm-2 control-label">囟门大小：</label>
+				 <label  class="col-sm-2 control-label">症状体征：</label>
 				 <div class="col-sm-10 ">
-					<input type="text" class="form-control" id="me_fontanel" name="me_fontanel" value="15" placeholder="请输入囟门大小" check-type="required number" required-message="请输入小朋友的囟门大小">
+					<input type="text" class="form-control" id="disease_symptom" name="disease_symptom" value="打喷嚏，流鼻涕" placeholder=""    > 
 				 </div>
 			</div>
-			
+			<div class="form-group">
+				 <label  class="col-sm-2 control-label">用药：</label>
+				 <div class="col-sm-10 ">
+					<input type="text" class="form-control" id="disease_pharmacy" name="disease_pharmacy" value="" placeholder=""    > 
+				 </div>
+			</div>
 			<div class="form-group">
 				 <label  class="col-sm-2 control-label">查体以及实验室检查结果：</label>
 				 <div class="col-sm-10 ">
-					<input type="text" class="form-control" id="me_inspection" name="me_inspection" value="" placeholder=""    > 
+					<input type="text" class="form-control" id="disease_inspection" name="disease_inspection" value="" placeholder=""    > 
 				 </div>
 			</div>
 			<div class="form-group">
-				 <label  class="col-sm-2 control-label">总体评价：</label>
+				 <label  class="col-sm-2 control-label">疾病诊断以及转归：</label>
 				 <div class="col-sm-10 ">
-					<input type="text" class="form-control" id="me_devaluation" name="me_devaluation" value="" placeholder=""    > 
+					<input type="text" class="form-control" id="disease_diagnosis" name="disease_diagnosis" value="" placeholder=""    > 
 				 </div>
 			</div>
 	
