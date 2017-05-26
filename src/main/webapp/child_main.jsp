@@ -58,10 +58,7 @@
 										<button class="btn btn-info btn-small" onclick="javascript:window.location.href='<%=request.getContextPath() %>/child_main_update.jsp'">
 											编辑
 										</button>
-										<button class="btn btn-danger btn-small" onclick="">
-											删除
-										</button>
-										<button class="btn btn-info btn-small" onclick="javascript:window.location.href='<%=request.getContextPath() %>/child_sec_main.jsp'">
+										<button class="btn btn-danger btn-small" onclick="javascript:window.location.href='<%=request.getContextPath() %>/child_sec_main.jsp'">
 											详细
 										</button>
 										</td>
