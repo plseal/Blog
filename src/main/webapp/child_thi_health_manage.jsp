@@ -38,7 +38,7 @@
 									<tr>
 										
 										<th width="20%">姓名</th>
-										<th width="30%">录入日期</th>
+										<th width="30%">体检日期</th>
 										<th width="30%">操作</th>
 									</tr>
 								</thead>

@@ -37,11 +37,11 @@
 								<thead>
 									<tr>
 										
-										<th width="30%">姓名</th>
-										<th width="20%">年龄</th>
-										<th width="10%">性别</th>
-										
-										<th width="40%">操作</th>
+										<th width="15%">姓名</th>
+										<th width="15%">年龄</th>
+										<th width="15%">性别</th>
+										<th width="15%">血型</th>
+										<th width="30%">操作</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -53,7 +53,7 @@
 										<td>司马光</td>
 										<td>30月</td>
 										<td>男</td>
-										
+										<td>AB</td>
 										<td>
 										<button class="btn btn-info btn-small" onclick="javascript:window.location.href='<%=request.getContextPath() %>/child_main_update.jsp'">
 											编辑
