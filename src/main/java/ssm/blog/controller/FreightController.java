@@ -1,33 +1,18 @@
 package ssm.blog.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.sf.json.JSONObject;
-import ssm.blog.entity.Blog;
-import ssm.blog.entity.BlogType;
-import ssm.blog.entity.PageBean;
-import ssm.blog.entity.SexType;
 import ssm.blog.service.BlogService;
 import ssm.blog.service.BlogTypeService;
 import ssm.blog.service.ExchangeService;
-import ssm.blog.util.PageUtil;
-import ssm.blog.util.StringUtil;
 
 /**
  * @Description Controller

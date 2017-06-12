@@ -39,6 +39,10 @@
 							  <button type="button" class="btn btn-lg btn-block btn-primary" onclick="location.href = '<%=request.getContextPath() %>/haoyun/check_express_insert.jsp';">添加快递单号</button>
 							</div>
 							<br/>
+							<div class="col-sm-12 ">
+							  <button type="button" class="btn btn-lg btn-block btn-primary" onclick="location.href = '<%=request.getContextPath() %>/haoyun/check_express_insert_bat.jsp';">批量添加快递单号</button>
+							</div>
+							<br/>
 							<br/>
 							<table id="sample-table-1" class="table table-striped table-bordered table-hover">
 								<thead>
