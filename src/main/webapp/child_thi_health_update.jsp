@@ -52,13 +52,13 @@
 				 </div>
 			</div>
 			<div class="form-group">
-				 <label  class="col-sm-2 control-label">头围(cm)：</label>
+				 <label  class="col-sm-2 control-label">头围(厘米)：</label>
 				 <div class="col-sm-10 ">
 					<input type="text" class="form-control" id="me_head" name="me_head" value="15" placeholder="请输入头围" check-type="required number" required-message="请输入小朋友的头围">
 				 </div>
 			</div>
 			<div class="form-group">
-				 <label  class="col-sm-2 control-label">囟门大小：</label>
+				 <label  class="col-sm-2 control-label">囟门大小(厘米)：</label>
 				 <div class="col-sm-10 ">
 					<input type="text" class="form-control" id="me_fontanel" name="me_fontanel" value="15" placeholder="请输入囟门大小" check-type="required number" required-message="请输入小朋友的囟门大小">
 				 </div>
