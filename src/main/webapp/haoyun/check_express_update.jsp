@@ -11,19 +11,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
     <link href="${pageContext.request.contextPath}/static/bootstrap3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="${pageContext.request.contextPath}/static/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+	<%@include file="./css_haoyun.jsp" %>
 </head>
 
 <body>
+<%@include file="./logo.jsp" %>
 <div class="container">
     <form action="./check_express.jsp" class="form-horizontal"  role="form">
         <fieldset>
-        	<div class="page-header position-relative">
+			<div class="col-sm-12 ">
 				<h1>
 					<small>
-						快递单号 修改（演示用）
+						<i class="icon-list-alt"></i>
+						快递单号 修改 （演示用）
 					</small>
 				</h1>
-           </div>
+			</div>
+		   
 			<div class="form-group">
 				 <label class="col-sm-2 control-label">姓名：</label>
 				<div class="col-sm-10">

@@ -4,30 +4,32 @@
 <html >
 	<head>
 		<meta charset="utf-8" />
-		<title>快递单号查询</title>
+		<title></title>
 		<meta http-equiv="pragma" content="no-cache"/>   
 		<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"/>   
 		<meta http-equiv="expires" content="0"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
 		<link href="${pageContext.request.contextPath}/static/bootstrap3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
 		<link href="${pageContext.request.contextPath}/static/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
-		
+		<%@include file="./css_haoyun.jsp" %>
 		
 	</head>
 	
 	<body>
+		<%@include file="./logo.jsp" %>
 		<div class="container">
 			<form action="./check_express.jsp" class="form-horizontal"  role="form">
 				<fieldset>
 				<div class="page-content">
-					<div class="page-header position-relative">
+					<div class="col-sm-12 ">
 						<h1>
 							<small>
 								<i class="icon-list-alt"></i>
-								快递单号查询（演示用）
+								快递单号查询 （演示用）
 							</small>
 						</h1>
-					</div> 
+					</div>
+					<br/>
 
 							<!--PAGE CONTENT BEGINS-->
 							<table id="sample-table-1" class="table table-striped table-bordered table-hover">

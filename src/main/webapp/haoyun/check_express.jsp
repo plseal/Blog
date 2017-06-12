@@ -11,36 +11,25 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"> 
 		<link href="${pageContext.request.contextPath}/static/bootstrap3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
 		<link href="${pageContext.request.contextPath}/static/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
-		<link href="${pageContext.request.contextPath}/static/css/haoyun.css" rel="stylesheet" media="screen">
-		
+		<%@include file="./css_haoyun.jsp" %>
 	</head>
 	
 	<body>
-		<header class="main-header">  <!--创建头部-->
-			<div class="container">   <!--头部存放容器-->
-				<div class="row">     <!--在容器使用栅格系统-->
-					<div class="col-md-12"><!--头部只包含一个内容，故应占整个部分-->
-						<a href="branding" href="http://www.jikexueyuan.com title="Ghos开源博客">
-							<img src="http://static.ghostchina.com/image/b/46/4f5566c1f7bc28b3f7ac1fada8abe.png">
-							<h2 class="text-hide">现在你看到的是BootStrap实战实例</h2>
-						</a>
-					</div>
-				</div>
-			</div>
-		</header>
+		<%@include file="./logo.jsp" %>
+		
 		<div class="container">
 
-				 
-				<div class="page-content">
-					<div class="page-header position-relative">
-						<h1>
-							<small>
-								<i class="icon-list-alt"></i>
-								快递单号管理 （演示用）
-							</small>
-						</h1>
-					</div> 
-
+			<div class="page-content">
+				
+				<div class="col-sm-12 ">
+					<h1>
+						<small>
+							<i class="icon-list-alt"></i>
+							快递单号管理 （演示用）
+						</small>
+					</h1>
+				</div>
+				<br/>
 							<!--PAGE CONTENT BEGINS-->
 							<div class="col-sm-12 ">
 							  <button type="button" class="btn btn-lg btn-block btn-primary" onclick="location.href = '<%=request.getContextPath() %>/haoyun/check_express_get.jsp';">查询快递单号</button>
