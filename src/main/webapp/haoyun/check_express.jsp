@@ -18,7 +18,7 @@
 		<%@include file="./logo.jsp" %>
 		
 		<div class="container">
-
+			<form  id="myform" action="" class="form-horizontal"  role="form">
 			<div class="page-content">
 				
 				<div class="col-sm-12 ">
@@ -31,73 +31,79 @@
 				</div>
 				<br/>
 							<!--PAGE CONTENT BEGINS-->
-							<div class="col-sm-12 ">
-							  <button type="button" class="btn btn-lg btn-block btn-primary" onclick="location.href = '<%=request.getContextPath() %>/haoyun/check_express_get.jsp';">查询快递单号</button>
-							</div>
-							<br/>
-							<div class="col-sm-12 ">
-							  <button type="button" class="btn btn-lg btn-block btn-primary" onclick="location.href = '<%=request.getContextPath() %>/haoyun/check_express_insert.jsp';">添加快递单号</button>
-							</div>
-							<br/>
-							<div class="col-sm-12 ">
-							  <button type="button" class="btn btn-lg btn-block btn-primary" onclick="location.href = '<%=request.getContextPath() %>/haoyun/check_express_insert_bat.jsp';">批量添加快递单号</button>
-							</div>
-							<br/>
-							<br/>
+							<div class="row">
+								<div class="col-sm-12 ">
+								  <button type="button" class="btn btn-lg btn-block btn-primary" onclick="location.href = '<%=request.getContextPath() %>/haoyun/check_express_get.jsp';">客户查询快递单号</button>
+								</div>
+							</div><br/>
+							<!--
+							<div class="row">
+								<div class="col-sm-12 ">
+								  <button type="button" class="btn btn-lg btn-block btn-primary" onclick="location.href = '<%=request.getContextPath() %>/haoyun/check_express_insert.jsp';">添加快递单号</button>
+								</div>
+							</div><br/>
+							-->
+							<div class="row">
+								<div class="col-sm-12 ">
+								  <button type="button" class="btn btn-lg btn-block btn-primary" onclick="location.href = '<%=request.getContextPath() %>/haoyun/check_express_insert_bat.jsp';">批量添加快递单号</button>
+								</div>
+							</div><br/>
+
+							<div class="row">
+								<div class="col-sm-12 ">
+									<div class="input-group">
+										<input type="text" class="form-control" id="c_name" name="c_name" placeholder="请输入姓名" >
+										<span class="input-group-btn">
+											<button class="btn btn-default" type="button" onclick="get_express_by_name();">按客户姓名查询</button>
+										</span>
+									</div><!-- /input-group -->
+									<br/>
+									<div class="alert alert-warning hidden" id = "div_alert_c_name_blank" >警告：请输入客户姓名</div>
+									
+								</div>
+							</div><br/>
+
+							<div class="row">
+								<div class="col-sm-12 ">
+									<div class="input-group">
+										<input type="text" class="form-control" id="c_number" name="c_number" placeholder="请输入运单编号">
+										<span class="input-group-btn">
+											<button class="btn btn-default" type="button" onclick="get_express_by_number();">按运单编号查询</button>
+										</span>
+									</div><!-- /input-group -->
+									<br/>
+									<div class="alert alert-warning hidden" id = "div_alert_c_number_blank" >警告：请输入运单编号</div>
+								</div>
+							</div><br/>
 							<table id="sample-table-1" class="table table-striped table-bordered table-hover">
 								<thead>
 									<tr>
 										
-										<th width="33%">姓名</th>
-										<th width="33%">快递单号</th>
-										<th width="23%">快递日期</th>
-										<th width="10%">操作</th>
+										<th width="14%">日期</th>
+										<th width="14%">姓名</th>
+										<th width="14%">运单编号</th>
+										<th width="14%">目的地</th>
+										<th width="14%">包裹内容</th>
+										<th width="14%">发货专区</th>
+										<th width="14%">备注</th>
 									</tr>
 								</thead>
 								<tbody>
-								
+								<c:forEach items="${expresses}"  var="express"  >
 									<tr>
 									<!--
-										<td><a target='_blank' href='${pageContext.request.contextPath}/blog/articles/${blog.id}.html'>${chr.id}</a></td>
+										<td><a target='_blank' href='${pageContext.request.contextPath}/blog/articles/${express.id}.html'>${express.id}</a></td>
 										-->
-										<td>赵云</td>
-										<td>1234567890</td>
-										<td>2017/6/12</td>
-										<td>
-										<button class="btn btn-info btn-small" onclick="javascript:window.location.href='<%=request.getContextPath() %>/haoyun/check_express_update.jsp'">
-											编辑
-										</button>
-										</td>
+										<td>${express.date}</td>
+										<td>${express.name}</td>
+										<td>${express.number}</td>
+										<td>${express.des}</td>
+										<td>${express.content} </td>
+										<td>${express.e_from}</td>
+										<td>${express.remark} </td>
 										
 									</tr>
-									<tr>
-									<!--
-										<td><a target='_blank' href='${pageContext.request.contextPath}/blog/articles/${blog.id}.html'>${chr.id}</a></td>
-										-->
-										<td>张飞</td>
-										<td>1234567890</td>
-										<td>2017/6/12</td>
-										<td>
-										<button class="btn btn-info btn-small" onclick="javascript:window.location.href='<%=request.getContextPath() %>/haoyun/check_express_update.jsp'">
-											编辑
-										</button>
-										</td>
-										
-									</tr>
-									<tr>
-									<!--
-										<td><a target='_blank' href='${pageContext.request.contextPath}/blog/articles/${blog.id}.html'>${chr.id}</a></td>
-										-->
-										<td>关羽</td>
-										<td>1234567890</td>
-										<td>2017/6/12</td>
-										<td>
-										<button class="btn btn-info btn-small" onclick="javascript:window.location.href='<%=request.getContextPath() %>/haoyun/check_express_update.jsp'">
-											编辑
-										</button>
-										</td>
-										
-									</tr>
+								</c:forEach>
 								</tbody>
 							</table>
 							<!--PAGE CONTENT ENDS-->
@@ -107,13 +113,35 @@
 	
 
 	
-	<script type="text/javascript">
+<script type="text/javascript">
 		
-		
-		
-		
-	</script>
+function get_express_by_name(){
+	var c_name = document.all.c_name.value;
+	
+	//alert(getEx(file_name).toString().toLowerCase());
+	if (c_name == ""){
+		$("#div_alert_c_name_blank").attr("class","alert alert-danger");
+	}else {
+		document.all.myform.action="${pageContext.request.contextPath}/haoyun/get_express_by_name.do?c_name="+c_name;
+		document.all.myform.submit(); 
+	}
 
-	</div>
-	</body>
+}
+function get_express_by_number(){
+	var c_number = document.all.c_number.value;
+	
+	if (c_number == ""){
+		$("#div_alert_c_number_blank").attr("class","alert alert-danger");
+	}else {
+		document.all.myform.action="${pageContext.request.contextPath}/haoyun/get_express_by_number.do?c_number="+c_number;
+		document.all.myform.submit(); 
+	}
+
+}
+
+			
+</script>
+</form>
+</div>
+</body>
 </html>

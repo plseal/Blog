@@ -25,7 +25,7 @@
 						<h1>
 							<small>
 								<i class="icon-list-alt"></i>
-								快递单号查询 （演示用）
+								快递单号查询 客户用（演示用 需要关联wechat信息）
 							</small>
 						</h1>
 					</div>
@@ -36,9 +36,13 @@
 								<thead>
 									<tr>
 										
-										<th width="33%">姓名</th>
-										<th width="33%">快递单号</th>
-										<th width="33%">快递日期</th>
+										<th width="14%">日期</th>
+										<th width="14%">姓名</th>
+										<th width="14%">运单编号</th>
+										<th width="14%">目的地</th>
+										<th width="14%">包裹内容</th>
+										<th width="14%">发货专区</th>
+										<th width="14%">备注</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -47,11 +51,13 @@
 									<!--
 										<td><a target='_blank' href='${pageContext.request.contextPath}/blog/articles/${blog.id}.html'>${chr.id}</a></td>
 										-->
-										<td>赵云</td>
-										<td>1234567890</td>
-										<td>2017/6/12</td>
-
-										
+										<td>1.2</td>
+										<td>杨文</td>
+										<td>350633127859</td>
+										<td>杭州</td>
+										<td>化妆棉4 </td>
+										<td>日本 </td>
+										<td>angelhood百世汇通 </td>
 									</tr>
 								
 								</tbody>

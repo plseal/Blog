@@ -45,7 +45,7 @@
 		     <div class="form-group">
 		        <div class="col-sm-12 ">
 		          
-		          <a href="javascript:uploadFile();"  class="button button-block button-rounded button-primary button-large">提交暂不可用点击返回</a>
+		          <a href="javascript:uploadFile();"  class="button button-block button-rounded button-primary button-large">提交</a>
 		        </div>
 		      </div>
 

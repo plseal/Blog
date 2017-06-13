@@ -53,6 +53,7 @@ public class uploadFileController
         Integer cnt_for_update = 0;
         Integer cnt_for_insert = 0;
         Integer cnt_for_row = 0;
+		Integer cnt_for_sheet = 0;
 		if (fileObj != null){
 			if (fileObj.getSize() == 0) {
 				return "addFileFailed";
@@ -81,7 +82,9 @@ public class uploadFileController
 	            File excelFile = new File(file_with_path);
 	            FileInputStream is = new FileInputStream(excelFile);
 	            Workbook wb = WorkbookFactory.create(is);
-	            Sheet sheet = wb.getSheetAt(0);
+				cnt_for_sheet =wb.getNumberOfSheets();
+				logger.info("["+this.getClass().getName()+"][upload_express_file][cnt_for_sheet]:"+cnt_for_sheet);
+	            Sheet sheet = wb.getSheetAt(cnt_for_sheet-1);
 	            Iterator<Row> rows = sheet.rowIterator();
 	            Row row;
 	            
