@@ -30,6 +30,13 @@ public class ExpressServiceImpl implements ExpressService {
 
 
     }
+	public List<Express> get_by_wechat_id(String wechat_id){
+
+    	return expressDao.get_by_wechat_id(wechat_id);
+
+
+    }
+	
 	
 
 	public Integer update(Express ep){
@@ -39,6 +46,12 @@ public class ExpressServiceImpl implements ExpressService {
 
     }
 
+	public Integer update_wechat_info(Express ep){
+
+    	return expressDao.update_wechat_info(ep);
+
+
+    }
 	public Integer insert(Express ep){
 
     	return expressDao.insert(ep);

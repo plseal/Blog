@@ -85,6 +85,22 @@ public class HaoyunController {
 		return "../../haoyun/check_express";
 	}
 	
+	@RequestMapping("/get_wechat_id_by_name")
+	public String get_wechat_id_by_name(
+			String c_name,
+			HttpServletRequest request) throws Exception {
+		logger.info("["+this.getClass()+"][get_wechat_id_by_name][start]");
+		logger.info("["+this.getClass()+"][get_wechat_id_by_name][c_name]"+c_name);
+
+		List<Express> expresses = expressService.get_by_name(c_name);
+		
+		request.setAttribute("expresses", expresses);
+		
+		//ResponseUtil.write(response, result);
+		logger.info("["+this.getClass()+"][get_wechat_id_by_name][end]");
+		return "../../haoyun/check_express_c_info";
+	}
+	
 	@RequestMapping("/get_express_by_number")
 	public String get_express_by_number(
 			String c_number,
@@ -100,6 +116,69 @@ public class HaoyunController {
 		logger.info("["+this.getClass()+"][get_express_by_number][end]");
 		return "../../haoyun/check_express";
 	}
+	
+	@RequestMapping("/get_express_by_wechat_id")
+	public String get_express_by_wechat_id(
+			String wechat_id,
+			HttpServletRequest request) throws Exception {
+		logger.info("["+this.getClass()+"][get_express_by_wechat_id][start]");
+		logger.info("["+this.getClass()+"][get_express_by_wechat_id][wechat_id]"+wechat_id);
+
+		List<Express> expresses = expressService.get_by_wechat_id(wechat_id);
+		
+		request.setAttribute("expresses", expresses);
+		
+		//ResponseUtil.write(response, result);
+		logger.info("["+this.getClass()+"][get_express_by_wechat_id][end]");
+		return "../../haoyun/check_express_get";
+	}
+	
+	@RequestMapping("/get_express_by_number_first")
+	public String get_express_by_number_first(
+			String c_number,
+			HttpServletRequest request) throws Exception {
+		logger.info("["+this.getClass()+"][get_express_by_number_first][start]");
+		logger.info("["+this.getClass()+"][get_express_by_number_first][c_number]"+c_number);
+
+		List<Express> expresses = expressService.get_by_number(c_number);
+		
+		request.setAttribute("expresses", expresses);
+		
+		if(expresses.size() > 0) {
+			request.setAttribute("okflg", "ok");
+			request.setAttribute("express_id", expresses.get(0).getId());
+		}
+		
+		//ResponseUtil.write(response, result);
+		logger.info("["+this.getClass()+"][get_express_by_number_first][end]");
+		return "../../haoyun/check_express_first";
+	}
+	@RequestMapping("/c_first_confirm")
+	public String c_first_confirm(
+			Integer id,
+			HttpServletRequest request) throws Exception {
+		logger.info("["+this.getClass()+"][c_first_confirm][start]");
+		logger.info("["+this.getClass()+"][c_first_confirm][id]"+id);
+		Express express = new Express();
+		express.setId(id);
+		express.setWechat_id("testid");
+		Date date = new Date();
+		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
+		String todayyyyMMddHHmmss = df.format(date);
+		express.setWechat_date(todayyyyMMddHHmmss);
+		
+		expressService.update_wechat_info(express);
+		
+
+		request.setAttribute("wechat_id", "testid");
+		//request.setAttribute("express_id", expresses.get(0).getId());
+		
+		
+		//ResponseUtil.write(response, result);
+		logger.info("["+this.getClass()+"][c_first_confirm][end]");
+		return "../../haoyun/check_express_first_result";
+	}
+	
 	
 	@RequestMapping("/to_modifyBlog")
 	public ModelAndView to_modifyBlog(

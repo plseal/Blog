@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost1
-Source Server Version : 50713
+Source Server         : localhost
+Source Server Version : 50715
 Source Host           : localhost:3306
 Source Database       : lingzhu
 
 Target Server Type    : MYSQL
-Target Server Version : 50713
+Target Server Version : 50715
 File Encoding         : 65001
 
-Date: 2017-06-13 00:14:19
+Date: 2017-06-14 15:06:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -29,5 +29,8 @@ CREATE TABLE `t_express` (
   `content` varchar(255) DEFAULT NULL,
   `e_from` varchar(255) DEFAULT NULL,
   `remark` varchar(255) DEFAULT NULL,
+  `wechat_id` varchar(255) DEFAULT NULL,
+  `wechat_date` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=493 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1361 DEFAULT CHARSET=utf8;
+SET FOREIGN_KEY_CHECKS=1;

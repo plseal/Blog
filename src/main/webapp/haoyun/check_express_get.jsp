@@ -46,27 +46,28 @@
 									</tr>
 								</thead>
 								<tbody>
-								
+								<c:forEach items="${expresses}"  var="express"  >
 									<tr>
 									<!--
-										<td><a target='_blank' href='${pageContext.request.contextPath}/blog/articles/${blog.id}.html'>${chr.id}</a></td>
+										<td><a target='_blank' href='${pageContext.request.contextPath}/blog/articles/${express.id}.html'>${express.id}</a></td>
 										-->
-										<td>1.2</td>
-										<td>杨文</td>
-										<td>350633127859</td>
-										<td>杭州</td>
-										<td>化妆棉4 </td>
-										<td>日本 </td>
-										<td>angelhood百世汇通 </td>
+										<td>${express.date}</td>
+										<td>${express.name}</td>
+										<td>${express.number}</td>
+										<td>${express.des}</td>
+										<td>${express.content} </td>
+										<td>${express.e_from}</td>
+										<td>${express.remark} </td>
+										
 									</tr>
-								
+								</c:forEach>
 								</tbody>
 							</table>
-						 <div class="form-group">
-							<div class="col-sm-12 ">
-							  <button type="submit" class="btn btn-lg btn-block btn-primary">点击返回</button>
+							<div class="row">
+								<div class="col-sm-12 ">
+								  <a href="../haoyun/check_express.jsp"  class="button button-block button-rounded button-primary button-large">点击返回</a>
+								</div>
 							</div>
-						  </div>
 				</fieldset>
 			</form>
 		      

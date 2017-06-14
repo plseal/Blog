@@ -58,6 +58,18 @@ public class Express {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
+	public String getWechat_id() {
+		return wechat_id;
+	}
+	public void setWechat_id(String wechat_id) {
+		this.wechat_id = wechat_id;
+	}
+	public String getWechat_date() {
+		return wechat_date;
+	}
+	public void setWechat_date(String wechat_date) {
+		this.wechat_date = wechat_date;
+	}
 	private Integer id;//序号
 	private String date;//日期
 	private String name;//客户姓名
@@ -67,6 +79,7 @@ public class Express {
 	private String content;//包裹内容
 	private String e_from;//发货专区
 	private String remark;//备注
-	
+	private String wechat_id;//
+	private String wechat_date;//
 
 }
