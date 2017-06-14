@@ -27,7 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM t_express WHERE number=#{number}
 	</select>
 	<select id="get_by_wechat_id" parameterType="String" resultMap="expressMap">
-		SELECT * FROM t_express WHERE wechat_id=#{wechat_id}
+		select * from t_express where name in (SELECT name FROM t_express WHERE wechat_id=#{wechat_id})
 	</select>
 	 <resultMap type="Express" id="expressMap">
 	     <id property="id" column="id" />  

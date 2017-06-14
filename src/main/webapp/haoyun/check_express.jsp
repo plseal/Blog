@@ -33,7 +33,7 @@
 							<!--PAGE CONTENT BEGINS-->
 							<div class="row">
 								<div class="col-sm-12 ">
-								  <button type="button" class="btn btn-lg btn-block btn-primary" onclick="location.href = '<%=request.getContextPath() %>/haoyun/check_express_get.jsp';">客户查询快递单号</button>
+								  <button type="button" class="btn btn-lg btn-block btn-primary" onclick="location.href = '${pageContext.request.contextPath}/haoyun/get_express_by_wechat_id.do?wechat_id=testid';">客户查询快递单号</button>
 								</div>
 							</div><br/>
 							<div class="row">
