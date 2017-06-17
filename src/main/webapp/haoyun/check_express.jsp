@@ -50,12 +50,14 @@
 							-->
 							<div class="row">
 								<div class="col-sm-12 ">
-								  <button type="button" class="btn btn-lg btn-block btn-primary" onclick="location.href = '<%=request.getContextPath() %>/haoyun/check_express_insert_bat.jsp';">批量添加快递单号</button>
+								<a href="<%=request.getContextPath() %>/haoyun/check_express_insert_bat.jsp" class="button button-block button-caution  button-rounded button-large">批量添加快递单号</a>
+								  
 								</div>
 							</div><br/>
 							<div class="row">
 								<div class="col-sm-12 ">
-								  <button type="button" class="btn btn-lg btn-block btn-primary" onclick="location.href = '<%=request.getContextPath() %>/haoyun/check_express_c_info.jsp';">客户信息</button>
+								<a href="<%=request.getContextPath() %>/haoyun/check_express_c_info.jsp" class="button button-block button-caution  button-rounded button-large">客户信息</a>
+								  
 								</div>
 							</div><br/>
 							<div class="row">
