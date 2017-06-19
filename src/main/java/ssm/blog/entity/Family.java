@@ -10,7 +10,10 @@ public class Family {
 	private String birth;//
 	private String remind_date;//
 	private String lunar_birth;//
+	private String lunar_birth2;//
 	private String age;//
+	private String m_date;//
+	private String animals_year;
 
 	public Integer getId() {
 		return id;
@@ -42,11 +45,29 @@ public class Family {
 	public void setLunar_birth(String lunar_birth) {
 		this.lunar_birth = lunar_birth;
 	}
+	public String getLunar_birth2() {
+		return lunar_birth2;
+	}
+	public void setLunar_birth2(String lunar_birth2) {
+		this.lunar_birth2 = lunar_birth2;
+	}
 	public String getAge() {
 		return age;
 	}
 	public void setAge(String age) {
 		this.age = age;
+	}
+	public String getM_date() {
+		return m_date;
+	}
+	public void setM_date(String m_date) {
+		this.m_date = m_date;
+	}
+	public String getAnimals_year() {
+		return animals_year;
+	}
+	public void setAnimals_year(String animals_year) {
+		this.animals_year = animals_year;
 	}
 	
 }
