@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
@@ -83,6 +84,17 @@ public class HaoyunController {
 		//ResponseUtil.write(response, result);
 		logger.info("["+this.getClass()+"][get_express_by_name][end]");
 		return "../../haoyun/check_express";
+	}
+	@RequestMapping("/building")
+	public String building(
+			HttpServletRequest request) throws Exception {
+		logger.info("["+this.getClass()+"][building][start]");
+		
+		
+		
+		//ResponseUtil.write(response, result);
+		logger.info("["+this.getClass()+"][building][end]");
+		return "../../haoyun/building";
 	}
 	
 	@RequestMapping("/get_wechat_id_by_name")
@@ -179,6 +191,36 @@ public class HaoyunController {
 		return "../../haoyun/check_express_first_result";
 	}
 	
+	@RequestMapping("/c_express.do")
+	public String c_express(
+			String wechat_id,
+			HttpServletRequest request) throws Exception {
+		logger.info("["+this.getClass()+"][c_express][start]");
+		
+		
+		
+		HttpSession session = request.getSession();
+		String openid_haoyun = (String)session.getAttribute("openid_haoyun");
+		logger.info("["+this.getClass()+"][c_express][openid_haoyun]"+openid_haoyun);
+		
+		
+		
+		List<Express> expresses =  expressService.get_by_wechat_id(openid_haoyun);
+		
+
+		request.setAttribute("wechat_id", "testid");
+		//request.setAttribute("express_id", expresses.get(0).getId());
+		
+		
+		//ResponseUtil.write(response, result);
+		logger.info("["+this.getClass()+"][c_express][end]");
+		if (expresses.size() == 0){
+			return "../../haoyun/check_express_first_result";
+		} else {
+			return "../../haoyun/check_express_first_result111";
+		}
+		
+	}
 	
 	@RequestMapping("/to_modifyBlog")
 	public ModelAndView to_modifyBlog(

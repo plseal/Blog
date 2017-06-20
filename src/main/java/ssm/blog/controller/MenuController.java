@@ -99,6 +99,12 @@ public class MenuController {
 	@Value("#{setting[APPSECRET]}")
 	private String strAPPSECRET; 
 	
+	@Value("#{setting[APPID_HAOYUN]}")
+	private String strAPPID_HAOYUN; 
+	
+	@Value("#{setting[APPSECRET_HAOYUN]}")
+	private String strAPPSECRET_HAOYUN; 
+	
 	@RequestMapping(value="/manager/create-menu",method=RequestMethod.GET)
 	@ResponseBody
 	public ModelAndView createMenu(){
@@ -287,23 +293,26 @@ public class MenuController {
          */
         
         CommonButton mainBtn1 = new CommonButton();
+        //快递查询
         mainBtn1.setName(haoyun_main_button1_name);
         mainBtn1.setType("view");
         mainBtn1.setKey("01");
-        mainBtn1.setUrl("http://www.plseal.com/Blog/index.html?typeId=01");
+        //snsapi_base不弹出授权页面，直接跳转，只能获取用户openid
+        String strURL ="https://open.weixin.qq.com/connect/oauth2/authorize?appid="+strAPPID_HAOYUN+"&redirect_uri=http://www.lingzhu-med.com/Blog/weixin_oauth2/get_code_haoyun.do&response_type=code&scope=snsapi_base&state=1#wechat_redirect";
+        mainBtn1.setUrl(strURL);
 
 
         CommonButton mainBtn2 = new CommonButton();
         mainBtn2.setName(haoyun_main_button2_name);
         mainBtn2.setType("view");
         mainBtn2.setKey("02");
-        mainBtn2.setUrl("http://www.plseal.com/Blog/index.html?typeId=02");
+        mainBtn2.setUrl("http://www.plseal.com/Blog/haoyun/building.do");
         
         CommonButton mainBtn3 = new CommonButton();
         mainBtn3.setName(haoyun_main_button3_name);
         mainBtn3.setType("view");
         mainBtn3.setKey("03");
-        mainBtn3.setUrl("http://www.plseal.com/Blog/index.html?typeId=03");
+        mainBtn3.setUrl("http://www.plseal.com/Blog/haoyun/building.do");
 
         
         /**

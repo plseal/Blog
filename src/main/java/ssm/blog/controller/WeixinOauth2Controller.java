@@ -62,6 +62,12 @@ public class WeixinOauth2Controller {
 	
 	@Value("#{setting[APPSECRET]}")
 	private String strAPPSECRET; 
+	
+	@Value("#{setting[APPID_HAOYUN]}")
+	private String strAPPID_HAOYUN; 
+	
+	@Value("#{setting[APPSECRET_HAOYUN]}")
+	private String strAPPSECRET_HAOYUN; 
 	/**
 	 * @Description 
 	 * @return
@@ -91,6 +97,39 @@ public class WeixinOauth2Controller {
 		mv.setViewName("forward:../child_health_record/to_child_health_record_manage.do");
 		
 		logger.info("["+this.getClass()+"][get_code][end]");
+		return mv;
+
+	}
+	
+	/**
+	 * @Description 
+	 * @return
+	 */
+	@RequestMapping("/get_code_haoyun")
+	public ModelAndView get_code_haoyun(
+			@RequestParam(value = "page", required = false) String page,
+			@RequestParam(value = "typeId", required = false) String typeId,
+			@RequestParam(value = "releaseDateStr", required = false) String releaseDateStr,
+			HttpServletRequest request) throws Exception {
+		
+		logger.info("["+this.getClass()+"][get_code_haoyun][start]");
+		
+		
+		String str_code = request.getParameter("code");//我们要的code
+		logger.info("["+this.getClass()+"][get_code_haoyun][CODE]"+str_code);
+		
+		AccessToken accessToken = get_oauth2_access_token_from_url(str_code);
+		logger.info("["+this.getClass()+"][get_code_haoyun][openId]"+accessToken.getOpenid());
+		ModelAndView mv = new ModelAndView();
+
+		HttpSession session = request.getSession();
+		session.setAttribute("openid_haoyun",accessToken.getOpenid());
+
+		//初期画面
+		mv.addObject("hid_flg", "init");
+		mv.setViewName("forward:../haoyun/c_express.do");
+		
+		logger.info("["+this.getClass()+"][get_code_haoyun][end]");
 		return mv;
 
 	}
