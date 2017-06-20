@@ -139,7 +139,7 @@ public class WeixinController {
 			logger.info("["+this.getClass().getName()+"][weixin_haoyun][message.getFromUserName()]"+message.getFromUserName());
 			request.getSession().setAttribute("open_id", message.getFromUserName());
 			//weixinService.addMessage(message);//保存接受消息到数据库
-			String replyContent = WELCOME_CONTENT;
+			String replyContent = WELCOME_CONTENT_HAOYUN;
 			String type = message.getMsgType();
 			logger.info("["+this.getClass().getName()+"][weixin_haoyun][message type]"+type);
 			if (type.equals(Message.TEXT)) {//仅处理文本回复内容
