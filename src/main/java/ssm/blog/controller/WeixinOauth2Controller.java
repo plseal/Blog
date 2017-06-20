@@ -191,7 +191,7 @@ public class WeixinOauth2Controller {
 		AccessToken accessToken = null;
 
 		String requestUrl = oauth2_access_token_url.replace("APPID", strAPPID_HAOYUN).replace("SECRET", strAPPSECRET_HAOYUN).replace("CODE", code);
-		logger.info("[WeixinUtil][get_oauth2_access_token_from_url][requestUrl]"+requestUrl);
+		logger.info("[WeixinUtil][get_oauth2_access_token_from_url_haoyun][requestUrl]"+requestUrl);
 		JSONObject jsonObject = WeixinUtil.httpRequest(requestUrl, "GET", null);
 		// 如果请求成功
 		if (null != jsonObject) {
