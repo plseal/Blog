@@ -118,7 +118,7 @@ public class WeixinOauth2Controller {
 		String str_code = request.getParameter("code");//我们要的code
 		logger.info("["+this.getClass()+"][get_code_haoyun][CODE]"+str_code);
 		
-		AccessToken accessToken = get_oauth2_access_token_from_url(str_code);
+		AccessToken accessToken = get_oauth2_access_token_from_url_haoyun(str_code);
 		logger.info("["+this.getClass()+"][get_code_haoyun][openId]"+accessToken.getOpenid());
 		ModelAndView mv = new ModelAndView();
 
@@ -172,6 +172,42 @@ public class WeixinOauth2Controller {
 		return accessToken;
 	}
 	
-	
+	/**
+	 * 获取oauth2_access_token
+	 * 
+	 * @param appid 凭证
+	 * @param appsecret 密钥
+	 * @param CODE
+	 * @return
+	 */
+	private AccessToken get_oauth2_access_token_from_url_haoyun( String code) {
+		
+		
+		logger.info("[WeixinUtil][get_oauth2_access_token_from_url_haoyun][start]");
+		
+	// 获取oauth2_access_token的接口地址（GET） 限200（次/天）
+	    String oauth2_access_token_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code";
+
+		AccessToken accessToken = null;
+
+		String requestUrl = oauth2_access_token_url.replace("APPID", strAPPID_HAOYUN).replace("SECRET", strAPPSECRET_HAOYUN).replace("CODE", code);
+		logger.info("[WeixinUtil][get_oauth2_access_token_from_url][requestUrl]"+requestUrl);
+		JSONObject jsonObject = WeixinUtil.httpRequest(requestUrl, "GET", null);
+		// 如果请求成功
+		if (null != jsonObject) {
+			try {
+				accessToken = new AccessToken();
+				accessToken.setAccess_token(jsonObject.getString("access_token"));
+				accessToken.setOpenid(jsonObject.getString("openid"));
+				accessToken.setExpires_in(jsonObject.getInt("expires_in"));
+			} catch (JSONException e) {
+				accessToken = null;
+				// 获取token失败
+				logger.info("HAOYUN:获取token失败 errcode:{} errmsg:{}"+jsonObject.getInt("errcode")+jsonObject.getString("errmsg"));
+			}
+		}
+		logger.info("[WeixinUtil][get_oauth2_access_token_from_url_haoyun][end]");
+		return accessToken;
+	}
 	
 }
