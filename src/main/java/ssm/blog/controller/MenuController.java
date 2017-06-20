@@ -84,6 +84,15 @@ public class MenuController {
 	private String btn35Name; 
 	
 	
+	@Value("#{setting[haoyun_main_button1_name]}")
+	private String haoyun_main_button1_name; 
+	
+	@Value("#{setting[haoyun_main_button2_name]}")
+	private String haoyun_main_button2_name;
+	
+	@Value("#{setting[haoyun_main_button3_name]}")
+	private String haoyun_main_button3_name; 
+	
 	@Value("#{setting[APPID]}")
 	private String strAPPID; 
 	
@@ -100,16 +109,35 @@ public class MenuController {
 		Menu menu = getMenu();
 		
 		ModelAndView mv=new ModelAndView();
-		menuService.createMenu(menu);
+		menuService.createMenu(menu,"LINGZHU");
 		mv.addObject("sidebar","create-menu");
         mv.setViewName("result");
         
-        mv.addObject("strResult", menuService.getMenu());
+        mv.addObject("strResult", menuService.getMenu("LINGZHU"));
 		
 		logger.info("["+this.getClass().getName()+"][createMenu][end]"); 
 		return mv;
 	}
 	
+	@RequestMapping(value="/manager/create_menu_haoyun",method=RequestMethod.GET)
+	@ResponseBody
+	public ModelAndView createMenu_haoyun(){
+		
+		logger.info("["+this.getClass()+"][createMenu_haoyun][start]");
+		
+		
+		Menu menu = getMenu_haoyun();
+		
+		ModelAndView mv=new ModelAndView();
+		menuService.createMenu(menu,"HAOYUN");
+		mv.addObject("sidebar","createMenu_haoyun");
+        mv.setViewName("result");
+        
+        mv.addObject("strResult", menuService.getMenu("HAOYUN"));
+		
+		logger.info("["+this.getClass().getName()+"][createMenu_haoyun][end]"); 
+		return mv;
+	}
 	
     /**
      * 组装菜单数据
@@ -244,7 +272,48 @@ public class MenuController {
         logger.info("["+this.getClass().getName()+"][getMenu][end]");
         return menu;
     }
+    /**
+     * 组装菜单数据
+     * 
+     * @return
+     */
+    private Menu getMenu_haoyun() {
 
+    	
+    	logger.info("["+this.getClass().getName()+"][getMenu_haoyun][start]");
+        
+        /**
+         * 微信：  mainBtn1,mainBtn2,mainBtn3底部的三个一级菜单。
+         */
+        
+        CommonButton mainBtn1 = new CommonButton();
+        mainBtn1.setName(haoyun_main_button1_name);
+        mainBtn1.setType("view");
+        mainBtn1.setKey("01");
+        mainBtn1.setUrl("http://www.plseal.com/Blog/index.html?typeId=01");
+
+
+        CommonButton mainBtn2 = new CommonButton();
+        mainBtn2.setName(haoyun_main_button2_name);
+        mainBtn2.setType("view");
+        mainBtn2.setKey("02");
+        mainBtn2.setUrl("http://www.plseal.com/Blog/index.html?typeId=02");
+        
+        CommonButton mainBtn3 = new CommonButton();
+        mainBtn3.setName(haoyun_main_button3_name);
+        mainBtn3.setType("view");
+        mainBtn3.setKey("03");
+        mainBtn3.setUrl("http://www.plseal.com/Blog/index.html?typeId=03");
+
+        
+        /**
+         * 封装整个菜单
+         */
+        Menu menu = new Menu();
+        menu.setButton(new CommonButton[] { mainBtn1, mainBtn2, mainBtn3 });
+        logger.info("["+this.getClass().getName()+"][getMenu_haoyun][end]");
+        return menu;
+    }
 	
 
 	

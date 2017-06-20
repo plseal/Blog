@@ -66,13 +66,33 @@ public class ManagerController {
 		//logger.info("["+this.getClass().getName()+"][get_access_token][strAPPID]"+strAPPID);
 		//logger.info("["+this.getClass().getName()+"][get_access_token][strAPPSECRET]"+strAPPSECRET);
 		//String tmp = PropertiesUtil.getProperties();
-        AccessToken at = accessTokenService.getAccessToken();
+        AccessToken at = accessTokenService.getAccessToken("LINGZHU");
         logger.info("["+this.getClass().getName()+"][get_access_token][accessToken]"+at.getAccess_token());
         mv.addObject("sidebar","get_access_token");
         mv.setViewName("result");
         mv.addObject("strResult", at.getAccess_token());
 		//mv.addObject("sidebar","classes");
 		logger.info("["+this.getClass().getName()+"][get_access_token][end]"); 
+		return mv;
+	}
+	
+	@RequestMapping(value="/manager/get_access_token_haoyun",method=RequestMethod.GET)
+	@ResponseBody
+	public ModelAndView get_access_token_haoyun() throws FileNotFoundException, IOException{
+		
+		logger.info("["+this.getClass().getName()+"][get_access_token_haoyun][start]"); 
+		ModelAndView mv=new ModelAndView();
+        // 调用接口获取access_token
+		//logger.info("["+this.getClass().getName()+"][get_access_token][strAPPID]"+strAPPID);
+		//logger.info("["+this.getClass().getName()+"][get_access_token][strAPPSECRET]"+strAPPSECRET);
+		//String tmp = PropertiesUtil.getProperties();
+        AccessToken at = accessTokenService.getAccessToken("HAOYUN");
+        logger.info("["+this.getClass().getName()+"][get_access_token_haoyun][accessToken]"+at.getAccess_token());
+        mv.addObject("sidebar","get_access_token_haoyun");
+        mv.setViewName("result");
+        mv.addObject("strResult", at.getAccess_token());
+		//mv.addObject("sidebar","classes");
+		logger.info("["+this.getClass().getName()+"][get_access_token_haoyun][end]"); 
 		return mv;
 	}
 
@@ -86,7 +106,7 @@ public class ManagerController {
 		//logger.info("["+this.getClass().getName()+"][get_access_token][strAPPID]"+strAPPID);
 		//logger.info("["+this.getClass().getName()+"][get_access_token][strAPPSECRET]"+strAPPSECRET);
 		//String tmp = PropertiesUtil.getProperties();
-        AccessToken at = accessTokenService.getAccessToken();
+        AccessToken at = accessTokenService.getAccessToken("LINGZHU");
         
         logger.info("["+this.getClass().getName()+"][get_union_id][accessToken]"+at.getAccess_token());
         

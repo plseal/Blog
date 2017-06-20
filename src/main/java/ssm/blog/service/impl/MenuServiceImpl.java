@@ -28,15 +28,15 @@ public class MenuServiceImpl implements MenuService {
 	* 描述:菜单管理器类 </br>
 	* 发布版本：V1.0  </br>
 	 */
-    public void createMenu(Menu menu) {
+    public void createMenu(Menu menu,String flg) {
     	logger.info("["+this.getClass().getName()+"][createMenu][start]");
 
         // 调用接口获取access_token
-        AccessToken at = accessTokenService.getAccessToken();
+        AccessToken at = accessTokenService.getAccessToken(flg);
 
         if (null != at) {
             // 调用接口创建菜单
-            int result = createMenu(menu, at.getAccess_token());
+            int result = private_createMenu(menu, at.getAccess_token());
 
             // 判断菜单创建结果
             if (0 == result)
@@ -51,11 +51,11 @@ public class MenuServiceImpl implements MenuService {
 	* 描述:菜单管理器类 </br>
 	* 发布版本：V1.0  </br>
 	 */
-    public String getMenu() {
+    public String getMenu(String flg) {
     	logger.info("["+this.getClass().getName()+"][getMenu][start]");
 
         // 调用接口获取access_token
-        AccessToken at = accessTokenService.getAccessToken();
+        AccessToken at = accessTokenService.getAccessToken(flg);
         String result = "no result";
         if (null != at) {
             // 调用接口创建菜单
@@ -91,8 +91,8 @@ public class MenuServiceImpl implements MenuService {
 	 * @param accessToken 有效的access_token
 	 * @return 0表示成功，其他值表示失败
 	 */
-	public int createMenu(Menu menu, String accessToken) {
-		logger.info("["+this.getClass().getName()+"][createMenu][start]");
+	public int private_createMenu(Menu menu, String accessToken) {
+		logger.info("["+this.getClass().getName()+"][private_createMenu][start]");
 		int result = 0;
 
 		// 拼装创建菜单的url
@@ -100,7 +100,7 @@ public class MenuServiceImpl implements MenuService {
 		// 将菜单对象转换成json字符串
 		String jsonMenu = JSONObject.fromObject(menu).toString();
 		// 调用接口创建菜单
-		logger.info("["+this.getClass().getName()+"][createMenu][jsonMenu]"+jsonMenu);
+		logger.info("["+this.getClass().getName()+"][private_createMenu][jsonMenu]"+jsonMenu);
 		JSONObject jsonObject = WeixinUtil.httpRequest(url, "POST", jsonMenu);
 
 		if (null != jsonObject) {
@@ -109,7 +109,7 @@ public class MenuServiceImpl implements MenuService {
 				logger.error("创建菜单失败 ");
 			}
 		}
-		logger.info("["+this.getClass().getName()+"][createMenu][end]");
+		logger.info("["+this.getClass().getName()+"][private_createMenu][end]");
 		return result;
 	}
 	

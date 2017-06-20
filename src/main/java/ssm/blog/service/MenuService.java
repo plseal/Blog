@@ -9,8 +9,8 @@ import ssm.blog.entity.Menu;
  */
 public interface MenuService {
 
-	public void createMenu(Menu menu);
-	public String getMenu();
+	public void createMenu(Menu menu,String flg);
+	public String getMenu(String flg);
 
 }
 

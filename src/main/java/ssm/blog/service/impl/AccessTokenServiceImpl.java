@@ -1,8 +1,5 @@
 package ssm.blog.service.impl;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
@@ -33,6 +30,12 @@ public class AccessTokenServiceImpl implements AccessTokenService {
 	@Value("#{setting[APPSECRET]}")
 	private String strAPPSECRET; 
 	
+	@Value("#{setting[APPID_HAOYUN]}")
+	private String strAPPID_HAOYUN; 
+	
+	@Value("#{setting[APPSECRET_HAOYUN]}")
+	private String strAPPSECRET_HAOYUN; 
+	
 	/**
 	 * 获取access_token
 	 * 
@@ -40,14 +43,21 @@ public class AccessTokenServiceImpl implements AccessTokenService {
 	 * @param appsecret 密钥
 	 * @return
 	 */
-	public AccessToken getAccessToken() {
+	public AccessToken getAccessToken(String flg) {
 		
 		logger.info("["+this.getClass().getName()+"][getAccessToken][start]");
+		logger.info("["+this.getClass().getName()+"][getAccessToken][flg]"+flg);
+		
 		AccessToken accessToken = null;
 		
 		//先从DB查找accessToken，存在并且没有过期的话，就不用去微信官方服务器取了
-		
-		accessToken = accessTokenDao.getAccessToken(1);
+		if ("LINGZHU".equals(flg)) {
+			accessToken = accessTokenDao.getAccessToken(1);
+			accessToken.setId(1);
+		} else {
+			accessToken = accessTokenDao.getAccessToken(2);
+			accessToken.setId(2);
+		}
 
 		//int _in = Integer.parseInt(accessToken.getExpires_in());
 		long create_time = accessToken.getCreate_time();
@@ -59,8 +69,12 @@ public class AccessTokenServiceImpl implements AccessTokenService {
 		} else {
 			//System.out.println("无效重新创建");
 			WeixinUtil wu = new WeixinUtil();
-			accessToken = wu.getAccessTokenFromURL(strAPPID, strAPPSECRET);
-			Map map2 = new HashMap();
+			if ("LINGZHU".equals(flg)) {
+				accessToken = wu.getAccessTokenFromURL(strAPPID, strAPPSECRET);
+			} else {
+				accessToken = wu.getAccessTokenFromURL(strAPPID_HAOYUN, strAPPSECRET_HAOYUN);
+			}
+			
 			accessToken.setCreate_time(System.currentTimeMillis());
 			
 			update(accessToken);//更新数据库

@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
     <update id="update" parameterType="AccessToken">
         update t_access_token set  access_token = #{access_token} ,expires_in = #{expires_in},create_time = #{create_time} 
-        where id = 1
+        where id =  #{id}  
         
     </update>
     

@@ -279,7 +279,7 @@ public class WeixinUtil {
 			} catch (JSONException e) {
 				accessToken = null;
 				// 获取token失败
-				logger.info("LINGZHU:获取token失败 errcode:{} errmsg:{}"+jsonObject.getInt("errcode")+ jsonObject.getString("errmsg"));
+				logger.info("获取token失败 errcode:{} errmsg:{}"+jsonObject.getInt("errcode")+ jsonObject.getString("errmsg"));
 			}
 		}
 		logger.info("[WeixinUtil][getAccessTokenFromURL][end]");

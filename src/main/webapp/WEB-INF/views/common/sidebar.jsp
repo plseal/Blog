@@ -38,6 +38,18 @@
 				<span class="menu-text"> 初始微信菜单 </span>
 			</a>
 		</li>
+		<li <c:if test="${sidebar=='get_access_token_haoyun'}">class="active"</c:if> >
+			<a href="<%=request.getContextPath()%>/manager/get_access_token_haoyun.do">
+				<i class="fa fa-list-alt"></i>
+				<span class="menu-text"> 获取accessToken(好运)  </span>
+			</a>
+		</li>
+		<li <c:if test="${sidebar=='create_menu_haoyun'}">class="active"</c:if> >
+			<a href="<%=request.getContextPath()%>/manager/create_menu_haoyun.do">
+				<i class="fa fa-list-alt"></i>
+				<span class="menu-text"> 初始微信菜单(好运) </span>
+			</a>
+		</li>
 		<li>
 			<br/>
 			&nbsp;&nbsp;以下为开发测试专用
