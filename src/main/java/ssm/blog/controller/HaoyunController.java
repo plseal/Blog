@@ -148,13 +148,16 @@ public class HaoyunController {
 	@RequestMapping("/get_express_by_number_first")
 	public String get_express_by_number_first(
 			String c_number,
+			String wechat_id,
 			HttpServletRequest request) throws Exception {
 		logger.info("["+this.getClass()+"][get_express_by_number_first][start]");
 		logger.info("["+this.getClass()+"][get_express_by_number_first][c_number]"+c_number);
-
+		logger.info("["+this.getClass()+"][get_express_by_number_first][wechat_id]"+wechat_id);
+		
 		List<Express> expresses = expressService.get_by_number(c_number);
 		
 		request.setAttribute("expresses", expresses);
+		request.setAttribute("wechat_id", wechat_id);
 		
 		if(expresses.size() > 0) {
 			request.setAttribute("okflg", "ok");

@@ -36,6 +36,7 @@
 								<div class="col-sm-12 ">
 									请输入运单编号（不清楚可以向客服查询）
 									<input type="hidden" id="okflg" name="okflg" class="form-control" value = "${okflg}" >
+									<input type="hidden" id="wechat_id" name="wechat_id" class="form-control" value = "${wechat_id}" >
 								</div>
 							</div><br/>
 
@@ -102,11 +103,11 @@
 
 function get_express_by_number(){
 	var c_number = document.all.c_number.value;
-	
+	var wechat_id = document.all.wechat_id.value;
 	if (c_number == ""){
 		$("#div_alert_c_number_blank").attr("class","alert alert-danger");
 	}else {
-		document.all.myform.action="${pageContext.request.contextPath}/haoyun/get_express_by_number_first.do?c_number="+c_number;
+		document.all.myform.action="${pageContext.request.contextPath}/haoyun/get_express_by_number_first.do?c_number="+c_number+"&wechat_id="+wechat_id;
 		document.all.myform.submit(); 
 	}
 
