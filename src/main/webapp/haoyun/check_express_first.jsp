@@ -25,7 +25,7 @@
 					<h1>
 						<small>
 							<i class="icon-list-alt"></i>
-							开通自助查询 （演示用）
+							开通自助查询
 						</small>
 					</h1>
 				</div>

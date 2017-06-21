@@ -215,7 +215,7 @@ public class HaoyunController {
 		//ResponseUtil.write(response, result);
 		logger.info("["+this.getClass()+"][c_express][end]");
 		if (expresses.size() == 0){
-			return "../../haoyun/check_express_first_result";
+			return "../../haoyun/check_express_first";
 		} else {
 			return "../../haoyun/check_express_first_result111";
 		}
