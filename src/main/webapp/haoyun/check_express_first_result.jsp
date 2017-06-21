@@ -23,7 +23,7 @@
 				<h1>
 					<small>
 						<i class="icon-list-alt"></i>
-						开通自助查询 结果页面（演示用）
+						开通自助查询 结果页面
 					</small>
 				</h1>
 			</div>

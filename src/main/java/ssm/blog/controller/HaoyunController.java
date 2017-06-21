@@ -168,12 +168,14 @@ public class HaoyunController {
 	@RequestMapping("/c_first_confirm")
 	public String c_first_confirm(
 			Integer id,
+			String wechat_id,
 			HttpServletRequest request) throws Exception {
 		logger.info("["+this.getClass()+"][c_first_confirm][start]");
 		logger.info("["+this.getClass()+"][c_first_confirm][id]"+id);
+		logger.info("["+this.getClass()+"][c_first_confirm][wechat_id]"+wechat_id);
 		Express express = new Express();
 		express.setId(id);
-		express.setWechat_id("testid");
+		express.setWechat_id(wechat_id);
 		Date date = new Date();
 		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
 		String todayyyyMMddHHmmss = df.format(date);
@@ -182,7 +184,7 @@ public class HaoyunController {
 		expressService.update_wechat_info(express);
 		
 
-		request.setAttribute("wechat_id", "testid");
+		request.setAttribute("wechat_id", wechat_id);
 		//request.setAttribute("express_id", expresses.get(0).getId());
 		
 		

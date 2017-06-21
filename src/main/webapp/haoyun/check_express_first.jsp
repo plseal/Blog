@@ -86,7 +86,7 @@
 							<c:if test="${okflg eq 'ok'}">
 								<div class="row">
 									<div class="col-sm-12 ">
-									  <a href="${pageContext.request.contextPath}/haoyun/c_first_confirm.do?id=${express_id}&wechat_id=${express_id}"  class="button button-block button-rounded button-primary button-large">确认开通</a>
+									  <a href="${pageContext.request.contextPath}/haoyun/c_first_confirm.do?id=${express_id}&wechat_id=${wechat_id}"  class="button button-block button-rounded button-primary button-large">确认开通</a>
 									</div>
 								</div>
 							</c:if>
