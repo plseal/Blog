@@ -219,7 +219,7 @@ public class HaoyunController {
 		if (expresses.size() == 0){
 			return "../../haoyun/check_express_first";
 		} else {
-			return "../../get_express_by_wechat_id.do?wechat_id="+wechat_id;
+			return "../../haoyun/get_express_by_wechat_id.do?wechat_id="+wechat_id;
 		}
 		
 	}
