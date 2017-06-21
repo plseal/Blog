@@ -53,8 +53,9 @@
 							</div><br/>
 							<table id="sample-table-1" class="table table-striped table-bordered table-hover">
 								<thead>
-									<tr>
+									<tr><!--
 										<th width="0%">ID</th>
+										-->
 										<th width="14%">日期</th>
 										<th width="14%">姓名</th>
 										<th width="14%">运单编号</th>
@@ -67,10 +68,9 @@
 								<tbody>
 								<c:forEach items="${expresses}"  var="express"  >
 									<tr>
-									<!--
-										<td><a target='_blank' href='${pageContext.request.contextPath}/blog/articles/${express.id}.html'>${express.id}</a></td>
-										-->
+									    <!--
 										<td>${express.id}</td>
+										-->
 										<td>${express.date}</td>
 										<td>${express.name}</td>
 										<td>${express.number}</td>
@@ -86,7 +86,7 @@
 							<c:if test="${okflg eq 'ok'}">
 								<div class="row">
 									<div class="col-sm-12 ">
-									  <a href="${pageContext.request.contextPath}/haoyun/c_first_confirm.do?id=${express_id}"  class="button button-block button-rounded button-primary button-large">确认开通</a>
+									  <a href="${pageContext.request.contextPath}/haoyun/c_first_confirm.do?id=${express_id}&wechat_id=${express_id}"  class="button button-block button-rounded button-primary button-large">确认开通</a>
 									</div>
 								</div>
 							</c:if>

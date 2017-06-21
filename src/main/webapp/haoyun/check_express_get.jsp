@@ -25,7 +25,7 @@
 						<h1>
 							<small>
 								<i class="icon-list-alt"></i>
-								快递单号查询 客户用（演示用 需要关联wechat信息）
+								快递单号查询
 							</small>
 						</h1>
 					</div>
@@ -63,11 +63,7 @@
 								</c:forEach>
 								</tbody>
 							</table>
-							<div class="row">
-								<div class="col-sm-12 ">
-								  <a href="../haoyun/check_express.jsp"  class="button button-block button-rounded button-primary button-large">点击返回</a>
-								</div>
-							</div>
+
 				</fieldset>
 			</form>
 		      

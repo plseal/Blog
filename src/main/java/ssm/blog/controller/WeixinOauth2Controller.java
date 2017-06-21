@@ -127,7 +127,7 @@ public class WeixinOauth2Controller {
 
 		//初期画面
 		mv.addObject("hid_flg", "init");
-		mv.setViewName("forward:../haoyun/c_express.do");
+		mv.setViewName("forward:../haoyun/c_express.do?wechat_id="+accessToken.getOpenid());
 		
 		logger.info("["+this.getClass()+"][get_code_haoyun][end]");
 		return mv;

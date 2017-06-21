@@ -196,19 +196,16 @@ public class HaoyunController {
 			String wechat_id,
 			HttpServletRequest request) throws Exception {
 		logger.info("["+this.getClass()+"][c_express][start]");
+		logger.info("["+this.getClass()+"][c_express][wechat_id]"+wechat_id);
 		
+		//HttpSession session = request.getSession();
+		//String wechat_id = (String)session.getAttribute("openid_haoyun");
+		//logger.info("["+this.getClass()+"][c_express][wechat_id]"+wechat_id);
 		
-		
-		HttpSession session = request.getSession();
-		String openid_haoyun = (String)session.getAttribute("openid_haoyun");
-		logger.info("["+this.getClass()+"][c_express][openid_haoyun]"+openid_haoyun);
-		
-		
-		
-		List<Express> expresses =  expressService.get_by_wechat_id(openid_haoyun);
+		List<Express> expresses =  expressService.get_by_wechat_id(wechat_id);
 		
 
-		request.setAttribute("wechat_id", "testid");
+		request.setAttribute("wechat_id", wechat_id);
 		//request.setAttribute("express_id", expresses.get(0).getId());
 		
 		
@@ -217,7 +214,7 @@ public class HaoyunController {
 		if (expresses.size() == 0){
 			return "../../haoyun/check_express_first";
 		} else {
-			return "../../haoyun/check_express_first_result111";
+			return "../../get_express_by_wechat_id.do?wechat_id="+wechat_id;
 		}
 		
 	}
