@@ -219,7 +219,8 @@ public class HaoyunController {
 		if (expresses.size() == 0){
 			return "../../haoyun/check_express_first";
 		} else {
-			return "../../haoyun/get_express_by_wechat_id.do";
+			request.setAttribute("expresses", expresses);
+			return "../../haoyun/check_express_get";
 		}
 		
 	}
