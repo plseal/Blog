@@ -25,7 +25,7 @@
 					<h1>
 						<small>
 							<i class="icon-list-alt"></i>
-							快递单号管理 （演示用）
+							快递单号管理 
 						</small>
 					</h1>
 				</div>
