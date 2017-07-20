@@ -1,12 +1,27 @@
 package ssm.blog.controller;
 
 import java.text.SimpleDateFormat;
+import java.text.ParseException;  
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
+
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.FileReader;
+import java.io.File;
+import java.io.BufferedReader;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,6 +32,10 @@ import ssm.blog.entity.Family;
 import ssm.blog.service.FamilyService;
 import ssm.blog.util.JUHEUtil;
 import ssm.blog.util.LunarCalendar;
+
+
+
+
 /**
  * @Description 
  * @author songml
@@ -45,6 +64,8 @@ public class FamilyController {
 	@Value("#{setting[STR4]}")
 	private String STR4;
 	
+	String gmail_id = "";
+	String gmail_pas = "";
 	
 	@RequestMapping("/get_all")
 	public String get_all(
@@ -54,11 +75,56 @@ public class FamilyController {
 		
 
 		List<Family> families = familyService.get_all();
-		LunarCalendar.solarToLunar(1984,10,30);
+		//LunarCalendar.solarToLunar(1984,10,30);
 		request.setAttribute("families", families);
+		
 		
 		//ResponseUtil.write(response, result);
 		logger.info("["+this.getClass()+"][get_all][end]");
+		return "../../family/main";
+	}
+	
+	@RequestMapping("/daily_enter_check")
+	public String daily_enter_check(
+			String c_name,
+			HttpServletRequest request) throws Exception {
+		logger.info("["+this.getClass()+"][daily_enter_check][start]");
+		
+
+		List<Family> families = familyService.get_all();
+		request.setAttribute("families", families);
+		
+        for(Family fa:families){
+            //logger.info("["+this.getClass()+"][daily_enter_check][fa.getName]"+fa.getName());
+			//logger.info("["+this.getClass()+"][daily_enter_check][fa.getBirth]"+fa.getBirth());
+			//logger.info("["+this.getClass()+"][daily_enter_check][fa.getAnimals_year]"+fa.getAnimals_year());
+			//logger.info("["+this.getClass()+"][daily_enter_check][fa.getLunar_birth]"+fa.getLunar_birth());
+			//logger.info("["+this.getClass()+"][daily_enter_check][fa.getLunar_birth2]"+fa.getLunar_birth2());
+			//logger.info("["+this.getClass()+"][daily_enter_check][fa.getRemind_date]"+fa.getRemind_date());
+			 
+
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-M-d");
+
+			String remind_date = fa.getRemind_date();
+			logger.info("["+this.getClass()+"][daily_enter_check][remind_date]"+remind_date);
+			//Date date_db = sdf.parse(remind_date); 
+			
+			String sys_date = sdf.format(new Date());
+			//sys_date = "2017-10-1";
+			
+			logger.info("["+this.getClass()+"][daily_enter_check][sys_date]"+sys_date);
+			if (sys_date.equals(remind_date)) {
+				send_family_mail("今日は" + fa.getName() + "の" + fa.getAge() + "歳誕生日");
+			}
+				
+ 
+			
+			
+        }
+
+		
+		//ResponseUtil.write(response, result);
+		logger.info("["+this.getClass()+"][daily_enter_check][end]");
 		return "../../family/main";
 	}
 	
@@ -116,5 +182,92 @@ public class FamilyController {
 		return "../../family/main";
 	}
 
+	
+	private void send_family_mail(String msg)  {
+		logger.info("["+this.getClass()+"][send_family_mail][start]");
+			try{
+				Properties property = new Properties();
+
+				property.put("mail.smtp.host","smtp.gmail.com");
+
+				//GmailのSMTPを使う場合
+				property.put("mail.smtp.auth", "true");
+				property.put("mail.smtp.starttls.enable", "true");
+				property.put("mail.smtp.host", "smtp.gmail.com");
+				property.put("mail.smtp.port", "587");
+				property.put("mail.smtp.debug", "true");
+				
+				
+		 
+				 FileReader fileReader = new FileReader(new File("d:\\tools\\id_pas.txt"));
+
+				 BufferedReader br = new BufferedReader(fileReader);
+
+				 String line = null;
+				 // if no more lines the readLine() returns null
+				 Integer cnt_i = 0;
+
+				 while ((line = br.readLine()) != null) {
+					  //logger.info("["+this.getClass()+"][get_all][line]"+line);
+					  cnt_i ++ ;
+					  if (cnt_i == 1) {
+						  gmail_id = line;
+						  
+					  } else if  (cnt_i == 2) {
+						  gmail_pas = line;
+					  }
+
+				 }
+
+
+				Session session = Session.getInstance(property, new javax.mail.Authenticator(){
+					protected PasswordAuthentication getPasswordAuthentication(){
+
+						return new PasswordAuthentication(gmail_id, gmail_pas);
+					}
+				});
+
+				/*
+				//一般的なSMTPを使う場合
+
+				//ポートが25の場合は省略可能
+				property.put("mail.smtp.port", 25);
+
+				Session session = 
+						Session.getDefaultInstance(property, null);
+				*/
+
+				MimeMessage mimeMessage = new MimeMessage(session);
+
+				InternetAddress toAddress = 
+						new InternetAddress("bilifans@yahoo.co.jp", "誕生日");
+
+				mimeMessage.setRecipient(Message.RecipientType.TO, toAddress);
+
+				InternetAddress fromAddress = 
+						new InternetAddress("bilifansa@gmail.com","家庭通知");
+
+				mimeMessage.setFrom(fromAddress);
+
+				mimeMessage.setSubject("重要", "ISO-2022-JP");
+
+				mimeMessage.setContent(msg, "text/html;charset=UTF-8");
+
+				Transport.send(mimeMessage);
+
+				//out.println("<htm><body>");
+				//out.println("■お問い合わせ内容を担当者へ送信しました。");
+				//out.println("<body></html>");
+			}
+			catch(Exception e){
+				//out.println("<html><body>");
+				//out.println("■担当者への送信に失敗しました");
+				//out.println("<br>エラーの内容" + e);
+				//out.println("</body></html>");
+				logger.info("["+this.getClass()+"][get_all][error]"+e);
+			}
+		logger.info("["+this.getClass()+"][send_family_mail][end]");
+		
+	}
 	
 }

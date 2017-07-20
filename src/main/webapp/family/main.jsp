@@ -31,13 +31,13 @@
 				</div>
 				<br/>
 							<!--PAGE CONTENT BEGINS-->
-							<!--
+							
 							<div class="row">
 								<div class="col-sm-12 ">
-								  <button type="button" class="btn btn-lg btn-block btn-primary" onclick="location.href = '';">自动更新阴历生日</button>
+								  <button type="button" class="btn btn-lg btn-block btn-primary" onclick="location.href = '${pageContext.request.contextPath}/family/daily_enter_check.do';">Daily_check</button>
 								</div>
 							</div><br/>
-							-->
+							
 							<table id="sample-table-1" class="table table-striped table-bordered table-hover">
 								<thead>
 									<tr>
