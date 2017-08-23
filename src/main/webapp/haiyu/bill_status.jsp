@@ -45,7 +45,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-2 control-label">订单2（接活儿）：</label>
+								<label class="col-sm-2 control-label">订单2（接到活儿）：</label>
 								<div class="col-sm-10">
 									<div class="progress">
 											<div class="progress-bar" role="progressbar" aria-valuenow="60" 
@@ -56,7 +56,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-2 control-label">订单3（已交货）：</label>
+								<label class="col-sm-2 control-label">订单3（已经交货）：</label>
 								<div class="col-sm-10">
 									<div class="progress">
 											<div class="progress-bar" role="progressbar" aria-valuenow="60" 
@@ -80,7 +80,7 @@
 							<div class="form-group">
 								<label class="col-sm-2 control-label">印刷流程：</label>
 								<div class="col-sm-10">
-									接活儿 -- 已交定金 -- 发片 -- 打样 -- 拼版 -- 上机印刷 -- 印后装订 -- 等待交货 -- 已交货 -- 尾款结清								
+									接到活儿 -- 已交定金 -- 已经发片 -- 上机印刷 -- 等待交货 -- 已经交货 -- 尾款结清								
 								</div>
 							</div>
 							

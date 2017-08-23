@@ -18,30 +18,59 @@
 		<%@include file="./logo.jsp" %>
 		
 		<div class="container">
-			<form  id="myform" action="" class="form-horizontal"  role="form">
+			
 			<div class="page-content">
 				
 				<div class="col-sm-12 ">
 					<h1>
 						<small>
 							<i class="icon-list-alt"></i>
-							印刷订单管理 
+							订单一览
+							
 						</small>
 					</h1>
 				</div>
 				<br/>
 							<!--PAGE CONTENT BEGINS-->
-							<div class="row">
-								<div class="col-sm-12 ">
-								  <button type="button" class="btn btn-lg btn-block btn-primary" onclick="location.href = '${pageContext.request.contextPath}/haiyu/bill_status.jsp';">查询订单状态</button>
-								</div>
-							</div><br/>
-							<div class="row">
-								<div class="col-sm-12 ">
-								  <button type="button" class="btn btn-lg btn-block btn-info" onclick="location.href = '${pageContext.request.contextPath}/haiyu/bill_list_update.jsp';">更新订单状态</button>
-								</div>
-							</div><br/>
+								<table id="sample-table-1" class="table table-striped table-bordered table-hover">
+								<thead>
+									<tr>
+										
+										<th width="25%">客户名称</th>
+										<th width="25%">印品名称</th>
+										<th width="25%">订单状态</th>
+										<th width="25%">操作</th>
+									</tr>
+								</thead>
+								<tbody>
+								
+									<tr>
+									<!--
+										<td><a target='_blank' href='${pageContext.request.contextPath}/blog/articles/${blog.id}.html'>${chr.id}</a></td>
+										-->
+										<td>李田田代购公司</td>
+										<td>广告</td>
+										<td>上机印刷</td>
+										<td>
+										<button class="btn btn-info btn-small" onclick="javascript:window.location.href='<%=request.getContextPath() %>/haiyu/bill_update.jsp'">
+											编辑
+										</button>
+
+										</td>
+										
+									</tr>
+								
+								</tbody>
+							</table>
 		
+								
+
+
+		    
+		        <div class="col-sm-12 ">
+		          <button type="button" class="btn btn-lg btn-block btn-primary" onclick="location.href = '<%=request.getContextPath() %>/haiyu/bill_update.jsp';">添加新单据</button>
+		        </div>
+
 							<!--PAGE CONTENT ENDS-->
 
 	</div><!--/.main-container-->
@@ -77,7 +106,7 @@ function get_express_by_number(){
 
 			
 </script>
-</form>
+
 </div>
 </body>
 </html>
