@@ -38,7 +38,7 @@
 							</div><br/>
 							<div class="row">
 								<div class="col-sm-12 ">
-								  <button type="button" class="btn btn-lg btn-block btn-info" onclick="location.href = '${pageContext.request.contextPath}/haiyu/bill_list_update.jsp';">更新订单状态</button>
+								  <button type="button" class="btn btn-lg btn-block btn-info" onclick="location.href = '${pageContext.request.contextPath}/haiyu/to_bill_list_update.do';">更新订单状态</button>
 								</div>
 							</div><br/>
 		

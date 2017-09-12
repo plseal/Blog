@@ -35,22 +35,23 @@
 								<table id="sample-table-1" class="table table-striped table-bordered table-hover">
 								<thead>
 									<tr>
-										
-										<th width="25%">客户名称</th>
-										<th width="25%">印品名称</th>
-										<th width="25%">订单状态</th>
-										<th width="25%">操作</th>
+										<th width="10%">ID</th>
+										<th width="30%">客户名称</th>
+										<th width="20%">印品名称</th>
+										<th width="20%">订单状态</th>
+										<th width="20%">操作</th>
 									</tr>
 								</thead>
 								<tbody>
-								
+								<c:forEach items="${bills}"  var="bill"  >
 									<tr>
 									<!--
 										<td><a target='_blank' href='${pageContext.request.contextPath}/blog/articles/${blog.id}.html'>${chr.id}</a></td>
 										-->
-										<td>李田田代购公司</td>
-										<td>广告</td>
-										<td>上机印刷</td>
+										<td>${bill.id}</td>
+										<td>${bill.customer_name}</td>
+										<td>${bill.bill_name}</td>
+										<td>${bill.bill_status}</td>
 										<td>
 										<button class="btn btn-info btn-small" onclick="javascript:window.location.href='<%=request.getContextPath() %>/haiyu/bill_update.jsp'">
 											编辑
@@ -59,7 +60,7 @@
 										</td>
 										
 									</tr>
-								
+								</c:forEach>
 								</tbody>
 							</table>
 		

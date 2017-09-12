@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssm.blog.dao.BillDao">
+
+
+ 
+    <update id="update" parameterType="Bill">
+        update t_bill set customer_name= #{customer_name}, customer_contact= #{customer_contact}, customer_tel= #{customer_tel}, bill_name= #{bill_name}, bill_num= #{bill_num}, bill_unit_price= #{bill_unit_price}, bill_all_price= #{bill_all_price}, bill_require= #{bill_require}, bill_status= #{bill_status}
+		where id = #{id}
+        
+    </update>
+
+	<insert id="insert" parameterType="Bill" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO t_bill VALUES(null,#{customer_name},#{customer_contact},#{customer_tel},#{bill_name},#{bill_num},#{bill_unit_price},#{bill_all_price},#{bill_require},#{bill_status})
+	</insert>
+
+	<select id="get_all" parameterType="String" resultMap="billMap">
+		SELECT * FROM t_bill WHERE 1=1 order by id desc
+	</select>
+
+	 <resultMap type="Bill" id="billMap">
+	     <id property="id" column="id" />  
+		<result property="customer_name" column="customer_name"/>
+		<result property="customer_contact" column="customer_contact"/>
+		<result property="customer_tel" column="customer_tel"/>
+		<result property="bill_name" column="bill_name"/>
+		<result property="bill_num" column="bill_num"/>
+		<result property="bill_unit_price" column="bill_unit_price"/>
+		<result property="bill_all_price" column="bill_all_price"/>
+		<result property="bill_require" column="bill_require"/>
+		<result property="bill_status" column="bill_status"/>
+		 
+	</resultMap>
+	
+	
+</mapper> 
