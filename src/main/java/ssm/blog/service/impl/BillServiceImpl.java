@@ -19,12 +19,11 @@ public class BillServiceImpl implements BillService {
 	private BillDao billDao;
 	
 	public List<Bill> get_all(){
-
     	return billDao.get_all();
-
-
     }
-
+	public Bill get_one(Integer id){
+    	return billDao.get_one(id);
+    }
 	public Integer update(Bill bill){
 
     	return billDao.update(bill);

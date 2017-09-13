@@ -18,7 +18,7 @@
 		<%@include file="./logo.jsp" %>
 		
 		<div class="container">
-			<form  id="myform" action="${pageContext.request.contextPath}/haiyu/bill_list_update.jsp" class="form-horizontal"  role="form">
+			<form  id="myform"  class="form-horizontal"  role="form">
 			<div class="page-content">
 				
 				<div class="col-sm-12 ">
@@ -32,73 +32,78 @@
 				</div>
 				<br/>
 							<!--PAGE CONTENT BEGINS-->
-							
+							<input type="hidden" class="form-control" id="id" name="id" value="${bill.id}" placeholder=""    >
 							<div class="form-group">
 								<label class="col-sm-2 control-label">客户名称：</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="customer_name" name="customer_name" value="李田田代购公司" placeholder=""    >							
+									<input type="text" class="form-control" id="customer_name" name="customer_name" value="${bill.customer_name}" placeholder=""    >							
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-2 control-label">联系人：</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="customer_contact" name="customer_contact" value="李田田" placeholder=""    >							
+									<input type="text" class="form-control" id="customer_contact" name="customer_contact" value="${bill.customer_contact}" placeholder=""    >							
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-2 control-label">联系电话：</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="customer_tel" name="customer_tel" value="13426494750" placeholder=""    >							
+									<input type="text" class="form-control" id="customer_tel" name="customer_tel" value="${bill.customer_tel}" placeholder=""    >							
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-2 control-label">印品名称：</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="bill_name" name="bill_name" value="广告" placeholder=""    >								
+									<input type="text" class="form-control" id="bill_name" name="bill_name" value="${bill.bill_name}" placeholder=""    >								
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-2 control-label">印刷数量：</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="bill_num" name="bill_num" value="100" placeholder=""    >								
+									<input type="text" class="form-control" id="bill_num" name="bill_num" value="${bill.bill_num}" placeholder=""    >								
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-2 control-label">印品单价：</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="bill_unit_price" name="bill_unit_price" value="10" placeholder=""    >								
+									<input type="text" class="form-control" id="bill_unit_price" name="bill_unit_price" value="${bill.bill_unit_price}" placeholder=""    >								
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-2 control-label">印品总价：</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="bill_all_price" name="bill_all_price" value="1000" placeholder=""    >								
+									<input type="text" class="form-control" id="bill_all_price" name="bill_all_price" value="${bill.bill_all_price}" placeholder=""    >								
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-2 control-label">印刷要求：</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="bill_require" name="bill_require" value="铜版纸" placeholder=""    >								
+									<input type="text" class="form-control" id="bill_require" name="bill_require" value="${bill.bill_require}" placeholder=""    >								
 								</div>
 							</div>
+															
 							<div class="form-group">
 								<label class="col-sm-2 control-label">订单状态：</label>
 								<div class="col-sm-10">
-									<div class="btn-group btn-group-sm">
-									<button type="button" class="btn btn-default">接到活儿</button>
-									<button type="button" class="btn btn-default">已交定金</button>
-									<button type="button" class="btn btn-default">已经发片</button>
-									<button type="button" class="btn btn-default">上机印刷</button>
-									<button type="button" class="btn btn-default">等待交货</button>
-									<button type="button" class="btn btn-default">已经交货</button>
-									<button type="button" class="btn btn-default">尾款结清</button>
-									</div>
+									<select class="form-control" id="bill_status" name="bill_status" >
+									  <option value="接到活儿">接到活儿</option>
+									  <option value="已交定金">已交定金</option>
+									  <option value="已经发片">已经发片</option>
+									  <option value="上机印刷">上机印刷</option>
+									  <option value="等待交货">等待交货</option>
+									  <option value="已经交货">已经交货</option>
+									  <option value="尾款结清">尾款结清</option>
+									</select>
 								</div>
+
+
+								
+								
 							</div>
 
 							 <div class="form-group">
 								<div class="col-sm-12 ">
-								  <button type="submit" class="btn btn-lg btn-block btn-primary">提交暂不可用点击返回</button>
+								  <button type="button" class="btn btn-lg btn-block btn-primary" onclick="do_post()">更新</button>
 								</div>
 							  </div>
 							<!--PAGE CONTENT ENDS-->
@@ -109,7 +114,19 @@
 
 	
 <script type="text/javascript">
-		
+window.onload=function(){
+
+	$("#bill_status").val("${bill.bill_status}");
+
+}
+    function do_post() {  
+        var form = document.forms[0];  
+        form.action = "${pageContext.request.contextPath}/haiyu/to_bill_list_update.do?FLG=UPDATE";  
+        //form.action = "${pageContext.request.contextPath}/user/addUser2";  
+        //form.action = "${pageContext.request.contextPath}/user/addUser3";  
+        form.method = "post";  
+        form.submit();  
+    } 
 function get_express_by_name(){
 	var c_name = document.all.c_name.value;
 	

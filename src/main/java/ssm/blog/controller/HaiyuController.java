@@ -76,11 +76,16 @@ public class HaiyuController {
 	
 	@RequestMapping("/to_bill_list_update")
 	public String to_bill_list_update(
-			String c_name,
+			String FLG,
+			Bill bill,
 			HttpServletRequest request) throws Exception {
 		logger.info("["+this.getClass()+"][to_bill_list_update][start]");
+		logger.info("["+this.getClass()+"][to_bill_list_update][FLG]"+FLG);
 		
-
+		if ("UPDATE".equals(FLG)) {
+			//logger.info("["+this.getClass()+"][to_bill_list_update][bill.id]"+bill.getId());
+			billService.update(bill);
+		}
 		List<Bill> bills = billService.get_all();
 		
 		request.setAttribute("bills", bills);
@@ -88,6 +93,21 @@ public class HaiyuController {
 		//ResponseUtil.write(response, result);
 		logger.info("["+this.getClass()+"][to_bill_list_update][end] to bill_list_update.jsp");
 		return "../../haiyu/bill_list_update";
+	}
+	@RequestMapping("/to_bill_update")
+	public String to_bill_update(
+			Integer id,
+			HttpServletRequest request) throws Exception {
+		logger.info("["+this.getClass()+"][to_bill_update][start]");
+		logger.info("["+this.getClass()+"][to_bill_update][id]"+id);
+
+		Bill bill = billService.get_one(id);
+		
+		request.setAttribute("bill", bill);
+		
+		//ResponseUtil.write(response, result);
+		logger.info("["+this.getClass()+"][to_bill_update][end] to bill_update.jsp");
+		return "../../haiyu/bill_update";
 	}
 	@RequestMapping("/building")
 	public String building(

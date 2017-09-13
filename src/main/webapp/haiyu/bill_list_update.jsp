@@ -53,7 +53,7 @@
 										<td>${bill.bill_name}</td>
 										<td>${bill.bill_status}</td>
 										<td>
-										<button class="btn btn-info btn-small" onclick="javascript:window.location.href='<%=request.getContextPath() %>/haiyu/bill_update.jsp'">
+										<button class="btn btn-info btn-small" onclick="javascript:window.location.href='<%=request.getContextPath() %>/haiyu/to_bill_update.do?id=${bill.id}'">
 											编辑
 										</button>
 

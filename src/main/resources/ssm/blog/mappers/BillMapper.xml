@@ -16,6 +16,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INSERT INTO t_bill VALUES(null,#{customer_name},#{customer_contact},#{customer_tel},#{bill_name},#{bill_num},#{bill_unit_price},#{bill_all_price},#{bill_require},#{bill_status})
 	</insert>
 
+
+	<select id="get_one" parameterType="Integer" resultMap="billMap">
+		SELECT * FROM t_bill WHERE id=#{id}
+	</select>
 	<select id="get_all" parameterType="String" resultMap="billMap">
 		SELECT * FROM t_bill WHERE 1=1 order by id desc
 	</select>
