@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50715
 File Encoding         : 65001
 
-Date: 2017-09-12 18:42:40
+Date: 2017-09-20 15:31:46
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -30,10 +30,13 @@ CREATE TABLE `t_bill` (
   `bill_all_price` varchar(100) DEFAULT NULL,
   `bill_require` varchar(100) DEFAULT NULL,
   `bill_status` varchar(100) DEFAULT NULL,
+  `bill_percent` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_bill
 -- ----------------------------
-INSERT INTO `t_bill` VALUES ('1', '李田田代购公司', null, null, '宣传单', null, null, null, null, '正在印刷');
+INSERT INTO `t_bill` VALUES ('1', '李田田代购公司1', '李田田1', '13588888889', '宣传单11', '2000', '100', '200000', '铜版纸11', '尾款结清', '100%');
+INSERT INTO `t_bill` VALUES ('2', '公司2', '关羽', '1356789234', '圣旨', '10', '1000', '10000', '金色', '已交定金', '20%');
+INSERT INTO `t_bill` VALUES ('3', '公司3', '刘备', '13792214223', '草鞋宣传单', '100', '10', '1000', '尽快印刷好', '接到活儿', '10%');
