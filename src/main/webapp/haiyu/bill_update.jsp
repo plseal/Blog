@@ -122,8 +122,7 @@ window.onload=function(){
     function do_post() {  
         var form = document.forms[0];  
         form.action = "${pageContext.request.contextPath}/haiyu/to_bill_list_update.do?FLG=UPDATE";  
-        //form.action = "${pageContext.request.contextPath}/user/addUser2";  
-        //form.action = "${pageContext.request.contextPath}/user/addUser3";  
+  
         form.method = "post";  
         form.submit();  
     } 

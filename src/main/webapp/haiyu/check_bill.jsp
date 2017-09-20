@@ -33,7 +33,7 @@
 							<!--PAGE CONTENT BEGINS-->
 							<div class="row">
 								<div class="col-sm-12 ">
-								  <button type="button" class="btn btn-lg btn-block btn-primary" onclick="location.href = '${pageContext.request.contextPath}/haiyu/bill_status.jsp';">查询订单状态</button>
+								  <button type="button" class="btn btn-lg btn-block btn-primary" onclick="location.href = '${pageContext.request.contextPath}/haiyu/to_bill_status.do';">查询订单状态</button>
 								</div>
 							</div><br/>
 							<div class="row">

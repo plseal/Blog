@@ -7,13 +7,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
  
     <update id="update" parameterType="Bill">
-        update t_bill set customer_name= #{customer_name}, customer_contact= #{customer_contact}, customer_tel= #{customer_tel}, bill_name= #{bill_name}, bill_num= #{bill_num}, bill_unit_price= #{bill_unit_price}, bill_all_price= #{bill_all_price}, bill_require= #{bill_require}, bill_status= #{bill_status}
+        update t_bill set customer_name= #{customer_name}, customer_contact= #{customer_contact}, customer_tel= #{customer_tel}, bill_name= #{bill_name}, bill_num= #{bill_num}, bill_unit_price= #{bill_unit_price}, bill_all_price= #{bill_all_price}, bill_require= #{bill_require}, bill_status= #{bill_status}, bill_percent= #{bill_percent}
 		where id = #{id}
         
     </update>
 
 	<insert id="insert" parameterType="Bill" keyProperty="id" useGeneratedKeys="true">
-		INSERT INTO t_bill VALUES(null,#{customer_name},#{customer_contact},#{customer_tel},#{bill_name},#{bill_num},#{bill_unit_price},#{bill_all_price},#{bill_require},#{bill_status})
+		INSERT INTO t_bill VALUES(null,#{customer_name},#{customer_contact},#{customer_tel},#{bill_name},#{bill_num},#{bill_unit_price},#{bill_all_price},#{bill_require},#{bill_status},#{bill_percent})
 	</insert>
 
 
@@ -35,7 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="bill_all_price" column="bill_all_price"/>
 		<result property="bill_require" column="bill_require"/>
 		<result property="bill_status" column="bill_status"/>
-		 
+		<result property="bill_percent" column="bill_percent"/>
 	</resultMap>
 	
 	

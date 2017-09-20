@@ -64,6 +64,12 @@ public class Bill {
 	public String getBill_status(){
 		return bill_status;
 	}
+	public void setBill_percent(String bill_percent){
+		this.bill_percent=bill_percent;
+	}
+	public String getBill_percent(){
+		return bill_percent;
+	}
 	private Integer id;//序号
 	private String customer_name;
 	private String customer_contact;
@@ -74,5 +80,6 @@ public class Bill {
 	private String bill_all_price;
 	private String bill_require;
 	private String bill_status;
+	private String bill_percent;
 
 }

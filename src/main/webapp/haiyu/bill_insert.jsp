@@ -84,21 +84,21 @@
 							<div class="form-group">
 								<label class="col-sm-2 control-label">订单状态：</label>
 								<div class="col-sm-10">
-									<div class="btn-group btn-group-sm">
-									<button type="button" class="btn btn-default">接到活儿</button>
-									<button type="button" class="btn btn-default">已交定金</button>
-									<button type="button" class="btn btn-default">已经发片</button>
-									<button type="button" class="btn btn-default">上机印刷</button>
-									<button type="button" class="btn btn-default">等待交货</button>
-									<button type="button" class="btn btn-default">已经交货</button>
-									<button type="button" class="btn btn-default">尾款结清</button>
-									</div>
+									<select class="form-control" id="bill_status" name="bill_status" >
+									  <option value="接到活儿">接到活儿</option>
+									  <option value="已交定金">已交定金</option>
+									  <option value="已经发片">已经发片</option>
+									  <option value="上机印刷">上机印刷</option>
+									  <option value="等待交货">等待交货</option>
+									  <option value="已经交货">已经交货</option>
+									  <option value="尾款结清">尾款结清</option>
+									</select>
 								</div>
 							</div>
 
 							 <div class="form-group">
 								<div class="col-sm-12 ">
-								  <button type="submit" class="btn btn-lg btn-block btn-primary">提交暂不可用点击返回</button>
+								  <button type="button" class="btn btn-lg btn-block btn-primary"onclick="do_post()">提交</button>
 								</div>
 							  </div>
 							<!--PAGE CONTENT ENDS-->
@@ -109,7 +109,13 @@
 
 	
 <script type="text/javascript">
-		
+    function do_post() {  
+        var form = document.forms[0];  
+        form.action = "${pageContext.request.contextPath}/haiyu/to_bill_list_update.do?FLG=INSERT";  
+
+        form.method = "post";  
+        form.submit();  
+    } 
 function get_express_by_name(){
 	var c_name = document.all.c_name.value;
 	

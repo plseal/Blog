@@ -69,7 +69,7 @@
 
 		    
 		        <div class="col-sm-12 ">
-		          <button type="button" class="btn btn-lg btn-block btn-primary" onclick="location.href = '<%=request.getContextPath() %>/haiyu/bill_update.jsp';">添加新单据</button>
+		          <button type="button" class="btn btn-lg btn-block btn-primary" onclick="location.href = '<%=request.getContextPath() %>/haiyu/bill_insert.jsp';">添加新单据</button>
 		        </div>
 
 							<!--PAGE CONTENT ENDS-->

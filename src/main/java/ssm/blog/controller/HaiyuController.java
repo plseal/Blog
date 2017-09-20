@@ -85,6 +85,8 @@ public class HaiyuController {
 		if ("UPDATE".equals(FLG)) {
 			//logger.info("["+this.getClass()+"][to_bill_list_update][bill.id]"+bill.getId());
 			billService.update(bill);
+		} else if ("INSERT".equals(FLG)){
+			billService.insert(bill);
 		}
 		List<Bill> bills = billService.get_all();
 		
@@ -109,6 +111,23 @@ public class HaiyuController {
 		logger.info("["+this.getClass()+"][to_bill_update][end] to bill_update.jsp");
 		return "../../haiyu/bill_update";
 	}
+	@RequestMapping("/to_bill_status")
+	public String to_bill_status(
+			Integer id,
+			HttpServletRequest request) throws Exception {
+		logger.info("["+this.getClass()+"][to_bill_status][start]");
+		
+
+		List<Bill> bills = billService.get_all();
+		
+		request.setAttribute("bills", bills);
+		
+		
+		//ResponseUtil.write(response, result);
+		logger.info("["+this.getClass()+"][to_bill_status][end] to bill_status.jsp");
+		return "../../haiyu/bill_status";
+	}
+	
 	@RequestMapping("/building")
 	public String building(
 			HttpServletRequest request) throws Exception {

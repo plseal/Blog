@@ -32,51 +32,20 @@
 				</div>
 				<br/>
 							<!--PAGE CONTENT BEGINS-->
-							
+							<c:forEach items="${bills}"  var="bill"  >
 							<div class="form-group">
-								<label class="col-sm-2 control-label">订单1（上机印刷）：</label>
+								<label class="col-sm-2 control-label">${bill.bill_name}：</label>
 								<div class="col-sm-10">
 									<div class="progress">
 											<div class="progress-bar" role="progressbar" aria-valuenow="60" 
-												aria-valuemin="0" aria-valuemax="100" style="width: 40%;">
-												<span class="sr-only">40% 完成</span>
+												aria-valuemin="0" aria-valuemax="100" style="width: ${bill.bill_percent};">
+												<span class="sr-only">${bill.bill_percent} 完成</span>
 											</div>
 									</div>								
 								</div>
 							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">订单2（接到活儿）：</label>
-								<div class="col-sm-10">
-									<div class="progress">
-											<div class="progress-bar" role="progressbar" aria-valuenow="60" 
-												aria-valuemin="0" aria-valuemax="100" style="width: 10%;">
-												<span class="sr-only">10% 完成</span>
-											</div>
-									</div>								
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">订单3（已经交货）：</label>
-								<div class="col-sm-10">
-									<div class="progress">
-											<div class="progress-bar" role="progressbar" aria-valuenow="60" 
-												aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
-												<span class="sr-only">80% 完成</span>
-											</div>
-									</div>								
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">订单4（尾款结清）：</label>
-								<div class="col-sm-10">
-									<div class="progress">
-											<div class="progress-bar" role="progressbar" aria-valuenow="60" 
-												aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
-												<span class="sr-only">100% 完成</span>
-											</div>
-									</div>								
-								</div>
-							</div>
+							</c:forEach>
+
 							<div class="form-group">
 								<label class="col-sm-2 control-label">印刷流程：</label>
 								<div class="col-sm-10">
