@@ -217,7 +217,7 @@ public class WeixinUtil {
 			httpUrlConn.setUseCaches(false);
 			// 设置请求方式（GET/POST）
 			httpUrlConn.setRequestMethod(requestMethod);
-
+			httpUrlConn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
 			if ("GET".equalsIgnoreCase(requestMethod))
 				httpUrlConn.connect();
 

@@ -239,16 +239,16 @@ public class HaiyuController {
 		return "../../haoyun/check_express_first_result";
 	}
 	
-	@RequestMapping("/c_express.do")
-	public String c_express(
+	@RequestMapping("/check_bill.do")
+	public String check_bill(
 			String wechat_id,
 			HttpServletRequest request) throws Exception {
-		logger.info("["+this.getClass()+"][c_express][start]");
-		logger.info("["+this.getClass()+"][c_express][wechat_id]"+wechat_id);
+		logger.info("["+this.getClass()+"][check_bill][start]");
+		logger.info("["+this.getClass()+"][check_bill][wechat_id]"+wechat_id);
 		
 		//HttpSession session = request.getSession();
 		//String wechat_id = (String)session.getAttribute("openid_haoyun");
-		//logger.info("["+this.getClass()+"][c_express][wechat_id]"+wechat_id);
+		//logger.info("["+this.getClass()+"][check_bill][wechat_id]"+wechat_id);
 		
 		List<Express> expresses =  expressService.get_by_wechat_id(wechat_id);
 		
@@ -258,12 +258,15 @@ public class HaiyuController {
 		
 		
 		//ResponseUtil.write(response, result);
-		logger.info("["+this.getClass()+"][c_express][end]");
-		if (expresses.size() == 0){
-			return "../../haoyun/check_express_first";
+		
+		if ("XXXX".equals(wechat_id)){
+			logger.info("["+this.getClass()+"][check_bill][to check_bill.jsp]");
+			logger.info("["+this.getClass()+"][check_bill][end]");
+			return "../../haiyu/check_bill";
 		} else {
-			request.setAttribute("expresses", expresses);
-			return "../../haoyun/check_express_get";
+			logger.info("["+this.getClass()+"][check_bill][to check_bill_forbidden.jsp]");
+			logger.info("["+this.getClass()+"][check_bill][end]");
+			return "../../haiyu/check_bill_forbidden";
 		}
 		
 	}

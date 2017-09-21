@@ -22,6 +22,8 @@ import ssm.blog.service.AccessTokenService;
 import ssm.blog.service.ExchangeService;
 import ssm.blog.util.WeixinUtil;
 
+import net.sf.json.JSONException;
+import net.sf.json.JSONObject;
 /**
  * @Description 
  * @author songml
@@ -61,35 +63,42 @@ public class ExchangeServiceImpl implements ExchangeService {
 
 		//int _in = Integer.parseInt(accessToken.getExpires_in());
 		long create_time = ex.getCreate_time();
-		//7200刷新一次
-		if ((System.currentTimeMillis()-create_time)/1000 < 7200) {// 有效
+		//72刷新一次
+		if ((System.currentTimeMillis()-create_time)/1000 < 72) {// 有效
 			logger.info("["+this.getClass().getName()+"][getExchange][Get From URL is not necessary]");
 			
 		//过期的话，需要去服务器再取一次
 		} else {
 			//System.out.println("无效重新创建");
 			
-			String str_url = "http://api.k780.com:88/?app=finance.rate_cnyquot&curno=JPY&&appkey=NOWAPI_APPKEY&sign=NOWAPI_SIGN&format=json";
-
-	        String requestUrl = str_url.replace("NOWAPI_APPKEY", str_nowapi_appkey);
-	               requestUrl = requestUrl.replace("NOWAPI_SIGN", str_nowapi_sign);
-	        logger.info("["+this.getClass().getName()+"][getExchange][requestUrl]"+requestUrl); 
-	        URL u=new URL(requestUrl);
-	        InputStream in=u.openStream();
-	        ByteArrayOutputStream out=new ByteArrayOutputStream();
-	        try {
-	            byte buf[]=new byte[1024];
-	            int read = 0;
-	            while ((read = in.read(buf)) > 0) {
-	                out.write(buf, 0, read);
-	            }
-	        }  finally {
-	            if (in != null) {
-	                in.close();
-	            }
-	        }
-	        byte b[]=out.toByteArray( );
-	        String strResult = new String(b,"utf-8");
+			//String str_url = "http://api.k780.com:88/?app=finance.rate_cnyquot&curno=JPY&&appkey=NOWAPI_APPKEY&sign=NOWAPI_SIGN&format=json";
+			String str_url = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22JPYCNY%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
+	        //String requestUrl = str_url.replace("NOWAPI_APPKEY", str_nowapi_appkey);
+	        //       requestUrl = requestUrl.replace("NOWAPI_SIGN", str_nowapi_sign);
+	        logger.info("["+this.getClass().getName()+"][getExchange][str_url]"+str_url); 
+	        
+			
+			
+			
+			JSONObject jsonObject = WeixinUtil.httpRequest(str_url, "GET", null);
+			String strResult = "";
+			// 如果请求成功
+			if (null != jsonObject) {
+				try {
+					
+					strResult =jsonObject.getString("query");
+					
+				} catch (JSONException e) {
+					
+					// 获取失败
+					logger.info("GET INFO ERROR !!!");
+				}
+			}
+			
+			
+			
+			
+	        
 	        //logger.info("["+this.getClass().getName()+"][getExchange][strResult]"+strResult);
 			
 			ex.setExchange(strResult);
@@ -107,5 +116,7 @@ public class ExchangeServiceImpl implements ExchangeService {
 	public Integer update(Exchange ex){
 		return exchangeDao.update(ex);//更新数据库
 	}
+	
+
 
 }

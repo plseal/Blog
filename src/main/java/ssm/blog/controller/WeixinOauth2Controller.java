@@ -134,6 +134,39 @@ public class WeixinOauth2Controller {
 
 	}
 	
+	/**
+	 * @Description 
+	 * @return
+	 */
+	@RequestMapping("/get_code_haiyu")
+	public ModelAndView get_code_haiyu(
+			@RequestParam(value = "page", required = false) String page,
+			@RequestParam(value = "typeId", required = false) String typeId,
+			@RequestParam(value = "releaseDateStr", required = false) String releaseDateStr,
+			HttpServletRequest request) throws Exception {
+		
+		logger.info("["+this.getClass()+"][get_code_haiyu][start]");
+		
+		
+		String str_code = request.getParameter("code");//我们要的code
+		logger.info("["+this.getClass()+"][get_code_haiyu][CODE]"+str_code);
+		
+		AccessToken accessToken = get_oauth2_access_token_from_url(str_code,"LINGZHU");
+		logger.info("["+this.getClass()+"][get_code_haiyu][openId]"+accessToken.getOpenid());
+		ModelAndView mv = new ModelAndView();
+
+		HttpSession session = request.getSession();
+		session.setAttribute("openid_haiyu",accessToken.getOpenid());
+
+		//初期画面
+		mv.addObject("hid_flg", "init");
+		mv.setViewName("forward:../haiyu/check_bill.do?wechat_id="+accessToken.getOpenid());
+		
+		logger.info("["+this.getClass()+"][get_code_haiyu][end]");
+		return mv;
+
+	}
+	
 /**
 	 * 获取oauth2_access_token
 	 * 
