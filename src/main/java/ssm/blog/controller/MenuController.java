@@ -247,8 +247,8 @@ public class MenuController {
         btn35.setName(btn35Name);
         btn35.setType("view");
         btn35.setKey("35");
-        //btn35.setUrl("http://www.plseal.com/Blog/index.html?typeId=15");
-		btn35.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+strAPPID+"&redirect_uri=http://www.lingzhu-med.com/Blog/weixin_oauth2/get_code_haiyu.do&response_type=code&scope=snsapi_base&state=1#wechat_redirect");
+        btn35.setUrl("http://www.plseal.com/Blog/index.html?typeId=15");
+		//btn35.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+strAPPID+"&redirect_uri=http://www.lingzhu-med.com/Blog/weixin_oauth2/get_code_haiyu.do&response_type=code&scope=snsapi_base&state=1#wechat_redirect");
         /**
          * 微信：  mainBtn1,mainBtn2,mainBtn3底部的三个一级菜单。
          */
