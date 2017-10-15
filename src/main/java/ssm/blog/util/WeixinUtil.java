@@ -264,20 +264,20 @@ public class WeixinUtil {
 	 * @param appsecret 密钥
 	 * @return
 	 */
-	public AccessToken getAccessTokenFromURL(String appid, String appsecret) {
+	public AccessToken getAccessTokenFromURL(String appid, String appsecret,AccessToken accessToken ) {
 		logger.info("[WeixinUtil][getAccessTokenFromURL][start]");
-		AccessToken accessToken = null;
+		
 
 		String requestUrl = access_token_url.replace("APPID", appid).replace("APPSECRET", appsecret);
 		JSONObject jsonObject = httpRequest(requestUrl, "GET", null);
 		// 如果请求成功
 		if (null != jsonObject) {
 			try {
-				accessToken = new AccessToken();
+				
 				accessToken.setAccess_token(jsonObject.getString("access_token"));
 				accessToken.setExpires_in(jsonObject.getInt("expires_in"));
 			} catch (JSONException e) {
-				accessToken = null;
+				
 				// 获取token失败
 				logger.info("获取token失败 errcode:{} errmsg:{}"+jsonObject.getInt("errcode")+ jsonObject.getString("errmsg"));
 			}

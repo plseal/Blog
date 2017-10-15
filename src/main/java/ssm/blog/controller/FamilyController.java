@@ -171,6 +171,51 @@ public class FamilyController {
 		fa.setM_date(today);
 		
 		fa.setAge(age);
+		
+		
+		
+		//remind_date modify
+		//old remind_date update
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-M-d");
+		
+		String remind_date = fa.getRemind_date();
+		Date today_date = new Date();
+		String sys_date = sdf.format(new Date());
+		if (remind_date == null){
+			logger.info("["+this.getClass()+"][update][remind_date is null]");
+			int my_year2,my_month2,my_day2;
+			my_year2 = Integer.parseInt(fa.getLunar_birth2().split("-")[0]);
+			my_month2 = Integer.parseInt(fa.getLunar_birth2().split("-")[1]);
+			my_day2 = Integer.parseInt(fa.getLunar_birth2().split("-")[2]);
+			
+			int[] out2 = LunarCalendar.lunarToSolar(Integer.parseInt(sys_date.split("-")[0]), my_month2, my_day2,1==2);
+			remind_date = String.valueOf(out2[0] + "-" + out2[1] + "-" + out2[2]);
+			logger.info("["+this.getClass()+"][update][remind_date after]"+remind_date);
+			fa.setRemind_date(remind_date);
+		} else {
+			logger.info("["+this.getClass()+"][update][remind_date]"+remind_date);
+			Date remind_date_from_db = sdf.parse(remind_date); 
+			int my_year3,my_month3,my_day3;
+			my_year3 = Integer.parseInt(fa.getLunar_birth2().split("-")[0]);
+			my_month3 = Integer.parseInt(fa.getLunar_birth2().split("-")[1]);
+			my_day3 = Integer.parseInt(fa.getLunar_birth2().split("-")[2]);
+			//sys_date = "2017-10-1";
+			if (remind_date_from_db.getTime() < today_date.getTime()){
+				logger.info("["+this.getClass()+"][update][remind_date update is needed]");
+				int[] out3 = LunarCalendar.lunarToSolar(Integer.parseInt(sys_date.split("-")[0])+1, my_month3, my_day3,1==2);
+				remind_date = String.valueOf(out3[0] + "-" + out3[1] + "-" + out3[2]);
+				logger.info("["+this.getClass()+"][update][remind_date after]"+remind_date);
+				fa.setRemind_date(remind_date);
+			}
+		}
+		
+		
+		
+		
+		
+		
+
+		
 		familyService.update(fa);
 		
 		List<Family> families = familyService.get_all();

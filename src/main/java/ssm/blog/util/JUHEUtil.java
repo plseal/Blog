@@ -40,6 +40,7 @@ public class JUHEUtil {
 	        String result =null;
 	        String out =null;
 	        String url ="http://v.juhe.cn/calendar/day";//请求接口地址
+			logger.info("[JUHEUtil][getRequest1][url]"+url);
 	        Map params = new HashMap();//请求参数
 	            params.put("key",APPKEY);//您申请的appKey
 	            params.put("date",my_date);//指定日期,格式为YYYY-MM-DD,如月份和日期小于10,则取个位,如:2012-1-1

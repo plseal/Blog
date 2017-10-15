@@ -11,7 +11,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         ,lunar_birth2 = #{lunar_birth2} 
         ,age = #{age}
         ,animals_year = #{animals_year}
-        ,m_date = #{m_date}  
+        ,m_date = #{m_date} 
+        ,remind_date = #{remind_date} 		
         where id = #{id}
     </update>
 
@@ -30,6 +31,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	     <result property="lunar_birth" column="lunar_birth"/>
 	     <result property="lunar_birth2" column="lunar_birth2"/>
 	     <result property="age" column="age"/>
+		 <result property="remind_date" column="remind_date"/>
 	     <result property="animals_year" column="animals_year"/>
 	     
 	</resultMap>

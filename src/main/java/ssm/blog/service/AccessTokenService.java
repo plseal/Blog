@@ -10,6 +10,6 @@ import ssm.blog.entity.AccessToken;
 public interface AccessTokenService {
 
 	public AccessToken getAccessToken(String flg);
-	public Integer update(AccessToken at);
+	
 
 }

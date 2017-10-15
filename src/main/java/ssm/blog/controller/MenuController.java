@@ -93,6 +93,12 @@ public class MenuController {
 	@Value("#{setting[haoyun_main_button3_name]}")
 	private String haoyun_main_button3_name; 
 	
+	@Value("#{setting[haiyu_main_button1_name]}")
+	private String haiyu_main_button1_name; 
+	
+	@Value("#{setting[haiyu_main_button2_name]}")
+	private String haiyu_main_button2_name;
+	
 	@Value("#{setting[APPID]}")
 	private String strAPPID; 
 	
@@ -104,6 +110,13 @@ public class MenuController {
 	
 	@Value("#{setting[APPSECRET_HAOYUN]}")
 	private String strAPPSECRET_HAOYUN; 
+	
+	
+	@Value("#{setting[APPID_HAIYU]}")
+	private String strAPPID_HAIYU; 
+	
+	@Value("#{setting[APPSECRET_HAIYU]}")
+	private String strAPPSECRET_HAIYU; 
 	
 	@RequestMapping(value="/manager/create-menu",method=RequestMethod.GET)
 	@ResponseBody
@@ -145,6 +158,25 @@ public class MenuController {
 		return mv;
 	}
 	
+	@RequestMapping(value="/manager/create_menu_haiyu",method=RequestMethod.GET)
+	@ResponseBody
+	public ModelAndView create_menu_haiyu(){
+		
+		logger.info("["+this.getClass()+"][create_menu_haiyu][start]");
+		
+		
+		Menu menu = getMenu_haiyu();
+		
+		ModelAndView mv=new ModelAndView();
+		menuService.createMenu(menu,"HAIYU");
+		mv.addObject("sidebar","create_menu_haiyu");
+        mv.setViewName("result");
+        
+        mv.addObject("strResult", menuService.getMenu("HAIYU"));
+		
+		logger.info("["+this.getClass().getName()+"][create_menu_haiyu][end]"); 
+		return mv;
+	}
     /**
      * 组装菜单数据
      * 
@@ -324,7 +356,50 @@ public class MenuController {
         logger.info("["+this.getClass().getName()+"][getMenu_haoyun][end]");
         return menu;
     }
-	
+    /**
+     * 组装菜单数据
+     * 
+     * @return
+     */
+    private Menu getMenu_haiyu() {
+
+    	
+    	logger.info("["+this.getClass().getName()+"][getMenu_haiyu][start]");
+        
+        /**
+         * 微信：  mainBtn1,mainBtn2底部的2个一级菜单。
+         */
+        
+        CommonButton mainBtn1 = new CommonButton();
+        //快递查询
+        mainBtn1.setName(haiyu_main_button1_name);
+        mainBtn1.setType("view");
+        mainBtn1.setKey("01");
+        //snsapi_base不弹出授权页面，直接跳转，只能获取用户openid
+        String strURL ="https://open.weixin.qq.com/connect/oauth2/authorize?appid="+strAPPID_HAIYU+"&redirect_uri=http://www.lingzhu-med.com/Blog/weixin_oauth2/get_code_haiyu.do&response_type=code&scope=snsapi_base&state=1#wechat_redirect";
+        mainBtn1.setUrl(strURL);
+
+
+        CommonButton mainBtn2 = new CommonButton();
+        mainBtn2.setName(haiyu_main_button2_name);
+        mainBtn2.setType("view");
+        mainBtn2.setKey("02");
+        String strURL2 ="https://open.weixin.qq.com/connect/oauth2/authorize?appid="+strAPPID_HAIYU+"&redirect_uri=http://www.lingzhu-med.com/Blog/weixin_oauth2/get_code_haiyu2.do&response_type=code&scope=snsapi_base&state=1#wechat_redirect";
+		
+		mainBtn2.setUrl(strURL2);
+        
+
+
+        
+        /**
+         * 封装整个菜单
+         */
+        Menu menu = new Menu();
+        menu.setButton(new CommonButton[] { mainBtn1, mainBtn2 });
+        logger.info("["+this.getClass().getName()+"][getMenu_haiyu][end]");
+        return menu;
+    }
+
 
 	
 }

@@ -68,6 +68,13 @@ public class WeixinOauth2Controller {
 	
 	@Value("#{setting[APPSECRET_HAOYUN]}")
 	private String strAPPSECRET_HAOYUN; 
+	
+	
+	@Value("#{setting[APPID_HAIYU]}")
+	private String strAPPID_HAIYU; 
+	
+	@Value("#{setting[APPSECRET_HAIYU]}")
+	private String strAPPSECRET_HAIYU; 
 	/**
 	 * @Description 
 	 * @return
@@ -151,7 +158,7 @@ public class WeixinOauth2Controller {
 		String str_code = request.getParameter("code");//我们要的code
 		logger.info("["+this.getClass()+"][get_code_haiyu][CODE]"+str_code);
 		
-		AccessToken accessToken = get_oauth2_access_token_from_url(str_code,"LINGZHU");
+		AccessToken accessToken = get_oauth2_access_token_from_url(str_code,"HAIYU");
 		logger.info("["+this.getClass()+"][get_code_haiyu][openId]"+accessToken.getOpenid());
 		ModelAndView mv = new ModelAndView();
 
@@ -188,8 +195,10 @@ public class WeixinOauth2Controller {
 		String requestUrl = "";
 		if ("LINGZHU".equals(flg)){
 			requestUrl = oauth2_access_token_url.replace("APPID", strAPPID).replace("SECRET", strAPPSECRET).replace("CODE", code);
-		} else {
+		} else if ("HAOYUN".equals(flg)) {
 			requestUrl = oauth2_access_token_url.replace("APPID", strAPPID_HAOYUN).replace("SECRET", strAPPSECRET_HAOYUN).replace("CODE", code);
+		} else if ("HAIYU".equals(flg)) {
+			requestUrl = oauth2_access_token_url.replace("APPID", strAPPID_HAIYU).replace("SECRET", strAPPSECRET_HAIYU).replace("CODE", code);
 		}
 		
 		logger.info("["+this.getClass()+"][get_oauth2_access_token_from_url][requestUrl]"+requestUrl);

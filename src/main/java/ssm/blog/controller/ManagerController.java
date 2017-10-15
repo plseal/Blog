@@ -95,6 +95,26 @@ public class ManagerController {
 		logger.info("["+this.getClass().getName()+"][get_access_token_haoyun][end]"); 
 		return mv;
 	}
+	
+	@RequestMapping(value="/manager/get_access_token_haiyu",method=RequestMethod.GET)
+	@ResponseBody
+	public ModelAndView get_access_token_haiyu() throws FileNotFoundException, IOException{
+		
+		logger.info("["+this.getClass().getName()+"][get_access_token_haiyu][start]"); 
+		ModelAndView mv=new ModelAndView();
+        // 调用接口获取access_token
+		//logger.info("["+this.getClass().getName()+"][get_access_token][strAPPID]"+strAPPID);
+		//logger.info("["+this.getClass().getName()+"][get_access_token][strAPPSECRET]"+strAPPSECRET);
+		//String tmp = PropertiesUtil.getProperties();
+        AccessToken at = accessTokenService.getAccessToken("HAIYU");
+        logger.info("["+this.getClass().getName()+"][get_access_token_haiyu][accessToken]"+at.getAccess_token());
+        mv.addObject("sidebar","get_access_token_haiyu");
+        mv.setViewName("result");
+        mv.addObject("strResult", at.getAccess_token());
+		//mv.addObject("sidebar","classes");
+		logger.info("["+this.getClass().getName()+"][get_access_token_haiyu][end]"); 
+		return mv;
+	}
 
 	@RequestMapping(value="/manager/get_union_id",method=RequestMethod.GET)
 	@ResponseBody
