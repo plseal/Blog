@@ -150,6 +150,7 @@ public class WeixinOauth2Controller {
 			@RequestParam(value = "page", required = false) String page,
 			@RequestParam(value = "typeId", required = false) String typeId,
 			@RequestParam(value = "releaseDateStr", required = false) String releaseDateStr,
+			@RequestParam(value = "flg", required = false) String flg,
 			HttpServletRequest request) throws Exception {
 		
 		logger.info("["+this.getClass()+"][get_code_haiyu][start]");
@@ -167,12 +168,13 @@ public class WeixinOauth2Controller {
 
 		//初期画面
 		mv.addObject("hid_flg", "init");
-		mv.setViewName("forward:../haiyu/check_bill.do?wechat_id="+accessToken.getOpenid());
+		mv.setViewName("forward:../haiyu/check_bill.do?wechat_id="+accessToken.getOpenid()+"&flg"+flg);
 		
 		logger.info("["+this.getClass()+"][get_code_haiyu][end]");
 		return mv;
 
 	}
+	
 	
 /**
 	 * 获取oauth2_access_token

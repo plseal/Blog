@@ -241,11 +241,11 @@ public class HaiyuController {
 	
 	@RequestMapping("/check_bill.do")
 	public ModelAndView check_bill(
-			String wechat_id,
+			String wechat_id,String flg,
 			HttpServletRequest request) throws Exception {
 		logger.info("["+this.getClass()+"][check_bill][start]");
 		logger.info("["+this.getClass()+"][check_bill][wechat_id]"+wechat_id);
-		
+		logger.info("["+this.getClass()+"][check_bill][flg]"+flg);
 		//HttpSession session = request.getSession();
 		//String wechat_id = (String)session.getAttribute("openid_haoyun");
 		//logger.info("["+this.getClass()+"][check_bill][wechat_id]"+wechat_id);
@@ -264,7 +264,12 @@ public class HaiyuController {
 		){
 			logger.info("["+this.getClass()+"][check_bill][to to_bill_status.do]");
 			logger.info("["+this.getClass()+"][check_bill][end]");
-			mv.setViewName("forward:./to_bill_status.do?wechat_id="+wechat_id);
+			if ("1".equals(flg)){
+				mv.setViewName("forward:./to_bill_status.do?wechat_id="+wechat_id);
+			} else {
+				mv.setViewName("forward:./to_bill_list_update.do?wechat_id="+wechat_id+"&FLG=SELECT");
+			}
+			
 			return mv; 
 		} else {
 			logger.info("["+this.getClass()+"][check_bill][to check_bill_forbidden.jsp]");
@@ -275,6 +280,7 @@ public class HaiyuController {
 		
 	}
 	
+
 	@RequestMapping("/to_modifyBlog")
 	public ModelAndView to_modifyBlog(
 			String pagenum,
