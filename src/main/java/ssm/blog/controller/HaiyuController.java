@@ -259,10 +259,12 @@ public class HaiyuController {
 		
 		//ResponseUtil.write(response, result);
 		
-		if ("XXXX".equals(wechat_id)){
+		if ("ondWd04uLJo-_ZnAT0_ZtAond-iQ".equals(wechat_id)||
+		"ondWd04uLJo-_ZnAT0_ZtAond-iQ".equals(wechat_id)
+		){
 			logger.info("["+this.getClass()+"][check_bill][to check_bill.jsp]");
 			logger.info("["+this.getClass()+"][check_bill][end]");
-			return "../../haiyu/check_bill";
+			return "../../haiyu/to_bill_status.do";
 		} else {
 			logger.info("["+this.getClass()+"][check_bill][to check_bill_forbidden.jsp]");
 			logger.info("["+this.getClass()+"][check_bill][end]");
