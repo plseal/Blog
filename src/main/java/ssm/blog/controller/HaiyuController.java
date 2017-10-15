@@ -260,7 +260,7 @@ public class HaiyuController {
 		//ResponseUtil.write(response, result);
 		ModelAndView mv = new ModelAndView();
 		if ("ondWd04uLJo-_ZnAT0_ZtAond-iQ".equals(wechat_id)||
-		"ondWd04uLJo-_ZnAT0_ZtAond-iQ".equals(wechat_id)
+		"ondWd05qfJUco4Nqh63vw5_0KUw8".equals(wechat_id)
 		){
 			logger.info("["+this.getClass()+"][check_bill][to to_bill_status.do]");
 			logger.info("["+this.getClass()+"][check_bill][end]");
