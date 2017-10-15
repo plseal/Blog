@@ -265,7 +265,7 @@ public class HaiyuController {
 			logger.info("["+this.getClass()+"][check_bill][to to_bill_status.do]");
 			logger.info("["+this.getClass()+"][check_bill][end]");
 			mv.setViewName("forward:./to_bill_status.do?wechat_id="+wechat_id);
-			return mv;
+			return mv; 
 		} else {
 			logger.info("["+this.getClass()+"][check_bill][to check_bill_forbidden.jsp]");
 			logger.info("["+this.getClass()+"][check_bill][end]");
