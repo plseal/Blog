@@ -250,7 +250,7 @@ public class HaiyuController {
 		//String wechat_id = (String)session.getAttribute("openid_haoyun");
 		//logger.info("["+this.getClass()+"][check_bill][wechat_id]"+wechat_id);
 		
-		List<Express> expresses =  expressService.get_by_wechat_id(wechat_id);
+		//List<Express> expresses =  expressService.get_by_wechat_id(wechat_id);
 		
 
 		request.setAttribute("wechat_id", wechat_id);
@@ -264,12 +264,12 @@ public class HaiyuController {
 		){
 			logger.info("["+this.getClass()+"][check_bill][to to_bill_status.do]");
 			logger.info("["+this.getClass()+"][check_bill][end]");
-			mv.setViewName("forward:../../haiyu/to_bill_status.do?wechat_id="+wechat_id);
+			mv.setViewName("forward:./to_bill_status.do?wechat_id="+wechat_id);
 			return mv;
 		} else {
 			logger.info("["+this.getClass()+"][check_bill][to check_bill_forbidden.jsp]");
 			logger.info("["+this.getClass()+"][check_bill][end]");
-			mv.setViewName("forward:../../haiyu/check_bill_forbidden.jsp?wechat_id="+wechat_id);
+			mv.setViewName("forward:./check_bill_forbidden.jsp?wechat_id="+wechat_id);
 			return mv; 
 		}
 		
