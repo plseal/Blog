@@ -270,7 +270,7 @@ public class HaiyuController {
 			logger.info("["+this.getClass()+"][check_bill][to check_bill_forbidden.jsp]");
 			logger.info("["+this.getClass()+"][check_bill][end]");
 			mv.setViewName("forward:../../haiyu/check_bill_forbidden.jsp?wechat_id="+wechat_id);
-			return mv;
+			return mv; 
 		}
 		
 	}
