@@ -240,7 +240,7 @@ public class HaiyuController {
 	}
 	
 	@RequestMapping("/check_bill.do")
-	public String check_bill(
+	public ModelAndView check_bill(
 			String wechat_id,
 			HttpServletRequest request) throws Exception {
 		logger.info("["+this.getClass()+"][check_bill][start]");
@@ -258,17 +258,19 @@ public class HaiyuController {
 		
 		
 		//ResponseUtil.write(response, result);
-		
+		ModelAndView mv = new ModelAndView();
 		if ("ondWd04uLJo-_ZnAT0_ZtAond-iQ".equals(wechat_id)||
 		"ondWd04uLJo-_ZnAT0_ZtAond-iQ".equals(wechat_id)
 		){
-			logger.info("["+this.getClass()+"][check_bill][to check_bill.jsp]");
+			logger.info("["+this.getClass()+"][check_bill][to to_bill_status.do]");
 			logger.info("["+this.getClass()+"][check_bill][end]");
-			return "../../haiyu/to_bill_status.do";
+			mv.setViewName("forward:../../haiyu/to_bill_status.do?wechat_id="+wechat_id);
+			return mv;
 		} else {
 			logger.info("["+this.getClass()+"][check_bill][to check_bill_forbidden.jsp]");
 			logger.info("["+this.getClass()+"][check_bill][end]");
-			return "../../haiyu/check_bill_forbidden";
+			mv.setViewName("forward:../../haiyu/check_bill_forbidden.jsp?wechat_id="+wechat_id);
+			return mv;
 		}
 		
 	}
