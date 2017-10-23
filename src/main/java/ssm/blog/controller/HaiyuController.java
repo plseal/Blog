@@ -259,7 +259,19 @@ public class HaiyuController {
 		
 		//ResponseUtil.write(response, result);
 		ModelAndView mv = new ModelAndView();
+		//宋明磊
 		if ("ondWd04uLJo-_ZnAT0_ZtAond-iQ".equals(wechat_id)||
+		//李田田 丫丫
+		"ondWd06awisNIcMvEZ3_LLZPjwaA".equals(wechat_id)||
+		//李柱风 海宇天地
+		"ondWd0wzqDPWDJ2Y_RbFm0FYxS-c".equals(wechat_id)||
+		//张军
+		"ondWd061f-o-uRLhTY43-JMuui3Q".equals(wechat_id)||
+		//李翠 靖越 
+		"ondWd0876ybHW19Vcd8xDgBUIxQg".equals(wechat_id)||
+		//淮凤英 二姐
+		"ondWd0x192Qnc_DWX5qeNy3FQ9BM".equals(wechat_id)||
+		//李浩轩
 		"ondWd05qfJUco4Nqh63vw5_0KUw8".equals(wechat_id)
 		){
 			logger.info("["+this.getClass()+"][check_bill][to to_bill_status.do]");
