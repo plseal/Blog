@@ -55,28 +55,28 @@ public class FreightController {
 		Double double_se_sell ;
         
         JSONObject jsonObj;
-		logger.info("["+this.getClass()+"][calculate][strResult]"+strResult);
+		//logger.info("["+this.getClass()+"][calculate][strResult]"+strResult);
         jsonObj  = JSONObject.fromObject(strResult);
-        if ("1".equals(jsonObj.getString("count"))) {
+        //if ("1".equals(jsonObj.getString("count"))) {
         	
         	
         	//System.out.println(jsonObj.getString("results"));
-        	JSONObject jsonObj2;
-        	jsonObj2 = JSONObject.fromObject(jsonObj.getString("results"));
+        	//JSONObject jsonObj2;
+        	//jsonObj2 = JSONObject.fromObject(jsonObj.getString("results"));
         	//System.out.println(jsonObj2.getString("results"));
-        	JSONObject jsonObj3;
-        	jsonObj3 = JSONObject.fromObject(jsonObj2.getString("rate"));
+        	//JSONObject jsonObj3;
+        	//jsonObj3 = JSONObject.fromObject(jsonObj2.getString("rate"));
         	//System.out.println(jsonObj3.getString("rate"));
         	//JSONObject jsonObj4;
         	//jsonObj4 = JSONObject.fromObject(jsonObj3.getString("rate"));
         	//System.out.println(jsonObj4.getString("banknm"));
         	
         	//banknm = jsonObj4.getString("Ask");
-        	se_sell = jsonObj3.getString("Ask");
+        	se_sell = jsonObj.getString("CNY");
 			double_se_sell = Double.valueOf(se_sell) * 100;
 			se_sell = Double.toString(double_se_sell);
         	System.out.println( se_sell);
-        }
+        //}
 		
 		
 		

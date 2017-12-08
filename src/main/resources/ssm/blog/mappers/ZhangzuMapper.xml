@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ssm.blog.dao.ZhangzuDao">
+
+
+ 
+    <update id="update" parameterType="Zhangzu">
+        update t_zhangzu set z_date= #{z_date}, z_name= #{z_name}, z_amount= #{z_amount}, z_type= #{z_type}, z_io_div= #{z_io_div}, z_remark= #{z_remark}
+		where id = #{id}
+        
+    </update>
+
+	<insert id="insert" parameterType="Zhangzu" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO t_zhangzu VALUES(null,#{z_date},#{z_name},#{z_amount},#{z_type},#{z_io_div},#{z_remark})
+	</insert>
+
+	<delete id="delete" parameterType="Integer">
+		delete from t_zhangzu where id=#{id}
+	</delete>
+	
+	<select id="get_one" parameterType="Integer" resultMap="zhangzuMap">
+		SELECT * FROM t_zhangzu WHERE id=#{id}
+	</select>
+	<select id="get_all" parameterType="String" resultMap="zhangzuMap">
+		SELECT * FROM t_zhangzu WHERE z_date like '2017%' order by z_date desc 
+	</select>
+	<select id="get_one_month_min" parameterType="String" resultMap="zhangzuMap">
+		SELECT * FROM t_zhangzu WHERE z_date like CONCAT('%',#{ac},'%') and z_io_div = '支出' order by z_date desc 
+	</select>
+	<select id="get_one_month_plus" parameterType="String" resultMap="zhangzuMap">
+		SELECT * FROM t_zhangzu WHERE z_date like CONCAT('%',#{ac},'%') and z_io_div = '收入' order by z_date desc 
+	</select>
+	<select id="get_analysis_all" parameterType="String" resultMap="zhangzu_analysis_map">
+		SELECT id,left(z_date,7) ac,'XXXX' ac_type,0 ac_plus,sum(z_amount)*-1 ac_min, 0 ac_result FROM t_zhangzu where z_date like CONCAT('%',#{ac},'%')  and z_io_div = '支出'  GROUP BY  left(z_date,7)
+		union
+		SELECT id,left(z_date,7) ac,'XXXX' ac_type, sum(z_amount) ac_plus, 0 ac_min,0 ac_result  FROM t_zhangzu where z_date like CONCAT('%',#{ac},'%')  and z_io_div = '收入'  GROUP BY  left(z_date,7)
+
+	</select>
+
+	 <resultMap type="Zhangzu" id="zhangzuMap">
+	     <id property="id" column="id" />  
+		<result property="z_date" column="z_date"/>
+		<result property="z_name" column="z_name"/>
+		<result property="z_amount" column="z_amount"/>
+		<result property="z_type" column="z_type"/>
+		<result property="z_io_div" column="z_io_div"/>
+		<result property="z_remark" column="z_remark"/>
+	</resultMap>
+	 <resultMap type="ZhangzuAnalysis" id="zhangzu_analysis_map">
+	     <id property="id" column="id" />  
+		<result property="ac" column="ac"/>
+		<result property="ac_type" column="ac_type"/>
+		<result property="ac_plus" column="ac_plus"/>
+		<result property="ac_min" column="ac_min"/>
+		<result property="ac_result" column="ac_result"/>
+	</resultMap>
+	
+</mapper> 

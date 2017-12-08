@@ -64,15 +64,16 @@ public class ExchangeServiceImpl implements ExchangeService {
 		//int _in = Integer.parseInt(accessToken.getExpires_in());
 		long create_time = ex.getCreate_time();
 		//72刷新一次
-		if ((System.currentTimeMillis()-create_time)/1000 < 72) {// 有效
-			logger.info("["+this.getClass().getName()+"][getExchange][Get From URL is not necessary]");
+		//if ((System.currentTimeMillis()-create_time)/1000 < 72) {// 有效
+		//	logger.info("["+this.getClass().getName()+"][getExchange][Get From URL is not necessary]");
 			
 		//过期的话，需要去服务器再取一次
-		} else {
+		//} else {
 			//System.out.println("无效重新创建");
 			
 			//String str_url = "http://api.k780.com:88/?app=finance.rate_cnyquot&curno=JPY&&appkey=NOWAPI_APPKEY&sign=NOWAPI_SIGN&format=json";
-			String str_url = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22JPYCNY%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
+			//String str_url = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22JPYCNY%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
+			String str_url = "https://api.fixer.io/latest?base=JPY";
 	        //String requestUrl = str_url.replace("NOWAPI_APPKEY", str_nowapi_appkey);
 	        //       requestUrl = requestUrl.replace("NOWAPI_SIGN", str_nowapi_sign);
 	        logger.info("["+this.getClass().getName()+"][getExchange][str_url]"+str_url); 
@@ -86,7 +87,7 @@ public class ExchangeServiceImpl implements ExchangeService {
 			if (null != jsonObject) {
 				try {
 					
-					strResult =jsonObject.getString("query");
+					strResult =jsonObject.getString("rates");
 					
 				} catch (JSONException e) {
 					
@@ -107,7 +108,7 @@ public class ExchangeServiceImpl implements ExchangeService {
 			ex.setCreate_time(System.currentTimeMillis());
 			
 			update(ex);//更新数据库
-		}
+		//}
 		
 		logger.info("["+this.getClass().getName()+"][getExchange][end]");
 		return ex;
