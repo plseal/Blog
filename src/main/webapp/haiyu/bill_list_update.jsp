@@ -31,6 +31,10 @@
 					</h1>
 				</div>
 				<br/>
+		        <div class="col-sm-12 ">
+		          <button type="button" class="btn btn-lg btn-block btn-primary" onclick="location.href = '<%=request.getContextPath() %>/haiyu/bill_insert.jsp';">添加新单据</button>
+		        </div>
+				<br/>
 							<!--PAGE CONTENT BEGINS-->
 								<table id="sample-table-1" class="table table-striped table-bordered table-hover">
 								<thead>
