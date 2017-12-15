@@ -7,13 +7,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
  
     <update id="update" parameterType="Bill">
-        update t_bill set customer_name= #{customer_name}, customer_contact= #{customer_contact}, customer_tel= #{customer_tel}, bill_name= #{bill_name}, bill_num= #{bill_num}, bill_unit_price= #{bill_unit_price}, bill_all_price= #{bill_all_price}, bill_require= #{bill_require}, bill_status= #{bill_status}, bill_percent= #{bill_percent}
+        update t_bill set customer_name= #{customer_name}, customer_contact= #{customer_contact}, customer_tel= #{customer_tel}, bill_name= #{bill_name}, bill_num= #{bill_num}, bill_unit_price= #{bill_unit_price}, bill_all_price= #{bill_all_price}, bill_require= #{bill_require}, bill_status= #{bill_status}, bill_percent= #{bill_percent}, bill_date= #{bill_date}, bill_name1= #{bill_name1}, bill_name2= #{bill_name2}, bill_name3= #{bill_name3}, bill_name4= #{bill_name4}, bill_name5= #{bill_name5}, bill_name6= #{bill_name6}, bill_size1= #{bill_size1}, bill_size2= #{bill_size2}, bill_size3= #{bill_size3}, bill_size4= #{bill_size4}, bill_size5= #{bill_size5}, bill_size6= #{bill_size6}, bill_num1= #{bill_num1}, bill_num2= #{bill_num2}, bill_num3= #{bill_num3}, bill_num4= #{bill_num4}, bill_num5= #{bill_num5}, bill_num6= #{bill_num6}, bill_unit1= #{bill_unit1}, bill_unit2= #{bill_unit2}, bill_unit3= #{bill_unit3}, bill_unit4= #{bill_unit4}, bill_unit5= #{bill_unit5}, bill_unit6= #{bill_unit6}, bill_paper1= #{bill_paper1}, bill_paper2= #{bill_paper2}, bill_paper3= #{bill_paper3}, bill_paper4= #{bill_paper4}, bill_paper5= #{bill_paper5}, bill_paper6= #{bill_paper6}, bill_contact1= #{bill_contact1}, bill_contact2= #{bill_contact2}, bill_contact3= #{bill_contact3}, bill_contact4= #{bill_contact4}, bill_contact5= #{bill_contact5}, bill_contact6= #{bill_contact6}, bill_pages1= #{bill_pages1}, bill_pages2= #{bill_pages2}, bill_pages3= #{bill_pages3}, bill_pages4= #{bill_pages4}, bill_pages5= #{bill_pages5}, bill_pages6= #{bill_pages6}
 		where id = #{id}
         
     </update>
 
 	<insert id="insert" parameterType="Bill" keyProperty="id" useGeneratedKeys="true">
-		INSERT INTO t_bill VALUES(null,#{customer_name},#{customer_contact},#{customer_tel},#{bill_name},#{bill_num},#{bill_unit_price},#{bill_all_price},#{bill_require},#{bill_status},#{bill_percent})
+		
+		INSERT INTO t_bill VALUES(null,#{customer_name},#{customer_contact},#{customer_tel},#{bill_name},#{bill_num},#{bill_unit_price},#{bill_all_price},#{bill_require},#{bill_status},#{bill_percent},#{bill_date},#{bill_name1},#{bill_name2},#{bill_name3},#{bill_name4},#{bill_name5},#{bill_name6},#{bill_size1},#{bill_size2},#{bill_size3},#{bill_size4},#{bill_size5},#{bill_size6},#{bill_num1},#{bill_num2},#{bill_num3},#{bill_num4},#{bill_num5},#{bill_num6},#{bill_unit1},#{bill_unit2},#{bill_unit3},#{bill_unit4},#{bill_unit5},#{bill_unit6},#{bill_paper1},#{bill_paper2},#{bill_paper3},#{bill_paper4},#{bill_paper5},#{bill_paper6},#{bill_contact1},#{bill_contact2},#{bill_contact3},#{bill_contact4},#{bill_contact5},#{bill_contact6},#{bill_pages1},#{bill_pages2},#{bill_pages3},#{bill_pages4},#{bill_pages5},#{bill_pages6})
 	</insert>
 
 
@@ -36,6 +37,49 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="bill_require" column="bill_require"/>
 		<result property="bill_status" column="bill_status"/>
 		<result property="bill_percent" column="bill_percent"/>
+		<result property="bill_date" column="bill_date"/>
+		<result property="bill_name1" column="bill_name1"/>
+		<result property="bill_name2" column="bill_name2"/>
+		<result property="bill_name3" column="bill_name3"/>
+		<result property="bill_name4" column="bill_name4"/>
+		<result property="bill_name5" column="bill_name5"/>
+		<result property="bill_name6" column="bill_name6"/>
+		<result property="bill_size1" column="bill_size1"/>
+		<result property="bill_size2" column="bill_size2"/>
+		<result property="bill_size3" column="bill_size3"/>
+		<result property="bill_size4" column="bill_size4"/>
+		<result property="bill_size5" column="bill_size5"/>
+		<result property="bill_size6" column="bill_size6"/>
+		<result property="bill_num1" column="bill_num1"/>
+		<result property="bill_num2" column="bill_num2"/>
+		<result property="bill_num3" column="bill_num3"/>
+		<result property="bill_num4" column="bill_num4"/>
+		<result property="bill_num5" column="bill_num5"/>
+		<result property="bill_num6" column="bill_num6"/>
+		<result property="bill_unit1" column="bill_unit1"/>
+		<result property="bill_unit2" column="bill_unit2"/>
+		<result property="bill_unit3" column="bill_unit3"/>
+		<result property="bill_unit4" column="bill_unit4"/>
+		<result property="bill_unit5" column="bill_unit5"/>
+		<result property="bill_unit6" column="bill_unit6"/>
+		<result property="bill_paper1" column="bill_paper1"/>
+		<result property="bill_paper2" column="bill_paper2"/>
+		<result property="bill_paper3" column="bill_paper3"/>
+		<result property="bill_paper4" column="bill_paper4"/>
+		<result property="bill_paper5" column="bill_paper5"/>
+		<result property="bill_paper6" column="bill_paper6"/>
+		<result property="bill_contact1" column="bill_contact1"/>
+		<result property="bill_contact2" column="bill_contact2"/>
+		<result property="bill_contact3" column="bill_contact3"/>
+		<result property="bill_contact4" column="bill_contact4"/>
+		<result property="bill_contact5" column="bill_contact5"/>
+		<result property="bill_contact6" column="bill_contact6"/>
+		<result property="bill_pages1" column="bill_pages1"/>
+		<result property="bill_pages2" column="bill_pages2"/>
+		<result property="bill_pages3" column="bill_pages3"/>
+		<result property="bill_pages4" column="bill_pages4"/>
+		<result property="bill_pages5" column="bill_pages5"/>
+		<result property="bill_pages6" column="bill_pages6"/>
 	</resultMap>
 	
 	

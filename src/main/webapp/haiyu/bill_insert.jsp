@@ -109,6 +109,8 @@
 
 	
 <script type="text/javascript">
+	
+
     function do_post() {  
         var form = document.forms[0];  
         form.action = "${pageContext.request.contextPath}/haiyu/to_bill_list_update.do?FLG=INSERT";  
@@ -116,29 +118,8 @@
         form.method = "post";  
         form.submit();  
     } 
-function get_express_by_name(){
-	var c_name = document.all.c_name.value;
-	
-	//alert(getEx(file_name).toString().toLowerCase());
-	if (c_name == ""){
-		$("#div_alert_c_name_blank").attr("class","alert alert-danger");
-	}else {
-		document.all.myform.action="${pageContext.request.contextPath}/haoyun/get_express_by_name.do?c_name="+c_name;
-		document.all.myform.submit(); 
-	}
 
-}
-function get_express_by_number(){
-	var c_number = document.all.c_number.value;
-	
-	if (c_number == ""){
-		$("#div_alert_c_number_blank").attr("class","alert alert-danger");
-	}else {
-		document.all.myform.action="${pageContext.request.contextPath}/haoyun/get_express_by_number.do?c_number="+c_number;
-		document.all.myform.submit(); 
-	}
 
-}
 
 			
 </script>

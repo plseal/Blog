@@ -109,7 +109,7 @@ public class HaiyuController {
 		
 		//ResponseUtil.write(response, result);
 		logger.info("["+this.getClass()+"][to_bill_update][end] to bill_update.jsp");
-		return "../../haiyu/bill_update";
+		return "../../haiyu/bill_update_201712";
 	}
 	@RequestMapping("/to_bill_status")
 	public String to_bill_status(
