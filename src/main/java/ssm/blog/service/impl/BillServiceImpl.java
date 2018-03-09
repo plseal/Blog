@@ -21,7 +21,9 @@ public class BillServiceImpl implements BillService {
 	public List<Bill> get_all(){
     	return billDao.get_all();
     }
-	
+	public List<Bill> get_finish(){
+    	return billDao.get_finish();
+    }
 	public Bill get_one(Integer id){
     	return billDao.get_one(id);
     }

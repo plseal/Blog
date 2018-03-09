@@ -18,9 +18,15 @@
 		<%@include file="./logo.jsp" %>
 		
 		<div class="container">
-			<form  id="myform" action="${pageContext.request.contextPath}/haiyu/check_bill.jsp" class="form-horizontal"  role="form">
+			<form  id="myform" action="${pageContext.request.contextPath}/haiyu/to_bill_status.do?FLG=FINISH" class="form-horizontal"  role="form">
 			<div class="page-content">
-				
+			 <div class="form-group">
+				<div class="col-sm-12 ">
+				  
+				  <button type="button" class="btn btn-lg btn-block btn-primary" onclick="do_post()">查看已结清订单</button>
+
+				</div>
+			  </div>
 				<div class="col-sm-12 ">
 					<h1>
 						<small>
@@ -66,7 +72,13 @@
 
 	
 <script type="text/javascript">
-		
+    function do_post() {  
+        var form = document.forms[0];  
+        form.action = "${pageContext.request.contextPath}/haiyu/to_bill_status.do?FLG=FINISH";  
+  
+        form.method = "post";  
+        form.submit();  
+    } 
 function get_express_by_name(){
 	var c_name = document.all.c_name.value;
 	

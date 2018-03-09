@@ -113,12 +113,19 @@ public class HaiyuController {
 	}
 	@RequestMapping("/to_bill_status")
 	public String to_bill_status(
-			Integer id,
+			String FLG,
 			HttpServletRequest request) throws Exception {
 		logger.info("["+this.getClass()+"][to_bill_status][start]");
+		logger.info("["+this.getClass()+"][to_bill_status][FLG]"+FLG);
 		
-
 		List<Bill> bills = billService.get_all();
+		if ("FINISH".equals(FLG)) {
+			//logger.info("["+this.getClass()+"][to_bill_list_update][bill.id]"+bill.getId());
+			 bills = billService.get_finish();
+		} else if ("INSERT".equals(FLG)){
+			//List<Bill> bills = billService.get_all();
+		}
+		
 		
 		request.setAttribute("bills", bills);
 		

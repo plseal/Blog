@@ -22,9 +22,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM t_bill WHERE id=#{id}
 	</select>
 	<select id="get_all" parameterType="String" resultMap="billMap">
-		SELECT * FROM t_bill WHERE 1=1 order by id desc
+		SELECT * FROM t_bill WHERE bill_status <![CDATA[<>]]> '尾款结清' order by id desc
 	</select>
-
+	<select id="get_finish" parameterType="String" resultMap="billMap">
+		SELECT * FROM t_bill WHERE bill_status='尾款结清' order by id desc
+	</select>
 	 <resultMap type="Bill" id="billMap">
 	     <id property="id" column="id" />  
 		<result property="customer_name" column="customer_name"/>
