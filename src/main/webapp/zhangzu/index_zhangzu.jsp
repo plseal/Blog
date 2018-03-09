@@ -36,7 +36,7 @@
 		        </div>
 				<br/>
 		        <div class="col-sm-12 ">
-		          <button type="button" class="btn btn-lg btn-block btn-info" onclick="location.href = '<%=request.getContextPath() %>/zhangzu/to_zhangzu_analysis.do';">统计分析</button>
+		          <button type="button" class="btn btn-lg btn-block btn-info" onclick="location.href = '<%=request.getContextPath() %>/zhangzu/to_zhangzu_analysis.do?zhangzu_ac=2017/09';">统计分析</button>
 		        </div>
 				<br/>
 							<!--PAGE CONTENT BEGINS-->

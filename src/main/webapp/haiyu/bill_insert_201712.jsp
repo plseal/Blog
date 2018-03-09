@@ -16,7 +16,30 @@
 	
 	<body>
 		<%@include file="./logo.jsp" %>
-		
+		<style type="text/css">
+		table.gridtable {
+			
+			
+			color:#333333;
+			border-width: 1px;
+			border-color: #666666;
+			border-collapse: collapse;
+		}
+		table.gridtable th {
+			border-width: 1px;
+			padding: 8px;
+			border-style: solid;
+			border-color: #666666;
+			text-align:center
+		}
+		table.gridtable td {
+			border-width: 1px;
+			padding: 8px;
+			border-style: solid;
+			border-color: #666666;
+			background-color: #ffffff;
+		}
+		</style>
 		<div class="container">
 			<form  id="myform" action="" class="form-horizontal"  role="form">
 			<div class="page-content">

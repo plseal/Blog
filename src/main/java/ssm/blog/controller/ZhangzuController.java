@@ -152,10 +152,11 @@ public class ZhangzuController {
 	
 	@RequestMapping("/to_zhangzu_analysis")
 	public String to_zhangzu_analysis(
+			String zhangzu_ac,
 			HttpServletRequest request) throws Exception {
 		logger.info("["+this.getClass()+"][to_zhangzu_analysis][start]");
+		logger.info("["+this.getClass()+"][to_zhangzu_analysis][zhangzu_ac]"+zhangzu_ac);
 		
-		String ac;
 		ZhangzuAnalysis zz_analysis;
 		List<ZhangzuAnalysis> list1_zz_analysis;
 		long ac_min ;
@@ -163,9 +164,8 @@ public class ZhangzuController {
 		long ac_result;
 		List<ZhangzuAnalysis> list_zz_analysis = new ArrayList<ZhangzuAnalysis>();
 		
-		ac = "2017/08";
 		zz_analysis = new ZhangzuAnalysis();
-		list1_zz_analysis = zhangzuService.get_analysis_all(ac);
+		list1_zz_analysis = zhangzuService.get_analysis_all(zhangzu_ac);
 		ac_min = 0;
 		ac_plus = 0;
 		ac_result = 0;
@@ -179,38 +179,21 @@ public class ZhangzuController {
 		  }
 		}
 		ac_result = ac_plus + ac_min;
-		zz_analysis.setAc(ac);
+		zz_analysis.setAc(zhangzu_ac);
 		zz_analysis.setAc_min(ac_min);
 		zz_analysis.setAc_plus(ac_plus);
 		zz_analysis.setAc_result(ac_result);
 		
 		list_zz_analysis.add(zz_analysis);
-		
-		ac = "2017/09";
-		zz_analysis = new ZhangzuAnalysis();
-		list1_zz_analysis = zhangzuService.get_analysis_all(ac);
-		ac_min = 0;
-		ac_plus = 0;
-		ac_result = 0;
-		//	2017/01	XXXX	0	    -911732	0
-		//	2017/01	XXXX	374334	0	    0
-		for(int i = 0 ; i < list1_zz_analysis.size() ; i++) {
-		  if (i == 0 ) {
-		      ac_min = list1_zz_analysis.get(i).getAc_min();
-		  } else {
-			  ac_plus = list1_zz_analysis.get(i).getAc_plus();
-		  }
-		}
-		ac_result = ac_plus + ac_min;
-		zz_analysis.setAc(ac);
-		zz_analysis.setAc_min(ac_min);
-		zz_analysis.setAc_plus(ac_plus);
-		zz_analysis.setAc_result(ac_result);
-		
-		list_zz_analysis.add(zz_analysis);
-		
+
 		
 		request.setAttribute("list_zz_analysis", list_zz_analysis);
+		
+		List<ZhangzuAnalysis> list_zz_type_analysis = new ArrayList<ZhangzuAnalysis>();
+		zz_analysis = new ZhangzuAnalysis();
+		list_zz_type_analysis = zhangzuService.get_analysis_by_type(zhangzu_ac);
+		
+		request.setAttribute("list_zz_type_analysis", list_zz_type_analysis);
 		
 		//ResponseUtil.write(response, result);
 		logger.info("["+this.getClass()+"][to_zhangzu_analysis][end] to zhangzu_analysis.jsp");

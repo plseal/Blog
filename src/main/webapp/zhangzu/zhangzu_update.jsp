@@ -65,7 +65,8 @@
 									<select class="form-control" id="z_io_div" name="z_io_div" >
 									  <option value="支出">支出</option>
 									  <option value="收入">收入</option>
-									</select>							
+									  <option value="买货">买货</option>
+									</select>
 								</div>
 							</div>
 							<div class="form-group">
@@ -75,8 +76,6 @@
 
 								</div>
 							</div>
-
-															
 
 
 							 <div class="form-group">
@@ -103,77 +102,57 @@ window.onload=function(){
 	$("#z_io_div").val("${zhangzu.z_io_div}");
 
 }
-    function do_post() {  
-        var form = document.forms[0];  
-        form.action = "${pageContext.request.contextPath}/zhangzu/to_index_zhangzu.do?FLG=UPDATE";  
-  
-        form.method = "post";  
-        form.submit();  
-    }
-    function do_delete() {  
-        var form = document.forms[0];  
-        form.action = "${pageContext.request.contextPath}/zhangzu/to_index_zhangzu.do?FLG=DELETE";  
-  
-        form.method = "post";  
-        form.submit();  
-    } 
-	
-function get_express_by_name(){
-	var c_name = document.all.c_name.value;
-	
-	//alert(getEx(file_name).toString().toLowerCase());
-	if (c_name == ""){
-		$("#div_alert_c_name_blank").attr("class","alert alert-danger");
-	}else {
-		document.all.myform.action="${pageContext.request.contextPath}/haoyun/get_express_by_name.do?c_name="+c_name;
-		document.all.myform.submit(); 
-	}
+function do_post() {  
+	var form = document.forms[0];  
+	form.action = "${pageContext.request.contextPath}/zhangzu/to_index_zhangzu.do?FLG=UPDATE";  
 
+	form.method = "post";  
+	form.submit();  
 }
-function get_express_by_number(){
-	var c_number = document.all.c_number.value;
+function do_delete() {  
+	var form = document.forms[0];  
+	form.action = "${pageContext.request.contextPath}/zhangzu/to_index_zhangzu.do?FLG=DELETE";  
+
+	form.method = "post";  
+	form.submit();  
+} 
 	
-	if (c_number == ""){
-		$("#div_alert_c_number_blank").attr("class","alert alert-danger");
-	}else {
-		document.all.myform.action="${pageContext.request.contextPath}/haoyun/get_express_by_number.do?c_number="+c_number;
-		document.all.myform.submit(); 
-	}
 
-}
-	var year = new Date().getFullYear();
-	var month = new Date().getMonth() + 1;
-	var day = new Date().getDate();
-	var today = year + "/" + month + "/" +day;
-	//alert(today);
-	$('.form_date').datetimepicker({
-        language:  'zh-CN',
-        weekStart: 1,
-        todayBtn:  1,
-		autoclose: 1,
-		todayHighlight: 1,
-		startView: 2,
-		minView: 2,
-		endDate: today,
-		forceParse: 0
-    });	
 
-	$('.form_date').on('changeDate', function(ev){
+var year = new Date().getFullYear();
+var month = new Date().getMonth() + 1;
+var day = new Date().getDate();
+var today = year + "/" + month + "/" +day;
+//alert(today);
+$('.form_date').datetimepicker({
+	language:  'zh-CN',
+	weekStart: 1,
+	todayBtn:  1,
+	autoclose: 1,
+	todayHighlight: 1,
+	startView: 2,
+	minView: 2,
+	endDate: today,
+	forceParse: 0
+});	
 
-	    var nowdate = new Date();
-	    var z_date = ev.date;
+$('.form_date').on('changeDate', function(ev){
 
-		var z_year = z_date.getFullYear();
-		var z_month = z_date.getMonth() + 1;
-		var z_day = z_date.getDate();
-		var z_YYYYMMDDday = z_year + "/" + z_month + "/" +z_day;
+	var nowdate = new Date();
+	var z_date = ev.date;
+
+	var z_year = z_date.getFullYear();
+	var z_month = ("00" + (z_date.getMonth()+1)).slice(-2);
+	var z_day = ("00" + z_date.getDate()).slice(-2);
+	
+	var z_YYYYMMDDday = z_year + "/" + z_month + "/" +z_day;
+	
+	document.getElementById("z_date").value = z_YYYYMMDDday;
+	
+	//alert(z_YYYYMMDDday);
 		
-		document.getElementById("z_date").value = z_YYYYMMDDday;
-		
-		//alert(z_YYYYMMDDday);
-			
-	    //}
-	});	
+	//}
+});	
 </script>
 </form>
 </div>
