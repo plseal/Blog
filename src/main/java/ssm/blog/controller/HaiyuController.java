@@ -111,6 +111,21 @@ public class HaiyuController {
 		logger.info("["+this.getClass()+"][to_bill_update][end] to bill_update.jsp");
 		return "../../haiyu/bill_update_201712";
 	}
+	@RequestMapping("/to_bill_readonly")
+	public String to_bill_readonly(
+			Integer id,
+			HttpServletRequest request) throws Exception {
+		logger.info("["+this.getClass()+"][to_bill_readonly][start]");
+		logger.info("["+this.getClass()+"][to_bill_readonly][id]"+id);
+
+		Bill bill = billService.get_one(id);
+		
+		request.setAttribute("bill", bill);
+		
+		//ResponseUtil.write(response, result);
+		logger.info("["+this.getClass()+"][to_bill_readonly][end] to bill_readonly.jsp");
+		return "../../haiyu/bill_readonly";
+	}
 	@RequestMapping("/to_bill_status")
 	public String to_bill_status(
 			String FLG,
@@ -118,7 +133,7 @@ public class HaiyuController {
 		logger.info("["+this.getClass()+"][to_bill_status][start]");
 		logger.info("["+this.getClass()+"][to_bill_status][FLG]"+FLG);
 		
-		List<Bill> bills = billService.get_all();
+		List<Bill> bills = billService.get_not_finished();
 		if ("FINISH".equals(FLG)) {
 			//logger.info("["+this.getClass()+"][to_bill_list_update][bill.id]"+bill.getId());
 			 bills = billService.get_finish();

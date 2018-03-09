@@ -40,7 +40,10 @@
 							<!--PAGE CONTENT BEGINS-->
 							<c:forEach items="${bills}"  var="bill"  >
 							<div class="form-group">
-								<label class="col-sm-2 control-label">${bill.bill_name}：</label>
+								<label class="col-sm-2 control-label">
+									<a href="${pageContext.request.contextPath}/haiyu/to_bill_readonly.do?id=${bill.id}" >
+									${bill.bill_name}</a>
+								</label>
 								<div class="col-sm-10">
 									<div class="progress">
 											<div class="progress-bar" role="progressbar" aria-valuenow="60" 
