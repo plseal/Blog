@@ -101,13 +101,21 @@ public class ZhangzuController {
 		     zhangzus = zhangzuService.get_one_month_plus(AC);
 		}else if ("MIN".equals(IO)) {
 			 zhangzus = zhangzuService.get_one_month_min(AC);
+		}else if ("MAIHUO".equals(IO)) {
+			 zhangzus = zhangzuService.get_one_month_maihuo(AC);
+
 		}else {
 			 zhangzus = zhangzuService.get_all();
 		}
 		
 		
 		request.setAttribute("zhangzus", zhangzus);
-		
+		if ("".equals(AC)) {
+			AC = "2018/02";
+		}else{
+			// do nothing
+		}	
+		request.setAttribute("INDEX_AC", AC);
 		//ResponseUtil.write(response, result);
 		logger.info("["+this.getClass()+"][to_index_zhangzu][end] to index_zhangzu.jsp");
 		return "../../zhangzu/index_zhangzu";
@@ -162,6 +170,7 @@ public class ZhangzuController {
 		long ac_min ;
 		long ac_plus ;
 		long ac_result;
+		long ac_maihuo;
 		List<ZhangzuAnalysis> list_zz_analysis = new ArrayList<ZhangzuAnalysis>();
 		
 		zz_analysis = new ZhangzuAnalysis();
@@ -169,20 +178,25 @@ public class ZhangzuController {
 		ac_min = 0;
 		ac_plus = 0;
 		ac_result = 0;
-		//	2017/01	XXXX	0	    -911732	0
+		ac_maihuo = 0;
+		//	2017/01	XXXX	0	    -911732	0  zhichu
 		//	2017/01	XXXX	374334	0	    0
+		//	2017/01	XXXX	0	    -911732	0  maihuo
 		for(int i = 0 ; i < list1_zz_analysis.size() ; i++) {
-		  if (i == 0 ) {
-		      ac_min = list1_zz_analysis.get(i).getAc_min();
-		  } else {
-			  ac_plus = list1_zz_analysis.get(i).getAc_plus();
-		  }
+			if (i == 0 ) {
+				ac_min = list1_zz_analysis.get(i).getAc_min();
+			} else if (i == 1){
+				ac_plus = list1_zz_analysis.get(i).getAc_plus();
+			} else {
+				ac_maihuo = list1_zz_analysis.get(i).getAc_min();
+			}
 		}
 		ac_result = ac_plus + ac_min;
 		zz_analysis.setAc(zhangzu_ac);
 		zz_analysis.setAc_min(ac_min);
 		zz_analysis.setAc_plus(ac_plus);
 		zz_analysis.setAc_result(ac_result);
+		zz_analysis.setAc_maihuo(ac_maihuo);
 		
 		list_zz_analysis.add(zz_analysis);
 

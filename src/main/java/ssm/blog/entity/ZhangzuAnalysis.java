@@ -10,6 +10,7 @@ public class ZhangzuAnalysis {
 	private long ac_plus;
 	private long ac_min;
 	private long ac_result;
+	private long ac_maihuo;
 	public void setId(int id){
 		this.id=id;
 	}
@@ -46,6 +47,10 @@ public class ZhangzuAnalysis {
 	public long getAc_result(){
 		return ac_result;
 	}
-
-
+	public void setAc_maihuo(long ac_maihuo){
+		this.ac_maihuo=ac_maihuo;
+	}
+	public long getAc_maihuo(){
+		return ac_maihuo;
+	}
 }

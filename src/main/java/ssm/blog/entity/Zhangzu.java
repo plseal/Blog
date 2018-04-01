@@ -11,6 +11,7 @@ public class Zhangzu {
 	private String z_type;
 	private String z_io_div;
 	private String z_remark;
+	private long z_m_amount;
 	public void setId(int id){
 		this.id=id;
 	}
@@ -53,5 +54,10 @@ public class Zhangzu {
 	public String getZ_remark(){
 		return z_remark;
 	}
-
+	public void setZ_m_amount(long z_m_amount){
+		this.z_m_amount=z_m_amount;
+	}
+	public long getZ_m_amount(){
+		return z_m_amount;
+	}
 }

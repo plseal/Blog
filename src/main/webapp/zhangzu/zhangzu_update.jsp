@@ -76,7 +76,12 @@
 
 								</div>
 							</div>
-
+							<div class="form-group">
+								<label class="col-sm-2 control-label">售价：</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="z_m_amount" name="z_m_amount" value="${zhangzu.z_m_amount}" placeholder=""    >							
+								</div>
+							</div>
 
 							 <div class="form-group">
 								<div class="col-sm-12 ">

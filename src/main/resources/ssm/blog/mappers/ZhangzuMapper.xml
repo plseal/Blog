@@ -7,13 +7,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
  
     <update id="update" parameterType="Zhangzu">
-        update t_zhangzu set z_date= #{z_date}, z_name= #{z_name}, z_amount= #{z_amount}, z_type= #{z_type}, z_io_div= #{z_io_div}, z_remark= #{z_remark}
+        
+		update t_zhangzu set z_date= #{z_date}, z_name= #{z_name}, z_amount= #{z_amount}, z_type= #{z_type}, z_io_div= #{z_io_div}, z_remark= #{z_remark}, z_m_amount= #{z_m_amount}
 		where id = #{id}
         
     </update>
 
 	<insert id="insert" parameterType="Zhangzu" keyProperty="id" useGeneratedKeys="true">
-		INSERT INTO t_zhangzu VALUES(null,#{z_date},#{z_name},#{z_amount},#{z_type},#{z_io_div},#{z_remark})
+		
+		INSERT INTO t_zhangzu VALUES(null,#{z_date},#{z_name},#{z_amount},#{z_type},#{z_io_div},#{z_remark},#{z_m_amount})
 	</insert>
 
 	<delete id="delete" parameterType="Integer">
@@ -24,7 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM t_zhangzu WHERE id=#{id}
 	</select>
 	<select id="get_all" parameterType="String" resultMap="zhangzuMap">
-		SELECT * FROM t_zhangzu WHERE z_date like '2017%' or z_date like '2018%' order by z_date desc 
+		SELECT * FROM t_zhangzu WHERE z_date like '2018%' order by z_date desc 
 	</select>
 	<select id="get_one_month_min" parameterType="String" resultMap="zhangzuMap">
 		SELECT * FROM t_zhangzu WHERE z_date like CONCAT('%',#{ac},'%') and z_io_div = '支出' order by z_date desc 
@@ -32,11 +34,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="get_one_month_plus" parameterType="String" resultMap="zhangzuMap">
 		SELECT * FROM t_zhangzu WHERE z_date like CONCAT('%',#{ac},'%') and z_io_div = '收入' order by z_date desc 
 	</select>
+	<select id="get_one_month_maihuo" parameterType="String" resultMap="zhangzuMap">
+		SELECT * FROM t_zhangzu WHERE z_date like CONCAT('%',#{ac},'%') and z_io_div = '买货' order by z_date desc 
+	</select>
+	
+	
 	<select id="get_analysis_all" parameterType="String" resultMap="zhangzu_analysis_map">
 		SELECT id,left(z_date,7) ac,'XXXX' ac_type,0 ac_plus,sum(z_amount)*-1 ac_min, 0 ac_result FROM t_zhangzu where z_date like CONCAT('%',#{ac},'%')  and z_io_div = '支出'  GROUP BY  left(z_date,7)
 		union
 		SELECT id,left(z_date,7) ac,'XXXX' ac_type, sum(z_amount) ac_plus, 0 ac_min,0 ac_result  FROM t_zhangzu where z_date like CONCAT('%',#{ac},'%')  and z_io_div = '收入'  GROUP BY  left(z_date,7)
-
+		union
+		SELECT id,left(z_date,7) ac,'XXXX' ac_type, 0 ac_plus, sum(z_amount)*-1 ac_min,0 ac_result  FROM t_zhangzu where z_date like CONCAT('%',#{ac},'%')  and z_io_div = '买货'  GROUP BY  left(z_date,7)
+		
 	</select>
 	
 	<select id="get_analysis_by_type" parameterType="String" resultMap="zhangzu_analysis_map">
@@ -51,6 +60,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="z_type" column="z_type"/>
 		<result property="z_io_div" column="z_io_div"/>
 		<result property="z_remark" column="z_remark"/>
+		<result property="z_m_amount" column="z_m_amount"/>
 	</resultMap>
 	 <resultMap type="ZhangzuAnalysis" id="zhangzu_analysis_map">
 	     <id property="id" column="id" />  
@@ -59,6 +69,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="ac_plus" column="ac_plus"/>
 		<result property="ac_min" column="ac_min"/>
 		<result property="ac_result" column="ac_result"/>
+		<result property="ac_maihuo" column="ac_maihuo"/>
 	</resultMap>
 	
 </mapper> 

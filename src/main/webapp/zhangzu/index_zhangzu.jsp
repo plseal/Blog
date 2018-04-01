@@ -36,7 +36,7 @@
 		        </div>
 				<br/>
 		        <div class="col-sm-12 ">
-		          <button type="button" class="btn btn-lg btn-block btn-info" onclick="location.href = '<%=request.getContextPath() %>/zhangzu/to_zhangzu_analysis.do?zhangzu_ac=2017/09';">统计分析</button>
+		          <button type="button" class="btn btn-lg btn-block btn-info" onclick="location.href = '<%=request.getContextPath() %>/zhangzu/to_zhangzu_analysis.do?zhangzu_ac=${INDEX_AC}';">统计分析</button>
 		        </div>
 				<br/>
 							<!--PAGE CONTENT BEGINS-->
@@ -49,9 +49,10 @@
 										<th width="10%">日期</th>
 										<th width="15%">名称</th>
 										<th width="10%">金额</th>
-										<th width="20%">分类</th>
+										<th width="10%">分类</th>
 										<th width="10%">收支</th>
 										<th width="20%">备注</th>
+										<th width="10%">售价</th>
 										<th width="10%">操作</th>
 									</tr>
 								</thead>
@@ -73,6 +74,7 @@
 										<td>${zhangzu.z_type}</td>
 										<td>${zhangzu.z_io_div}</td>
 										<td>${zhangzu.z_remark}</td>
+										<td>${zhangzu.z_m_amount}</td>
 										<td>
 										<button class="btn btn-info btn-small" onclick="javascript:window.location.href='<%=request.getContextPath() %>/zhangzu/to_zhangzu_update.do?id=${zhangzu.id}'">
 											编辑

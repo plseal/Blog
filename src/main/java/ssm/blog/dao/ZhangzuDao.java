@@ -13,6 +13,9 @@ public interface ZhangzuDao {
 	public List<Zhangzu> get_all();
 	public List<Zhangzu> get_one_month_min(String ac);
 	public List<Zhangzu> get_one_month_plus(String ac);
+	public List<Zhangzu> get_one_month_maihuo(String ac);
+	
+	
 	public List<ZhangzuAnalysis> get_analysis_all(String ac);
 	public List<ZhangzuAnalysis> get_analysis_by_type(String ac);
 	

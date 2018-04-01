@@ -28,6 +28,12 @@ public class ZhangzuServiceImpl implements ZhangzuService {
 	public List<Zhangzu> get_one_month_plus(String ac){
     	return zhangzudao.get_one_month_plus(ac);
     }
+
+	public List<Zhangzu> get_one_month_maihuo(String ac){
+    	return zhangzudao.get_one_month_maihuo(ac);
+    }
+
+
 	public List<ZhangzuAnalysis> get_analysis_all(String ac){
     	return zhangzudao.get_analysis_all(ac);
     }

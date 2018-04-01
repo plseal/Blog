@@ -50,6 +50,9 @@
 									  <option value="2017/10">2017/10</option>
 									  <option value="2017/11">2017/11</option>
 									  <option value="2017/12">2017/12</option>
+									  <option value="2018/01">2018/01</option>
+									  <option value="2018/02">2018/02</option>
+									  <option value="2018/03">2018/03</option>
 									</select>
 								</div>
 
@@ -61,10 +64,11 @@
 										<!--
 										<th width="5%">ID</th>
 										-->
-										<th width="25%">年月</th>
-										<th width="25%">支出</th>
-										<th width="25%">收入</th>
-										<th width="25%">余额</th>
+										<th width="20%">年月</th>
+										<th width="20%">支出</th>
+										<th width="20%">收入</th>
+										<th width="20%">余额</th>0
+										<th width="20%">买货</th>
 >
 									</tr>
 								</thead>
@@ -84,6 +88,7 @@
 										<td><a href='${pageContext.request.contextPath}/zhangzu/to_index_zhangzu.do?AC=${zz_analysis.ac}&IO=MIN'>${zz_analysis.ac_min}</a></td>
 										<td><a href='${pageContext.request.contextPath}/zhangzu/to_index_zhangzu.do?AC=${zz_analysis.ac}&IO=PLUS'>${zz_analysis.ac_plus}</a></td>
 										<td>${zz_analysis.ac_result}</td>
+										<td><a href='${pageContext.request.contextPath}/zhangzu/to_index_zhangzu.do?AC=${zz_analysis.ac}&IO=MAIHUO'>${zz_analysis.ac_maihuo}</td>
 
 										
 									</tr>
