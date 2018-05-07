@@ -53,6 +53,8 @@
 									  <option value="2018/01">2018/01</option>
 									  <option value="2018/02">2018/02</option>
 									  <option value="2018/03">2018/03</option>
+									  <option value="2018/04">2018/04</option>
+									  <option value="2018/05">2018/05</option>
 									</select>
 								</div>
 

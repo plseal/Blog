@@ -182,6 +182,7 @@ public class ZhangzuController {
 		//	2017/01	XXXX	0	    -911732	0  zhichu
 		//	2017/01	XXXX	374334	0	    0
 		//	2017/01	XXXX	0	    -911732	0  maihuo
+		logger.info("["+this.getClass()+"][to_zhangzu_analysis][list1_zz_analysis.size()]"+list1_zz_analysis.size());
 		for(int i = 0 ; i < list1_zz_analysis.size() ; i++) {
 			if (i == 0 ) {
 				ac_min = list1_zz_analysis.get(i).getAc_min();
@@ -197,7 +198,7 @@ public class ZhangzuController {
 		zz_analysis.setAc_plus(ac_plus);
 		zz_analysis.setAc_result(ac_result);
 		zz_analysis.setAc_maihuo(ac_maihuo);
-		
+		logger.info("["+this.getClass()+"][to_zhangzu_analysis][ac_maihuo]"+ac_maihuo);
 		list_zz_analysis.add(zz_analysis);
 
 		
