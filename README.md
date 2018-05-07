@@ -1,4 +1,4 @@
-this is  blog
+this is a blog
 service as wechat public account
 
 use mysql
