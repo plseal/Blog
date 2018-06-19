@@ -13,10 +13,12 @@ public interface ZhangzuService {
 
 	public List<Zhangzu> get_all();
 	public List<Zhangzu> get_one_month_min(String ac);
+	public List<Zhangzu> get_one_month_min_type(String ac,String ac_type);
 	public List<Zhangzu> get_one_month_plus(String ac);
 	public List<Zhangzu> get_one_month_maihuo(String ac);
 	
 	public List<ZhangzuAnalysis> get_analysis_all(String ac);
+	public List<ZhangzuAnalysis> get_analysis_2018();
 	public List<ZhangzuAnalysis> get_analysis_by_type(String ac);
 	public Zhangzu get_one(Integer id);
 	public Integer update(Zhangzu zhangzu);

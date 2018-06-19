@@ -20,7 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM t_family WHERE id=#{id} 
 	</select>
 	<select id="get_all" resultMap="familyMap">
-		SELECT * FROM t_family WHERE 1=1
+		SELECT * FROM t_family WHERE 1=1  order by str_to_date(remind_date,'%Y-%m-%d')
 	</select>
 
 	 <resultMap type="Family" id="familyMap">

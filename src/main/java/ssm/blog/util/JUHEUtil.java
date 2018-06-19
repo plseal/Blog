@@ -131,6 +131,7 @@ public class JUHEUtil {
 	            if(method==null || method.equals("GET")){
 	                strUrl = strUrl+"?"+urlencode(params);
 	            }
+				logger.info("[JUHEUtil][net][strUrl]"+strUrl);
 	            URL url = new URL(strUrl);
 	            conn = (HttpURLConnection) url.openConnection();
 	            if(method==null || method.equals("GET")){

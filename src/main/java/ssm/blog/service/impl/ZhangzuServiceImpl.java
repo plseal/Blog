@@ -25,6 +25,9 @@ public class ZhangzuServiceImpl implements ZhangzuService {
 	public List<Zhangzu> get_one_month_min(String ac){
     	return zhangzudao.get_one_month_min(ac);
     }
+	public List<Zhangzu> get_one_month_min_type(String ac,String ac_type){
+    	return zhangzudao.get_one_month_min_type(ac,ac_type);
+    }
 	public List<Zhangzu> get_one_month_plus(String ac){
     	return zhangzudao.get_one_month_plus(ac);
     }
@@ -36,6 +39,9 @@ public class ZhangzuServiceImpl implements ZhangzuService {
 
 	public List<ZhangzuAnalysis> get_analysis_all(String ac){
     	return zhangzudao.get_analysis_all(ac);
+    }
+	public List<ZhangzuAnalysis> get_analysis_2018(){
+    	return zhangzudao.get_analysis_2018();
     }
 	public List<ZhangzuAnalysis> get_analysis_by_type(String ac){
     	return zhangzudao.get_analysis_by_type(ac);

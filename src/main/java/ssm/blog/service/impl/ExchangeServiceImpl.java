@@ -21,7 +21,7 @@ import ssm.blog.entity.Exchange;
 import ssm.blog.service.AccessTokenService;
 import ssm.blog.service.ExchangeService;
 import ssm.blog.util.WeixinUtil;
-
+import ssm.blog.util.JUHEUtil;
 import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
 /**
@@ -73,21 +73,38 @@ public class ExchangeServiceImpl implements ExchangeService {
 			
 			//String str_url = "http://api.k780.com:88/?app=finance.rate_cnyquot&curno=JPY&&appkey=NOWAPI_APPKEY&sign=NOWAPI_SIGN&format=json";
 			//String str_url = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22JPYCNY%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
-			String str_url = "https://api.fixer.io/latest?base=JPY";
+			//String str_url = "https://api.fixer.io/latest?base=JPY";
+			//2018/06/11
+			String str_url = "https://forex.1forge.com/1.0.3/quotes?pairs=JPYCNH&api_key=y9m0rFBJsgrPAYoMJ4aVxGQEiKImI7yE";
 	        //String requestUrl = str_url.replace("NOWAPI_APPKEY", str_nowapi_appkey);
 	        //       requestUrl = requestUrl.replace("NOWAPI_SIGN", str_nowapi_sign);
 	        logger.info("["+this.getClass().getName()+"][getExchange][str_url]"+str_url); 
 	        
 			
 			
+			JSONObject jsonObject = WeixinUtil.httpHUILVRequest(str_url, "GET", null);
 			
-			JSONObject jsonObject = WeixinUtil.httpRequest(str_url, "GET", null);
+			//-----------http http http 
+			//String result =null;
+			//JSONObject jsonObject =null;
+			//Map params = new HashMap();//请求参数
+	        //    params.put("access_key","bbbd64f7dce524c0a731bce1147587aa");
+	            
+			//try {
+			//	result =JUHEUtil.net(str_url, params, "GET");
+			//	//logger.info("result-----"+result);
+			//	jsonObject = JSONObject.fromObject(result);
+	        //} catch (Exception e) {
+	        //    e.printStackTrace();
+	        //}
+			//-----------http http http 
+			
 			String strResult = "";
 			// 如果请求成功
 			if (null != jsonObject) {
 				try {
 					
-					strResult =jsonObject.getString("rates");
+					strResult =jsonObject.getString("price");
 					
 				} catch (JSONException e) {
 					
@@ -100,7 +117,7 @@ public class ExchangeServiceImpl implements ExchangeService {
 			
 			
 	        
-	        //logger.info("["+this.getClass().getName()+"][getExchange][strResult]"+strResult);
+	        logger.info("["+this.getClass().getName()+"][getExchange][strResult]"+strResult);
 			
 			ex.setExchange(strResult);
 			ex.setExpires_in(System.currentTimeMillis());

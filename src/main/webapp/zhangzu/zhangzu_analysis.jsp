@@ -31,7 +31,10 @@
 					</h1>
 				</div>
 				<br/>
-
+				<div id="columnchart_material" style="width: 100%; height: 500px;"></div>
+				<br/>
+				<br/>
+				<br/>
 							<!--PAGE CONTENT BEGINS-->
 							
 							<div class="form-group">
@@ -95,6 +98,9 @@
 										
 									</tr>
 								</c:forEach>
+
+								
+								
 								</tbody>
 							</table>
 						</div>
@@ -128,7 +134,7 @@
 										<td>${zhangzu.id}</td>
 										-->
 										<td>${zz_analysis.ac}</td>
-										<td>${zz_analysis.ac_min}</td>
+										<td><a href='${pageContext.request.contextPath}/zhangzu/to_index_zhangzu.do?AC=${zz_analysis.ac}&IO=MIN&AC_TYPE=${zz_analysis.ac_type}'>${zz_analysis.ac_min}</td>
 										<td>${zz_analysis.ac_type}</td>
 										
 										
@@ -142,7 +148,7 @@
 	</div><!--/.main-container-->
 
 	
-
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	
 <script type="text/javascript">
 		
@@ -163,7 +169,76 @@ $(document).ready(function(){
 }) 
 			
 </script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
 
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Month', '支出', '收入', '余额', '买货'],
+		<c:forEach items="${list_2018_zz_analysis}"  var="zz_analysis"  varStatus="status">
+		
+				['${zz_analysis.ac}', ${zz_analysis.ac_min}, ${zz_analysis.ac_plus}, ${zz_analysis.ac_result},${zz_analysis.ac_maihuo}]<c:if test="${not (status.count eq listSize)}">,</c:if>
+
+		</c:forEach>
+				//['2018/01', 139724, 396398, 256674,0],
+				//['2018/02', 299392, 145246, -154146,0],
+				//['2018/03', 560947, 549570, -11377,239393],
+				//['2018/04', 371730, 396398, 24668,79976]
+
+
+        ]);
+
+        var options = {
+          chart: {
+            title: '2018',
+            //subtitle: '201701-201712',
+          }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+		
+		
+		// Add our selection handler.
+		google.visualization.events.addListener(chart, 'select', selectHandler);
+
+		// The selection handler.
+		// Loop through all items in the selection and concatenate
+		// a single message from all of them.
+		function selectHandler() {
+		  var selection = chart.getSelection();
+		  var message = '';
+		  for (var i = 0; i < selection.length; i++) {
+			var item = selection[i];
+			if (item.row != null && item.column != null) {
+			  //var str_ac = data.getFormattedValue(item.row, item.column);
+			  var str_ac = data.getFormattedValue(item.row, 0);
+			  message += '{row1:' + item.row + ',column:' + item.column + '} = ' + str_ac + '\n';
+			  
+			  //ZHICHU
+			  if (item.column == 1) {
+				window.location.href = "/Blog/zhangzu/to_zhangzu_analysis.do?zhangzu_ac="+str_ac;
+			  }
+			} else if (item.row != null) {
+			  var str_ac = data.getFormattedValue(item.row, 0);
+			  message += '{row2:' + item.row + ', column:none}; value (col 0) = ' + str_ac + '\n';
+			} else if (item.column != null) {
+			  var str_ac = data.getFormattedValue(0, item.column);
+			  message += '{row3:none, column:' + item.column + '}; value (row 0) = ' + str_ac + '\n';
+			}
+		  }
+		  if (message == '') {
+			message = 'nothing';
+		  }
+		  //alert('You selected ' + message);
+		  
+		}
+		
+		
+      }
+    </script>
 </div>
 </body>
 </html>

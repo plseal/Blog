@@ -25,6 +25,6 @@ echo %file_name%
 D:\mysql\bin\mysqldump --opt -u root --password=123456 lingzhu t_zhangzu > D:\db_backup\%file_name%
 rem *******************************DUMP OK*****************************
 set workpath=D:\tools\qiniu\qshell
-D:\tools\qiniu\qshell fput myblog %file_name% D:\\db_backup\\%file_name%
+D:\tools\qiniu\qshell fput mybackup %file_name% D:\\db_backup\\%file_name%
 @echo on
 rem *******************************Code End*****************************

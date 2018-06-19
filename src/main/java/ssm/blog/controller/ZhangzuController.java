@@ -85,10 +85,14 @@ public class ZhangzuController {
 			String FLG,
 			String AC,
 			String IO,
+			String AC_TYPE,
 			Zhangzu zhangzu,
 			HttpServletRequest request) throws Exception {
 		logger.info("["+this.getClass()+"][to_index_zhangzu][start]");
 		logger.info("["+this.getClass()+"][to_index_zhangzu][FLG]"+FLG);
+		logger.info("["+this.getClass()+"][to_index_zhangzu][AC]"+AC);
+		logger.info("["+this.getClass()+"][to_index_zhangzu][IO]"+IO);
+		logger.info("["+this.getClass()+"][to_index_zhangzu][AC_TYPE]"+AC_TYPE);
 		List<Zhangzu> zhangzus;
 		if ("UPDATE".equals(FLG)) {
 			zhangzuService.update(zhangzu);
@@ -100,7 +104,14 @@ public class ZhangzuController {
 		if ("PLUS".equals(IO)) {
 		     zhangzus = zhangzuService.get_one_month_plus(AC);
 		}else if ("MIN".equals(IO)) {
-			 zhangzus = zhangzuService.get_one_month_min(AC);
+			 
+			 if(AC_TYPE != null){
+				 zhangzus = zhangzuService.get_one_month_min_type(AC,AC_TYPE);
+			 }else{
+				 zhangzus = zhangzuService.get_one_month_min(AC);
+			 }
+			 //zhangzus = zhangzuService.get_one_month_min(AC);
+			 
 		}else if ("MAIHUO".equals(IO)) {
 			 zhangzus = zhangzuService.get_one_month_maihuo(AC);
 
@@ -202,7 +213,10 @@ public class ZhangzuController {
 		list_zz_analysis.add(zz_analysis);
 
 		
+
+		
 		request.setAttribute("list_zz_analysis", list_zz_analysis);
+
 		
 		List<ZhangzuAnalysis> list_zz_type_analysis = new ArrayList<ZhangzuAnalysis>();
 		zz_analysis = new ZhangzuAnalysis();
@@ -210,6 +224,10 @@ public class ZhangzuController {
 		
 		request.setAttribute("list_zz_type_analysis", list_zz_type_analysis);
 		
+		
+		
+		List<ZhangzuAnalysis> list_2018_zz_analysis = zhangzuService.get_analysis_2018();
+		request.setAttribute("list_2018_zz_analysis", list_2018_zz_analysis);
 		//ResponseUtil.write(response, result);
 		logger.info("["+this.getClass()+"][to_zhangzu_analysis][end] to zhangzu_analysis.jsp");
 		return "../../zhangzu/zhangzu_analysis";

@@ -31,6 +31,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="get_one_month_min" parameterType="String" resultMap="zhangzuMap">
 		SELECT * FROM t_zhangzu WHERE z_date like CONCAT('%',#{ac},'%') and z_io_div = '支出' order by z_date desc 
 	</select>
+	<select id="get_one_month_min_type"  resultMap="zhangzuMap">
+		SELECT * FROM t_zhangzu WHERE z_date like CONCAT('%',#{0},'%') and z_io_div = '支出' and z_type = #{1} order by z_date desc 
+	</select>
 	<select id="get_one_month_plus" parameterType="String" resultMap="zhangzuMap">
 		SELECT * FROM t_zhangzu WHERE z_date like CONCAT('%',#{ac},'%') and z_io_div = '收入' order by z_date desc 
 	</select>
@@ -47,6 +50,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT id,left(z_date,7) ac,'XXXX' ac_type, 0 ac_plus, sum(z_amount)*-1 ac_min,0 ac_result  FROM t_zhangzu where z_date like CONCAT('%',#{ac},'%')  and z_io_div = '买货'  GROUP BY  left(z_date,7)
 		
 	</select>
+	
+	<select id="get_analysis_2018" parameterType="String" resultMap="zhangzu_analysis_map">
+		SELECT 1,
+		ZHI.AC ac,
+		'XXXX' ac_type,
+		SHOU.AMOUNT ac_plus,
+		ZHI.AMOUNT ac_min,
+		SHOU.AMOUNT - ZHI.AMOUNT ac_result,
+		MAI.AMOUNT ac_maihuo
+		FROM v_zhangzu_zhichu_2018 ZHI,
+		v_zhangzu_shouru_2018 SHOU,
+		v_zhangzu_maihuo_2018 MAI
+		where ZHI.ac = SHOU.ac
+		and ZHI.ac = MAI.ac
+		order by ac
+		
+	</select>
+
+	
 	
 	<select id="get_analysis_by_type" parameterType="String" resultMap="zhangzu_analysis_map">
 		SELECT 0,left(z_date,7) ac,z_type ac_type,0 ac_plus,sum(z_amount)*-1 ac_min, 0 ac_result FROM t_zhangzu where z_date like CONCAT('%',#{ac},'%')  and z_io_div = '支出'  GROUP BY  left(z_date,7),z_type order by ac_min 

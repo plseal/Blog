@@ -137,6 +137,7 @@ public class FamilyController {
 		Family fa = familyService.get_by_id(id);
 		String birth = fa.getBirth();
 		logger.info("["+this.getClass()+"][update][birth]"+birth);
+
 		Calendar calendar = Calendar.getInstance();
 		int year = calendar.get(Calendar.YEAR);
 		int birth_year = Integer.parseInt(birth.substring(0, 4));
@@ -200,13 +201,31 @@ public class FamilyController {
 			my_month3 = Integer.parseInt(fa.getLunar_birth2().split("-")[1]);
 			my_day3 = Integer.parseInt(fa.getLunar_birth2().split("-")[2]);
 			//sys_date = "2017-10-1";
+			String name = fa.getName();
 			if (remind_date_from_db.getTime() < today_date.getTime()){
 				logger.info("["+this.getClass()+"][update][remind_date update is needed]");
-				int[] out3 = LunarCalendar.lunarToSolar(Integer.parseInt(sys_date.split("-")[0])+1, my_month3, my_day3,1==2);
-				remind_date = String.valueOf(out3[0] + "-" + out3[1] + "-" + out3[2]);
-				logger.info("["+this.getClass()+"][update][remind_date after]"+remind_date);
-				fa.setRemind_date(remind_date);
+				
+			
+				if(name.indexOf("阳历") != -1) {
+					remind_date = Integer.parseInt(sys_date.split("-")[0]) + 1 + "-" + birth.split("-")[1] + "-" + birth.split("-")[2];
+					
+				} else {
+					int[] out3 = LunarCalendar.lunarToSolar(Integer.parseInt(sys_date.split("-")[0])+1, my_month3, my_day3,1==2);
+					remind_date = String.valueOf(out3[0] + "-" + out3[1] + "-" + out3[2]);
+				}
+
+			} else {
+				if(name.indexOf("阳历") != -1) {
+					remind_date = sys_date.split("-")[0] + "-" + birth.split("-")[1] + "-" + birth.split("-")[2];
+					
+				} 
+				
 			}
+			logger.info("["+this.getClass()+"][update][remind_date after]"+remind_date);
+			fa.setRemind_date(remind_date);
+			
+			logger.info("["+this.getClass()+"][update][name]"+name);
+
 		}
 		
 		

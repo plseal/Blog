@@ -56,7 +56,7 @@ public class FreightController {
         
         JSONObject jsonObj;
 		//logger.info("["+this.getClass()+"][calculate][strResult]"+strResult);
-        jsonObj  = JSONObject.fromObject(strResult);
+        //jsonObj  = JSONObject.fromObject(strResult);
         //if ("1".equals(jsonObj.getString("count"))) {
         	
         	
@@ -72,8 +72,8 @@ public class FreightController {
         	//System.out.println(jsonObj4.getString("banknm"));
         	
         	//banknm = jsonObj4.getString("Ask");
-        	se_sell = jsonObj.getString("CNY");
-			double_se_sell = Double.valueOf(se_sell) * 100;
+        	//se_sell = jsonObj.getString("CNY");
+			double_se_sell = Double.valueOf(strResult) * 100;
 			se_sell = Double.toString(double_se_sell);
         	System.out.println( se_sell);
         //}

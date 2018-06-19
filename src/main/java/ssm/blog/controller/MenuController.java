@@ -240,7 +240,7 @@ public class MenuController {
         btn24.setType("view");
         btn24.setKey("24");
         //snsapi_base不弹出授权页面，直接跳转，只能获取用户openid
-        String strURL ="https://open.weixin.qq.com/connect/oauth2/authorize?appid="+strAPPID+"&redirect_uri=http://www.lingzhu-med.com/Blog/weixin_oauth2/get_code.do&response_type=code&scope=snsapi_base&state=1#wechat_redirect";
+        String strURL ="https://open.weixin.qq.com/connect/oauth2/authorize?appid="+strAPPID+"&redirect_uri=http://www.haojiayun.com.cn/Blog/weixin_oauth2/get_code.do&response_type=code&scope=snsapi_base&state=1#wechat_redirect";
         //String strURL ="http://www.plseal.com/Blog/index.html?typeId=9";
         //logger.info("["+this.getClass().getName()+"][getMenu][strURL]"+strURL);
         btn24.setUrl(strURL);
@@ -249,7 +249,7 @@ public class MenuController {
         btn25.setName(btn25Name);
         btn25.setType("view");
         btn25.setKey("25");
-        btn25.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+strAPPID+"&redirect_uri=http://www.lingzhu-med.com/Blog/weixin_oauth2/get_code.do&response_type=code&scope=snsapi_base&state=1#wechat_redirect");
+        btn25.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+strAPPID+"&redirect_uri=http://www.haojiayun.com.cn/Blog/weixin_oauth2/get_code.do&response_type=code&scope=snsapi_base&state=1#wechat_redirect");
         
         CommonButton btn31 = new CommonButton();
         btn31.setName(btn31Name);
@@ -376,7 +376,7 @@ public class MenuController {
         mainBtn1.setType("view");
         mainBtn1.setKey("01");
         //snsapi_base不弹出授权页面，直接跳转，只能获取用户openid
-        String strURL ="https://open.weixin.qq.com/connect/oauth2/authorize?appid="+strAPPID_HAIYU+"&redirect_uri=http://www.lingzhu-med.com/Blog/weixin_oauth2/get_code_haiyu.do?flg=1&response_type=code&scope=snsapi_base&state=1#wechat_redirect";
+        String strURL ="https://open.weixin.qq.com/connect/oauth2/authorize?appid="+strAPPID_HAIYU+"&redirect_uri=http://www.haojiayun.com.cn/Blog/weixin_oauth2/get_code_haiyu.do?flg=1&response_type=code&scope=snsapi_base&state=1#wechat_redirect";
         mainBtn1.setUrl(strURL);
 
 
@@ -384,7 +384,7 @@ public class MenuController {
         mainBtn2.setName(haiyu_main_button2_name);
         mainBtn2.setType("view");
         mainBtn2.setKey("02");
-        String strURL2 ="https://open.weixin.qq.com/connect/oauth2/authorize?appid="+strAPPID_HAIYU+"&redirect_uri=http://www.lingzhu-med.com/Blog/weixin_oauth2/get_code_haiyu.do?flg=2&response_type=code&scope=snsapi_base&state=1#wechat_redirect";
+        String strURL2 ="https://open.weixin.qq.com/connect/oauth2/authorize?appid="+strAPPID_HAIYU+"&redirect_uri=http://www.haojiayun.com.cn/Blog/weixin_oauth2/get_code_haiyu.do?flg=2&response_type=code&scope=snsapi_base&state=1#wechat_redirect";
 		
 		mainBtn2.setUrl(strURL2);
         
