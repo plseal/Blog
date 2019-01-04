@@ -1,4 +1,4 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 		<header class="main-header">  <!--创建头部-->
 			<div class="container">   <!--头部存放容器-->
 				<div class="row">     <!--在容器使用栅格系统-->
