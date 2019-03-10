@@ -100,6 +100,8 @@ public class ZhangzuController {
 			zhangzuService.insert(zhangzu);
 		} else if ("DELETE".equals(FLG)){
 			zhangzuService.delete(zhangzu);
+		} else if ("2018".equals(FLG)){
+			zhangzus = zhangzuService.get_2018();
 		}
 		if ("PLUS".equals(IO)) {
 		     zhangzus = zhangzuService.get_one_month_plus(AC);

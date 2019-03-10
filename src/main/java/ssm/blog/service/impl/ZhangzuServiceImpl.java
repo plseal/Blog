@@ -22,6 +22,9 @@ public class ZhangzuServiceImpl implements ZhangzuService {
 	public List<Zhangzu> get_all(){
     	return zhangzudao.get_all();
     }
+	public List<Zhangzu> get_2018(){
+    	return zhangzudao.get_2018();
+    }	
 	public List<Zhangzu> get_one_month_min(String ac){
     	return zhangzudao.get_one_month_min(ac);
     }

@@ -5,6 +5,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>宋账本</title>
+		<!--index_zhangzu.jsp -->
 		<meta http-equiv="pragma" content="no-cache"/>   
 		<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"/>   
 		<meta http-equiv="expires" content="0"/>
@@ -37,6 +38,9 @@
 				<br/>
 		        <div class="col-sm-12 ">
 		          <button type="button" class="btn btn-lg btn-block btn-info" onclick="location.href = '<%=request.getContextPath() %>/zhangzu/to_zhangzu_analysis.do?zhangzu_ac=${INDEX_AC}';">统计分析</button>
+		        </div>
+		        <div class="col-sm-12 ">
+		          <button type="button" class="btn btn-lg btn-block btn-info" onclick="location.href = '<%=request.getContextPath() %>/zhangzu/to_index_zhangzu.do?FLG=2018';">2018年</button>
 		        </div>
 				<br/>
 							<!--PAGE CONTENT BEGINS-->

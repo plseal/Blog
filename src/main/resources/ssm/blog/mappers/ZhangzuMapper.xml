@@ -28,6 +28,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="get_all" parameterType="String" resultMap="zhangzuMap">
 		SELECT * FROM t_zhangzu WHERE z_date like '2019%' order by z_date desc 
 	</select>
+	<select id="get_2018" parameterType="String" resultMap="zhangzuMap">
+		SELECT * FROM t_zhangzu WHERE z_date like '2018%' order by z_date desc 
+	</select>
 	<select id="get_one_month_min" parameterType="String" resultMap="zhangzuMap">
 		SELECT * FROM t_zhangzu WHERE z_date like CONCAT('%',#{ac},'%') and z_io_div = '支出' order by z_date desc 
 	</select>
