@@ -16,13 +16,13 @@ echo Date Time2: %d4%-%d2%-%d3% %t1%:%t2%:%t3%
 
 
 set Ymd=%d4%%d2%%d3%
-set file_name=t_zhangzu_%Ymd%.sql
+set file_name=t_family_%Ymd%.sql
 
 
 echo %file_name%
 
 
-C:\mysql\bin\mysqldump --opt -u root --password=123456 lingzhu t_zhangzu > C:\db_backup\%file_name%
+C:\mysql\bin\mysqldump --opt -u root --password=123456 lingzhu t_family > C:\db_backup\%file_name%
 rem *******************************DUMP OK*****************************
 set workpath=C:\tools\qiniu\qshell
 C:\tools\qiniu\qshell fput mybackup %file_name% C:\\db_backup\\%file_name%
