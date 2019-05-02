@@ -39,8 +39,9 @@
 		        <div class="col-sm-12 ">
 		          <button type="button" class="btn btn-lg btn-block btn-info" onclick="location.href = '<%=request.getContextPath() %>/zhangzu/to_zhangzu_analysis.do?zhangzu_ac=${INDEX_AC}';">统计分析</button>
 		        </div>
+				<br/>
 		        <div class="col-sm-12 ">
-		          <button type="button" class="btn btn-lg btn-block btn-info" onclick="location.href = '<%=request.getContextPath() %>/zhangzu/to_index_zhangzu.do?FLG=2018';">2018年</button>
+		          <button type="button" class="btn btn-lg btn-block btn-warning" onclick="location.href = '<%=request.getContextPath() %>/zhangzu/to_index_zhangzu.do?FLG=2018';">2018年</button>
 		        </div>
 				<br/>
 							<!--PAGE CONTENT BEGINS-->
