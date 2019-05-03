@@ -53,7 +53,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT id,left(z_date,7) ac,'XXXX' ac_type, 0 ac_plus, sum(z_amount)*-1 ac_min,0 ac_result  FROM t_zhangzu where z_date like CONCAT('%',#{ac},'%')  and z_io_div = '买货'  GROUP BY  left(z_date,7)
 		
 	</select>
-	
+	<select id="get_analysis_2019" parameterType="String" resultMap="zhangzu_analysis_map">
+		SELECT 1,
+		ZHI.AC ac,
+		'XXXX' ac_type,
+		SHOU.AMOUNT ac_plus,
+		ZHI.AMOUNT ac_min,
+		SHOU.AMOUNT - ZHI.AMOUNT ac_result,
+		MAI.AMOUNT ac_maihuo
+		FROM v_zhangzu_zhichu_2019 ZHI 
+		left join v_zhangzu_shouru_2019 SHOU on  ZHI.AC = SHOU.AC
+		left join v_zhangzu_maihuo_2019 MAI on  ZHI.AC = MAI.AC
+		order by ac
+		
+	</select>
 	<select id="get_analysis_2018" parameterType="String" resultMap="zhangzu_analysis_map">
 		SELECT 1,
 		ZHI.AC ac,

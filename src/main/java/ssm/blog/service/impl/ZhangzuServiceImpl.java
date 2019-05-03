@@ -46,6 +46,9 @@ public class ZhangzuServiceImpl implements ZhangzuService {
 	public List<ZhangzuAnalysis> get_analysis_2018(){
     	return zhangzudao.get_analysis_2018();
     }
+	public List<ZhangzuAnalysis> get_analysis_2019(){
+    	return zhangzudao.get_analysis_2019();
+    }
 	public List<ZhangzuAnalysis> get_analysis_by_type(String ac){
     	return zhangzudao.get_analysis_by_type(ac);
     }
