@@ -93,7 +93,7 @@ public class ZhangzuController {
 		logger.info("["+this.getClass()+"][to_index_zhangzu][AC]"+AC);
 		logger.info("["+this.getClass()+"][to_index_zhangzu][IO]"+IO);
 		logger.info("["+this.getClass()+"][to_index_zhangzu][AC_TYPE]"+AC_TYPE);
-		List<Zhangzu> zhangzus;
+		List<Zhangzu> zhangzus=zhangzuService.get_all();
 		if ("UPDATE".equals(FLG)) {
 			zhangzuService.update(zhangzu);
 		} else if ("INSERT".equals(FLG)){
@@ -102,24 +102,23 @@ public class ZhangzuController {
 			zhangzuService.delete(zhangzu);
 		} else if ("2018".equals(FLG)){
 			zhangzus = zhangzuService.get_2018();
-		}
-		if ("PLUS".equals(IO)) {
-		     zhangzus = zhangzuService.get_one_month_plus(AC);
-		}else if ("MIN".equals(IO)) {
-			 
-			 if(AC_TYPE != null){
-				 zhangzus = zhangzuService.get_one_month_min_type(AC,AC_TYPE);
-			 }else{
-				 zhangzus = zhangzuService.get_one_month_min(AC);
-			 }
-			 //zhangzus = zhangzuService.get_one_month_min(AC);
-			 
-		}else if ("MAIHUO".equals(IO)) {
-			 zhangzus = zhangzuService.get_one_month_maihuo(AC);
-
 		}else {
-			 zhangzus = zhangzuService.get_all();
+			if ("PLUS".equals(IO)) {
+			     zhangzus = zhangzuService.get_one_month_plus(AC);
+			}else if ("MIN".equals(IO)) {
+				 
+				 if(AC_TYPE != null){
+					 zhangzus = zhangzuService.get_one_month_min_type(AC,AC_TYPE);
+				 }else{
+					 zhangzus = zhangzuService.get_one_month_min(AC);
+				 }
+			}else if ("MAIHUO".equals(IO)) {
+				 zhangzus = zhangzuService.get_one_month_maihuo(AC);
+
+			
+			}				
 		}
+
 		
 		
 		request.setAttribute("zhangzus", zhangzus);
