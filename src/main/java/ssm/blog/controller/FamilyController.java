@@ -263,7 +263,7 @@ public class FamilyController {
 				
 				
 		 
-				 FileReader fileReader = new FileReader(new File("d:\\tools\\id_pas.txt"));
+				 FileReader fileReader = new FileReader(new File("c:\\tools\\id_pas.txt"));
 
 				 BufferedReader br = new BufferedReader(fileReader);
 
@@ -272,7 +272,7 @@ public class FamilyController {
 				 Integer cnt_i = 0;
 
 				 while ((line = br.readLine()) != null) {
-					  //logger.info("["+this.getClass()+"][get_all][line]"+line);
+					  logger.info("["+this.getClass()+"][get_all][line]"+line);
 					  cnt_i ++ ;
 					  if (cnt_i == 1) {
 						  gmail_id = line;
