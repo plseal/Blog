@@ -26,7 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM t_zhangzu WHERE id=#{id}
 	</select>
 	<select id="get_all" parameterType="String" resultMap="zhangzuMap">
-		SELECT * FROM t_zhangzu WHERE z_date like '2019%' order by z_date desc 
+		SELECT * FROM t_zhangzu WHERE z_date like '2019%' or z_date like '2020%' order by z_date desc 
 	</select>
 	<select id="get_2018" parameterType="String" resultMap="zhangzuMap">
 		SELECT * FROM t_zhangzu WHERE z_date like '2018%' order by z_date desc 
