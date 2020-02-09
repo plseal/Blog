@@ -112,7 +112,7 @@ public class FamilyController {
 			String sys_date = sdf.format(new Date());
 			//sys_date = "2017-10-1";
 			
-			logger.info("["+this.getClass()+"][daily_enter_check][sys_date]"+sys_date);
+			//logger.info("["+this.getClass()+"][daily_enter_check][sys_date]"+sys_date);
 			if (sys_date.equals(remind_date)) {
 				send_family_mail("今日は" + fa.getName() + "の" + fa.getAge() + "歳誕生日");
 			}
@@ -272,7 +272,7 @@ public class FamilyController {
 				 Integer cnt_i = 0;
 
 				 while ((line = br.readLine()) != null) {
-					  logger.info("["+this.getClass()+"][get_all][line]"+line);
+					  //logger.info("["+this.getClass()+"][get_all][line]"+line);
 					  cnt_i ++ ;
 					  if (cnt_i == 1) {
 						  gmail_id = line;
