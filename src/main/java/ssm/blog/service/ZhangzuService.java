@@ -23,6 +23,7 @@ public interface ZhangzuService {
 	public List<ZhangzuAnalysis> get_analysis_2019();
 	public List<ZhangzuAnalysis> get_analysis_by_type(String ac);
 	public Zhangzu get_one(Integer id);
+	public Zhangzu get_one_zhangzu(String z_date,String z_name);
 	public Integer update(Zhangzu zhangzu);
 	public Integer insert(Zhangzu zhangzu);
 	public Integer delete(Zhangzu zhangzu);

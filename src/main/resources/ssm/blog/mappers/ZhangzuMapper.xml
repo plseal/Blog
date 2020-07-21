@@ -25,6 +25,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="get_one" parameterType="Integer" resultMap="zhangzuMap">
 		SELECT * FROM t_zhangzu WHERE id=#{id}
 	</select>
+	<select id="get_one_zhangzu"  resultMap="zhangzuMap">
+		SELECT * FROM t_zhangzu WHERE z_date like CONCAT('%',#{0},'%') and z_name like CONCAT('%',#{1},'%') order by z_date desc 
+	</select>
 	<select id="get_all" parameterType="String" resultMap="zhangzuMap">
 		SELECT * FROM t_zhangzu WHERE z_date like '2019%' or z_date like '2020%' order by z_date desc 
 	</select>

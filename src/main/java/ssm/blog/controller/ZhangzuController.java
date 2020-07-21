@@ -113,6 +113,30 @@ public class ZhangzuController {
 		logger.info("["+this.getClass()+"][to_index_zhangzu][end] to index_zhangzu.jsp");
 		return "../../zhangzu/index_zhangzu";
 	}
+	@RequestMapping("/get_one_zhangzu")
+	public String get_one_zhangzu(
+			String FLG,
+			String Z_DATE,
+			String Z_NAME,
+			Zhangzu zhangzu,
+			HttpServletRequest request) throws Exception {
+		logger.info("["+this.getClass()+"][get_one_zhangzu][start]");
+		logger.info("["+this.getClass()+"][get_one_zhangzu][Z_DATE]"+Z_DATE);
+		logger.info("["+this.getClass()+"][get_one_zhangzu][Z_NAME]"+Z_NAME);
+		List<Zhangzu> zhangzus = new ArrayList<Zhangzu>();
+		if ("SELECT".equals(FLG)) {
+			Zhangzu zz = zhangzuService.get_one_zhangzu(Z_DATE,Z_NAME);
+			zhangzus.add(zz);
+		}
+
+		request.setAttribute("zhangzus", zhangzus);
+		
+		String AC = "2018/02";
+		request.setAttribute("INDEX_AC", AC);
+		//ResponseUtil.write(response, result);
+		logger.info("["+this.getClass()+"][get_one_zhangzu][end] to index_zhangzu.jsp");
+		return "../../zhangzu/index_zhangzu";
+	}
 	@RequestMapping("/to_zhangzu_update")
 	public String to_zhangzu_update(
 			Integer id,

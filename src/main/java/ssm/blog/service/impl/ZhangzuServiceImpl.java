@@ -56,7 +56,9 @@ public class ZhangzuServiceImpl implements ZhangzuService {
 	public Zhangzu get_one(Integer id){
     	return zhangzudao.get_one(id);
     }
-	
+	public Zhangzu get_one_zhangzu(String z_date,String z_name){
+    	return zhangzudao.get_one_zhangzu(z_date,z_name);
+    }
 	public Integer update(Zhangzu zhangzu){
 		
     	return zhangzudao.update(zhangzu);
