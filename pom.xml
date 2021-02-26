@@ -18,7 +18,7 @@
     <dependency>
             <groupId>com.thoughtworks.xstream</groupId> 
             <artifactId>xstream</artifactId> 
-            <version>1.4.10-java7</version> 
+            <version>1.4.13-java7</version> 
     </dependency> 
 	<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
 	<dependency>
@@ -271,7 +271,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.12</version>
+      <version>4.13.1</version>
       <scope>test</scope>
     </dependency>
     
