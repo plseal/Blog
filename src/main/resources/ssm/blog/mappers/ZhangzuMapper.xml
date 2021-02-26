@@ -29,7 +29,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM t_zhangzu WHERE z_date like CONCAT('%',#{0},'%') and z_name like CONCAT('%',#{1},'%') order by z_date desc 
 	</select>
 	<select id="get_all" parameterType="String" resultMap="zhangzuMap">
-		SELECT * FROM t_zhangzu WHERE z_date like '2019%' or z_date like '2020%' order by z_date desc 
+		SELECT * FROM t_zhangzu WHERE z_date like '2021%' order by z_date desc 
+	</select>
+	<select id="get_2020" parameterType="String" resultMap="zhangzuMap">
+		SELECT * FROM t_zhangzu WHERE z_date like '2020%' order by z_date desc 
+	</select>
+	<select id="get_2019" parameterType="String" resultMap="zhangzuMap">
+		SELECT * FROM t_zhangzu WHERE z_date like '2019%' order by z_date desc 
 	</select>
 	<select id="get_2018" parameterType="String" resultMap="zhangzuMap">
 		SELECT * FROM t_zhangzu WHERE z_date like '2018%' order by z_date desc 
@@ -56,6 +62,37 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT id,left(z_date,7) ac,'XXXX' ac_type, 0 ac_plus, sum(z_amount)*-1 ac_min,0 ac_result  FROM t_zhangzu where z_date like CONCAT('%',#{ac},'%')  and z_io_div = '买货'  GROUP BY  left(z_date,7)
 		
 	</select>
+	
+	<select id="get_analysis_2021" parameterType="String" resultMap="zhangzu_analysis_map">
+		SELECT 1,
+		ZHI.AC ac,
+		'XXXX' ac_type,
+		SHOU.AMOUNT ac_plus,
+		ZHI.AMOUNT ac_min,
+		SHOU.AMOUNT - ZHI.AMOUNT ac_result,
+		MAI.AMOUNT ac_maihuo
+		FROM v_zhangzu_zhichu_2021 ZHI 
+		left join v_zhangzu_shouru_2021 SHOU on  ZHI.AC = SHOU.AC
+		left join v_zhangzu_maihuo_2021 MAI on  ZHI.AC = MAI.AC
+		order by ac
+		
+	</select>
+	
+	<select id="get_analysis_2020" parameterType="String" resultMap="zhangzu_analysis_map">
+		SELECT 1,
+		ZHI.AC ac,
+		'XXXX' ac_type,
+		SHOU.AMOUNT ac_plus,
+		ZHI.AMOUNT ac_min,
+		SHOU.AMOUNT - ZHI.AMOUNT ac_result,
+		MAI.AMOUNT ac_maihuo
+		FROM v_zhangzu_zhichu_2020 ZHI 
+		left join v_zhangzu_shouru_2020 SHOU on  ZHI.AC = SHOU.AC
+		left join v_zhangzu_maihuo_2020 MAI on  ZHI.AC = MAI.AC
+		order by ac
+		
+	</select>
+	
 	<select id="get_analysis_2019" parameterType="String" resultMap="zhangzu_analysis_map">
 		SELECT 1,
 		ZHI.AC ac,

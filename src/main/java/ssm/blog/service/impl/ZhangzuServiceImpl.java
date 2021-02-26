@@ -24,6 +24,12 @@ public class ZhangzuServiceImpl implements ZhangzuService {
     }
 	public List<Zhangzu> get_2018(){
     	return zhangzudao.get_2018();
+    }
+	public List<Zhangzu> get_2019(){
+    	return zhangzudao.get_2019();
+    }	
+	public List<Zhangzu> get_2020(){
+    	return zhangzudao.get_2020();
     }	
 	public List<Zhangzu> get_one_month_min(String ac){
     	return zhangzudao.get_one_month_min(ac);
@@ -48,6 +54,12 @@ public class ZhangzuServiceImpl implements ZhangzuService {
     }
 	public List<ZhangzuAnalysis> get_analysis_2019(){
     	return zhangzudao.get_analysis_2019();
+    }
+	public List<ZhangzuAnalysis> get_analysis_2020(){
+    	return zhangzudao.get_analysis_2020();
+    }
+	public List<ZhangzuAnalysis> get_analysis_2021(){
+    	return zhangzudao.get_analysis_2021();
     }
 	public List<ZhangzuAnalysis> get_analysis_by_type(String ac){
     	return zhangzudao.get_analysis_by_type(ac);
