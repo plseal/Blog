@@ -200,25 +200,31 @@ public class FamilyController {
 			my_year3 = Integer.parseInt(fa.getLunar_birth2().split("-")[0]);
 			my_month3 = Integer.parseInt(fa.getLunar_birth2().split("-")[1]);
 			my_day3 = Integer.parseInt(fa.getLunar_birth2().split("-")[2]);
+			logger.info("["+this.getClass()+"][update][Lunar_birth2]"+fa.getLunar_birth2());
 			//sys_date = "2017-10-1";
 			String name = fa.getName();
+			//過去の誕生日を来年に更新
 			if (remind_date_from_db.getTime() < today_date.getTime()){
 				logger.info("["+this.getClass()+"][update][remind_date update is needed]");
 				
-			
+				//陽暦
 				if(name.indexOf("阳历") != -1) {
 					remind_date = Integer.parseInt(sys_date.split("-")[0]) + 1 + "-" + birth.split("-")[1] + "-" + birth.split("-")[2];
-					
+				//旧暦
 				} else {
 					int[] out3 = LunarCalendar.lunarToSolar(Integer.parseInt(sys_date.split("-")[0])+1, my_month3, my_day3,1==2);
 					remind_date = String.valueOf(out3[0] + "-" + out3[1] + "-" + out3[2]);
 				}
-
+			//未来の誕生日
 			} else {
+				//陽暦
 				if(name.indexOf("阳历") != -1) {
 					remind_date = sys_date.split("-")[0] + "-" + birth.split("-")[1] + "-" + birth.split("-")[2];
-					
-				} 
+				//当年度の旧暦で再計算	
+				} else {
+					int[] out3 = LunarCalendar.lunarToSolar(sys_date.split("-")[0]), my_month3, my_day3,1==2);
+					remind_date = String.valueOf(out3[0] + "-" + out3[1] + "-" + out3[2]);
+				}
 				
 			}
 			logger.info("["+this.getClass()+"][update][remind_date after]"+remind_date);
