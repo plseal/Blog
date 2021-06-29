@@ -222,7 +222,7 @@ public class FamilyController {
 					remind_date = sys_date.split("-")[0] + "-" + birth.split("-")[1] + "-" + birth.split("-")[2];
 				//当年度の旧暦で再計算	
 				} else {
-					int[] out3 = LunarCalendar.lunarToSolar(sys_date.split("-")[0]), my_month3, my_day3,1==2);
+					int[] out3 = LunarCalendar.lunarToSolar(Integer.parseInt(sys_date.split("-")[0])+0, my_month3, my_day3,1==2);
 					remind_date = String.valueOf(out3[0] + "-" + out3[1] + "-" + out3[2]);
 				}
 				
