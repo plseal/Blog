@@ -119,7 +119,7 @@
 										<td>${zhangzu.id}</td>
 										-->
 										<td>${zz_analysis.ac}</td>
-										<td><a href='${pageContext.request.contextPath}/zhangzu/to_index_zhangzu.do?AC=${zz_analysis.ac}&IO=MIN&AC_TYPE_E=${zz_analysis.ac_type_e}'>${zz_analysis.ac_min}</td>
+										<td><a href='${pageContext.request.contextPath}/zhangzu/to_index_zhangzu_for_analysis.do?AC=${zz_analysis.ac}&IO=MIN&AC_TYPE_E=${zz_analysis.ac_type_e}'>${zz_analysis.ac_min}</td>
 										<td>${zz_analysis.ac_type}</td>
 										
 										

@@ -50,3 +50,8 @@ Temporary Items
 *.class
 *.war
 target/
+.classpath
+.project
+.settings/org.eclipse.jdt.apt.core.prefs
+.settings/org.eclipse.jdt.core.prefs
+.classpath

@@ -11,13 +11,12 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import ssm.blog.entity.Zhangzu;
 import ssm.blog.entity.ZhangzuAnalysis;
-import ssm.blog.lucene.BlogIndex;
 import ssm.blog.service.BillService;
 import ssm.blog.service.BlogService;
 import ssm.blog.service.BlogTypeService;
@@ -46,22 +45,6 @@ public class ZhangzuController {
 	
 	@Resource(name="expressService")
 	private ExpressService expressService;
-	
-	public static final int pagesize = 10;
-	
-	@Value("#{setting[STR1]}")
-	private String STR1; 
-
-	@Value("#{setting[STR2]}")
-	private String STR2; 
-	
-	@Value("#{setting[STR3]}")
-	private String STR3; 
-	
-	@Value("#{setting[STR4]}")
-	private String STR4;
-	
-	private BlogIndex blogIndex = new BlogIndex();
 	
 	@RequestMapping("/to_index_zhangzu")
 	public String to_index_zhangzu(
@@ -120,6 +103,32 @@ public class ZhangzuController {
 		request.setAttribute("INDEX_AC", AC);
 		//ResponseUtil.write(response, result);
 		logger.info("["+this.getClass()+"][to_index_zhangzu][end] to index_zhangzu.jsp");
+		return "../../zhangzu/index_zhangzu";
+	}
+
+	@RequestMapping("/to_index_zhangzu_for_analysis")
+	public String to_index_zhangzu_for_analysis(
+			String FLG,
+			String AC,
+			String IO,
+			String AC_TYPE,
+			@RequestParam("AC_TYPE_E") final String AC_TYPE_E,
+			Zhangzu zhangzu,
+			HttpServletRequest request) throws Exception {
+		logger.info("["+this.getClass()+"][to_index_zhangzu_for_analysis][start]");
+		logger.info("["+this.getClass()+"][to_index_zhangzu_for_analysis][FLG]"+FLG);
+		logger.info("["+this.getClass()+"][to_index_zhangzu_for_analysis][AC]"+AC);
+		logger.info("["+this.getClass()+"][to_index_zhangzu_for_analysis][IO]"+IO);
+		logger.info("["+this.getClass()+"][to_index_zhangzu_for_analysis][AC_TYPE_E]"+AC_TYPE_E);
+		List<Zhangzu> zhangzus = new ArrayList<>();
+
+		zhangzus = zhangzuService.get_one_month_min_type(AC,AC_TYPE_E);
+		
+		request.setAttribute("zhangzus", zhangzus);
+
+		request.setAttribute("INDEX_AC", AC);
+		//ResponseUtil.write(response, result);
+		logger.info("["+this.getClass()+"][to_index_zhangzu_for_analysis][end] to index_zhangzu.jsp");
 		return "../../zhangzu/index_zhangzu";
 	}
 	@RequestMapping("/get_one_zhangzu")
