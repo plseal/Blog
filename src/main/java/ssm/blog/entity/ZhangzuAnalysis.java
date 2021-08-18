@@ -8,7 +8,7 @@ public class ZhangzuAnalysis {
 	private String ac;
 	private String ac_type;
 	//encoded ac_type
-	private String ac_type_e;
+	//private String ac_type_e;
 	private long ac_plus;
 	private long ac_min;
 	private long ac_result;
@@ -30,12 +30,6 @@ public class ZhangzuAnalysis {
 	}
 	public String getAc_type(){
 		return ac_type;
-	}
-	public void setAc_type_e(String ac_type_e){
-		this.ac_type_e=ac_type_e;
-	}
-	public String getAc_type_e(){
-		return ac_type_e;
 	}
 	public void setAc_plus(long ac_plus){
 		this.ac_plus=ac_plus;

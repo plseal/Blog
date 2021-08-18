@@ -1,12 +1,6 @@
 package ssm.blog.service.impl;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -14,14 +8,10 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import ssm.blog.dao.AccessTokenDao;
 import ssm.blog.dao.ExchangeDao;
-import ssm.blog.entity.AccessToken;
 import ssm.blog.entity.Exchange;
-import ssm.blog.service.AccessTokenService;
 import ssm.blog.service.ExchangeService;
 import ssm.blog.util.WeixinUtil;
-import ssm.blog.util.JUHEUtil;
 import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
 /**

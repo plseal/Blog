@@ -52,7 +52,6 @@ public class ZhangzuController {
 			String AC,
 			String IO,
 			String AC_TYPE,
-			String AC_TYPE_E,
 			Zhangzu zhangzu,
 			HttpServletRequest request) throws Exception {
 		logger.info("["+this.getClass()+"][to_index_zhangzu][start]");
@@ -60,7 +59,6 @@ public class ZhangzuController {
 		logger.info("["+this.getClass()+"][to_index_zhangzu][AC]"+AC);
 		logger.info("["+this.getClass()+"][to_index_zhangzu][IO]"+IO);
 		logger.info("["+this.getClass()+"][to_index_zhangzu][AC_TYPE]"+AC_TYPE);
-		logger.info("["+this.getClass()+"][to_index_zhangzu][AC_TYPE_E]"+AC_TYPE_E);
 		List<Zhangzu> zhangzus=zhangzuService.get_all();
 		if ("UPDATE".equals(FLG)) {
 			zhangzuService.update(zhangzu);
@@ -78,13 +76,7 @@ public class ZhangzuController {
 			if ("PLUS".equals(IO)) {
 			     zhangzus = zhangzuService.get_one_month_plus(AC);
 			}else if ("MIN".equals(IO)) {
-				 
-				 if(AC_TYPE_E != null){
-					 logger.info("["+this.getClass()+"][to_index_zhangzu][AC_TYPE_E]"+URLDecoder.decode(AC_TYPE_E,"UTF-8"));
-					 zhangzus = zhangzuService.get_one_month_min_type(AC,URLDecoder.decode(AC_TYPE_E,"UTF-8"));
-				 }else{
-					 zhangzus = zhangzuService.get_one_month_min(AC);
-				 }
+				zhangzus = zhangzuService.get_one_month_min(AC);
 			}else if ("MAIHUO".equals(IO)) {
 				 zhangzus = zhangzuService.get_one_month_maihuo(AC);
 
@@ -111,18 +103,16 @@ public class ZhangzuController {
 			String FLG,
 			String AC,
 			String IO,
-			String AC_TYPE,
-			@RequestParam("AC_TYPE_E") final String AC_TYPE_E,
+			@RequestParam("AC_TYPE") final String AC_TYPE,
 			Zhangzu zhangzu,
 			HttpServletRequest request) throws Exception {
 		logger.info("["+this.getClass()+"][to_index_zhangzu_for_analysis][start]");
 		logger.info("["+this.getClass()+"][to_index_zhangzu_for_analysis][FLG]"+FLG);
 		logger.info("["+this.getClass()+"][to_index_zhangzu_for_analysis][AC]"+AC);
 		logger.info("["+this.getClass()+"][to_index_zhangzu_for_analysis][IO]"+IO);
-		logger.info("["+this.getClass()+"][to_index_zhangzu_for_analysis][AC_TYPE_E]"+AC_TYPE_E);
 		List<Zhangzu> zhangzus = new ArrayList<>();
 
-		zhangzus = zhangzuService.get_one_month_min_type(AC,AC_TYPE_E);
+		zhangzus = zhangzuService.get_one_month_min_type(AC,AC_TYPE);
 		
 		request.setAttribute("zhangzus", zhangzus);
 
@@ -439,12 +429,12 @@ public class ZhangzuController {
 		zz_analysis = new ZhangzuAnalysis();
 		list_zz_type_analysis = zhangzuService.get_analysis_by_type(zhangzu_ac);
 		
-		String strAcTypeE;
-		for(int i = 0 ; i < list_zz_type_analysis.size() ; i++) {
-			strAcTypeE = URLEncoder.encode(list_zz_type_analysis.get(i).getAc_type(),"UTF-8");
-			logger.info("["+this.getClass()+"][to_zhangzu_analysis_2021][strAcTypeE]"+strAcTypeE);
-			list_zz_type_analysis.get(i).setAc_type_e(strAcTypeE);
-		}
+		//String strAcTypeE;
+		//for(int i = 0 ; i < list_zz_type_analysis.size() ; i++) {
+			//strAcTypeE = URLEncoder.encode(list_zz_type_analysis.get(i).getAc_type(),"UTF-8");
+			//logger.info("["+this.getClass()+"][to_zhangzu_analysis_2021][strAcTypeE]"+strAcTypeE);
+			//list_zz_type_analysis.get(i).setAc_type_e(strAcTypeE);
+		//}
 		request.setAttribute("list_zz_type_analysis", list_zz_type_analysis);
 		
 		

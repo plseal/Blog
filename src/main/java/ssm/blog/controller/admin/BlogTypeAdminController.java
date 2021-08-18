@@ -15,7 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import ssm.blog.controller.BloggerController;
 import ssm.blog.entity.BlogType;
 import ssm.blog.entity.PageBean;
 import ssm.blog.service.BlogService;

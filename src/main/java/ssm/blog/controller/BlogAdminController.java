@@ -11,17 +11,12 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
 
-import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
-import ssm.blog.controller.IndexController;
 import ssm.blog.entity.Blog;
 import ssm.blog.entity.PageBean;
-import ssm.blog.lucene.BlogIndex;
 import ssm.blog.service.BlogService;
 import ssm.blog.service.CommentService;
 import ssm.blog.util.DateJsonValueProcessor;
@@ -36,19 +31,10 @@ import ssm.blog.util.StringUtil;
 @Controller
 @RequestMapping("/admin/blog")
 public class BlogAdminController {
-	private static Logger logger = Logger.getLogger(BlogAdminController.class);
 	@Resource
 	private BlogService blogService;
 	@Resource
 	private CommentService commentService;
-	
-	private BlogIndex blogIndex = new BlogIndex();
-
-
-	
-	
-	
-
 	
 	@RequestMapping("/listBlog")
 	public String listBlog(

@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import ssm.blog.entity.Zhangzu;
@@ -14,7 +13,6 @@ import ssm.blog.dao.ZhangzuDao;
 
 @Service("zhangzuService")
 public class ZhangzuServiceImpl implements ZhangzuService {
-	private static Logger logger = Logger.getLogger(ZhangzuServiceImpl.class);
 	
 	@Resource
 	private ZhangzuDao zhangzudao;

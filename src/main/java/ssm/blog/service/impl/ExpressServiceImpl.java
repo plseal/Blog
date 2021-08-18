@@ -4,16 +4,13 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import ssm.blog.entity.Express;
 import ssm.blog.service.ExpressService;
-import ssm.blog.dao.BloggerDao;
 import ssm.blog.dao.ExpressDao;
 @Service("expressService")
 public class ExpressServiceImpl implements ExpressService {
-	private static Logger logger = Logger.getLogger(ExpressServiceImpl.class);
 	
 	@Resource
 	private ExpressDao expressDao;

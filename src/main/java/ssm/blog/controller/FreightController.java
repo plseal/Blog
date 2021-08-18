@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import net.sf.json.JSONObject;
+//import net.sf.json.JSONObject;
 import ssm.blog.service.BlogService;
 import ssm.blog.service.BlogTypeService;
 import ssm.blog.service.ExchangeService;
@@ -54,7 +54,7 @@ public class FreightController {
         String se_sell ="";
 		Double double_se_sell ;
         
-        JSONObject jsonObj;
+        //JSONObject jsonObj;
 		//logger.info("["+this.getClass()+"][calculate][strResult]"+strResult);
         //jsonObj  = JSONObject.fromObject(strResult);
         //if ("1".equals(jsonObj.getString("count"))) {
