@@ -28,6 +28,7 @@
 									  <option value="回国开支">回国开支</option>
 									  <option value="张家赫">张家赫</option>
 									  <option value="留学">留学</option>
+									  <option value="创世少儿教育">创世少儿教育</option>
 									  <option value="宋工资">宋工资</option>
 									  <option value="李工资">李工资</option>
 									  <option value="诚诚津贴">诚诚津贴</option>

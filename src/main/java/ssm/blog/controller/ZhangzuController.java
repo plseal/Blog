@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.net.URLEncoder;
+import java.net.URLDecoder;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -67,6 +69,7 @@ public class ZhangzuController {
 			String AC,
 			String IO,
 			String AC_TYPE,
+			String AC_TYPE_E,
 			Zhangzu zhangzu,
 			HttpServletRequest request) throws Exception {
 		logger.info("["+this.getClass()+"][to_index_zhangzu][start]");
@@ -74,6 +77,7 @@ public class ZhangzuController {
 		logger.info("["+this.getClass()+"][to_index_zhangzu][AC]"+AC);
 		logger.info("["+this.getClass()+"][to_index_zhangzu][IO]"+IO);
 		logger.info("["+this.getClass()+"][to_index_zhangzu][AC_TYPE]"+AC_TYPE);
+		logger.info("["+this.getClass()+"][to_index_zhangzu][AC_TYPE_E]"+AC_TYPE_E);
 		List<Zhangzu> zhangzus=zhangzuService.get_all();
 		if ("UPDATE".equals(FLG)) {
 			zhangzuService.update(zhangzu);
@@ -92,8 +96,9 @@ public class ZhangzuController {
 			     zhangzus = zhangzuService.get_one_month_plus(AC);
 			}else if ("MIN".equals(IO)) {
 				 
-				 if(AC_TYPE != null){
-					 zhangzus = zhangzuService.get_one_month_min_type(AC,AC_TYPE);
+				 if(AC_TYPE_E != null){
+					 logger.info("["+this.getClass()+"][to_index_zhangzu][AC_TYPE_E]"+URLDecoder.decode(AC_TYPE_E,"UTF-8"));
+					 zhangzus = zhangzuService.get_one_month_min_type(AC,URLDecoder.decode(AC_TYPE_E,"UTF-8"));
 				 }else{
 					 zhangzus = zhangzuService.get_one_month_min(AC);
 				 }
@@ -425,6 +430,12 @@ public class ZhangzuController {
 		zz_analysis = new ZhangzuAnalysis();
 		list_zz_type_analysis = zhangzuService.get_analysis_by_type(zhangzu_ac);
 		
+		String strAcTypeE;
+		for(int i = 0 ; i < list_zz_type_analysis.size() ; i++) {
+			strAcTypeE = URLEncoder.encode(list_zz_type_analysis.get(i).getAc_type(),"UTF-8");
+			logger.info("["+this.getClass()+"][to_zhangzu_analysis_2021][strAcTypeE]"+strAcTypeE);
+			list_zz_type_analysis.get(i).setAc_type_e(strAcTypeE);
+		}
 		request.setAttribute("list_zz_type_analysis", list_zz_type_analysis);
 		
 		
