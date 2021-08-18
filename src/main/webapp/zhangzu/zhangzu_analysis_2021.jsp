@@ -119,7 +119,7 @@
 										<td>${zhangzu.id}</td>
 										-->
 										<td>${zz_analysis.ac}</td>
-										<td><a href='${pageContext.request.contextPath}/zhangzu/to_index_zhangzu_for_analysis.do?AC=${zz_analysis.ac}&IO=MIN&AC_TYPE=${zz_analysis.ac_type}'>${zz_analysis.ac_min}</td>
+										<td><a href='https://www.plseal.com:8090/index_for_analysis?AC=${zz_analysis.ac}&IO=MIN&AC_TYPE=${zz_analysis.ac_type}'>${zz_analysis.ac_min}</td>
 										<td>${zz_analysis.ac_type}</td>
 										
 										

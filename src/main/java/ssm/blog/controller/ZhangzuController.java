@@ -98,30 +98,7 @@ public class ZhangzuController {
 		return "../../zhangzu/index_zhangzu";
 	}
 
-	@RequestMapping("/to_index_zhangzu_for_analysis")
-	public String to_index_zhangzu_for_analysis(
-			String FLG,
-			String AC,
-			String IO,
-			@RequestParam("AC_TYPE") final String AC_TYPE,
-			Zhangzu zhangzu,
-			HttpServletRequest request) throws Exception {
-		logger.info("["+this.getClass()+"][to_index_zhangzu_for_analysis][start]");
-		logger.info("["+this.getClass()+"][to_index_zhangzu_for_analysis][FLG]"+FLG);
-		logger.info("["+this.getClass()+"][to_index_zhangzu_for_analysis][AC]"+AC);
-		logger.info("["+this.getClass()+"][to_index_zhangzu_for_analysis][IO]"+IO);
-		logger.info("["+this.getClass()+"][to_index_zhangzu_for_analysis][AC_TYPE]"+AC_TYPE);
-		List<Zhangzu> zhangzus = new ArrayList<>();
 
-		zhangzus = zhangzuService.get_one_month_min_type(AC,AC_TYPE);
-		
-		request.setAttribute("zhangzus", zhangzus);
-
-		request.setAttribute("INDEX_AC", AC);
-		//ResponseUtil.write(response, result);
-		logger.info("["+this.getClass()+"][to_index_zhangzu_for_analysis][end] to index_zhangzu.jsp");
-		return "../../zhangzu/index_zhangzu";
-	}
 	@RequestMapping("/get_one_zhangzu")
 	public String get_one_zhangzu(
 			String FLG,
