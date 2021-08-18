@@ -110,6 +110,7 @@ public class ZhangzuController {
 		logger.info("["+this.getClass()+"][to_index_zhangzu_for_analysis][FLG]"+FLG);
 		logger.info("["+this.getClass()+"][to_index_zhangzu_for_analysis][AC]"+AC);
 		logger.info("["+this.getClass()+"][to_index_zhangzu_for_analysis][IO]"+IO);
+		logger.info("["+this.getClass()+"][to_index_zhangzu_for_analysis][AC_TYPE]"+AC_TYPE);
 		List<Zhangzu> zhangzus = new ArrayList<>();
 
 		zhangzus = zhangzuService.get_one_month_min_type(AC,AC_TYPE);
