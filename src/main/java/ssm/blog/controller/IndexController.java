@@ -1,6 +1,5 @@
 package ssm.blog.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,14 +20,12 @@ import org.springframework.web.servlet.ModelAndView;
 import ssm.blog.entity.Blog;
 import ssm.blog.entity.BlogType;
 import ssm.blog.entity.PageBean;
-import ssm.blog.entity.SexType;
 import ssm.blog.entity.ChildHealthRecord;
 
 import ssm.blog.service.BlogService;
 import ssm.blog.service.BlogTypeService;
 import ssm.blog.service.ChildHealthRecordService;
 
-import ssm.blog.util.PageUtil;
 import ssm.blog.util.StringUtil;
 
 /**
@@ -101,11 +98,6 @@ public class IndexController {
 		if(StringUtil.isNotEmpty(releaseDateStr)) {
 			param.append("releaseDateStr=" + releaseDateStr + "&");
 		}
-		modelAndView.addObject("pageCode", PageUtil.genPagination( 
-				request.getContextPath() + "/index.html", 
-				blogService.getTotal(map), 
-				Integer.parseInt(page), 10,
-				param.toString()));
 		BlogType blogType = blogTypeService.findById(Integer.parseInt(typeId));
 		modelAndView.addObject("blogList", blogList);
 		

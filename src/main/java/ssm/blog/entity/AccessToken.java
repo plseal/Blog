@@ -1,6 +1,5 @@
 package ssm.blog.entity;
 
-import java.sql.Time;
 
 /**
  * 微信通用接口凭证

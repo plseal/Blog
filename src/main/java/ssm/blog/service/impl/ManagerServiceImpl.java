@@ -5,13 +5,8 @@ import javax.annotation.Resource;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
-import net.sf.json.JSONObject;
-import ssm.blog.entity.AccessToken;
-import ssm.blog.entity.Menu;
 import ssm.blog.service.AccessTokenService;
 import ssm.blog.service.ManagerService;
-import ssm.blog.service.MenuService;
-import ssm.blog.util.WeixinUtil;
 @Service("managerService")
 public class ManagerServiceImpl implements ManagerService {
 	private static Logger logger = Logger.getLogger(ManagerServiceImpl.class);

@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,7 +17,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.sf.json.JSONObject;
@@ -30,7 +28,6 @@ import ssm.blog.lucene.BlogIndex;
 import ssm.blog.service.BlogService;
 import ssm.blog.service.BlogTypeService;
 import ssm.blog.service.CommentService;
-import ssm.blog.util.PageUtil;
 import ssm.blog.util.ResponseUtil;
 import ssm.blog.util.StringUtil;
 import ssm.blog.entity.Express;
@@ -336,34 +333,6 @@ public class HaoyunController {
 		return modelAndView;
 	}
 
-	@RequestMapping("/search")
-	public ModelAndView search(
-			@RequestParam(value = "q", required = false) String q,
-			@RequestParam(value = "page", required = false) String page,
-			HttpServletRequest request) throws Exception {
-
-		int pageSize = 10;
-		ModelAndView modelAndView = new ModelAndView();
-		List<Blog> blogIndexList = blogIndex.searchBlog(q);
-		if(page == null) { 
-			page = "1";
-		}
-		int fromIndex = (Integer.parseInt(page) - 1) * pageSize; 
-		int toIndex = blogIndexList.size() >= Integer.parseInt(page) * pageSize ? Integer
-				.parseInt(page) * pageSize
-				: blogIndexList.size();
-		modelAndView.addObject("blogIndexList", blogIndexList.subList(fromIndex, toIndex));
-		modelAndView.addObject("pageCode", PageUtil.getUpAndDownPageCode(
-				Integer.parseInt(page), blogIndexList.size(), q, pageSize,
-				request.getServletContext().getContextPath()));
-		modelAndView.addObject("q", q); 
-		modelAndView.addObject("resultTotal", blogIndexList.size()); 
-		modelAndView.addObject("commonPage", "foreground/blog/searchResult.jsp");
-		modelAndView.addObject("title", "search'" + q + "'result");
-		modelAndView.setViewName("mainTemp");
-		return modelAndView;
-	}
-	
 	@RequestMapping(value="/to_writeBlog",method=RequestMethod.GET)
 	public ModelAndView writeBlog(){
 		logger.info("["+this.getClass()+"][to_writeBlog][start]");

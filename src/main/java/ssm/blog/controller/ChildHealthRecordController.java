@@ -13,11 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ssm.blog.entity.ChildHealthRecord;
-import ssm.blog.entity.Message;
 import ssm.blog.entity.SexType;
 import ssm.blog.service.BlogTypeService;
 import ssm.blog.service.ChildHealthRecordService;
-import ssm.blog.util.WeixinUtil;
 
 /**
  * @Description Controller

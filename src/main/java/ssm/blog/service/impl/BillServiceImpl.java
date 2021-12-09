@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import ssm.blog.entity.Bill;
@@ -13,7 +12,6 @@ import ssm.blog.dao.BillDao;
 
 @Service("billService")
 public class BillServiceImpl implements BillService {
-	private static Logger logger = Logger.getLogger(BillServiceImpl.class);
 	
 	@Resource
 	private BillDao billDao;

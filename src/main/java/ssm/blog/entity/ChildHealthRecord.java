@@ -1,6 +1,5 @@
 package ssm.blog.entity;
 
-import java.sql.Time;
 
 /**
  * 

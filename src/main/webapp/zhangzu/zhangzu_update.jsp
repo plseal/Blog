@@ -100,11 +100,12 @@
 	
 
 	
-<script type="text/javascript">
+<script type="text/javascript" th:inline="javascript">
+/*<![CDATA[*/
 window.onload=function(){
 
-	$("#z_type").val("${zhangzu.z_type}");
-	$("#z_io_div").val("${zhangzu.z_io_div}");
+	$("#z_type").val("/*[[ ${zhangzu.z_type} ]]*/");
+	$("#z_io_div").val("/*[[ ${zhangzu.z_io_div} ]]*/");
 
 }
 function do_post() {  
@@ -158,6 +159,7 @@ $('.form_date').on('changeDate', function(ev){
 		
 	//}
 });	
+/*]]>*/
 </script>
 </form>
 </div>

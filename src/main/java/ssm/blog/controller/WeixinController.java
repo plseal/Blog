@@ -2,7 +2,6 @@ package ssm.blog.controller;
 
 
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import ssm.blog.entity.Message;
 import ssm.blog.entity.Reply;
@@ -57,10 +55,8 @@ public class WeixinController {
 				String content = message.getContent();//消息内容
 				String [] cs = content.split("_");//消息内容都以下划线_分隔
 				if(cs.length == 2){
-					int studentid ;//学生编号
 					String process = cs[1];//操作
 					try {
-						studentid = Integer.parseInt(cs[0]);
 						if("考试".equals(process)){
 						} 
 					} catch (NumberFormatException e) {
@@ -149,10 +145,8 @@ public class WeixinController {
 				String content = message.getContent();//消息内容
 				String [] cs = content.split("_");//消息内容都以下划线_分隔
 				if(cs.length == 2){
-					int studentid ;//学生编号
 					String process = cs[1];//操作
 					try {
-						studentid = Integer.parseInt(cs[0]);
 						if("考试".equals(process)){
 						} 
 					} catch (NumberFormatException e) {
@@ -242,10 +236,8 @@ public class WeixinController {
 				String content = message.getContent();//消息内容
 				String [] cs = content.split("_");//消息内容都以下划线_分隔
 				if(cs.length == 2){
-					int studentid ;//学生编号
 					String process = cs[1];//操作
 					try {
-						studentid = Integer.parseInt(cs[0]);
 						if("考试".equals(process)){
 						} 
 					} catch (NumberFormatException e) {

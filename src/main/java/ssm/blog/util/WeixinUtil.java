@@ -19,7 +19,6 @@ import org.dom4j.io.SAXReader;
 import ssm.blog.entity.AccessToken;
 import ssm.blog.entity.Article;
 import ssm.blog.entity.ExamMark;
-import ssm.blog.entity.Menu;
 import ssm.blog.entity.Message;
 import ssm.blog.entity.Reply;
 import com.thoughtworks.xstream.XStream;
@@ -29,7 +28,6 @@ import com.thoughtworks.xstream.io.xml.PrettyPrintWriter;
 import com.thoughtworks.xstream.io.xml.XppDriver;
 
 import java.io.BufferedReader;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.ConnectException;

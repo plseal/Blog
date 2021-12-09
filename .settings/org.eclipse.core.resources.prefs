@@ -1,7 +1,6 @@
 eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
 encoding//src/main/java/com/baidu/ueditor/define/MultiState.java=UTF-8
-encoding//src/main/java/ssm/blog/controller/BlogController.java=UTF-8
 encoding//src/main/java/ssm/blog/controller/BloggerController.java=UTF-8
 encoding//src/main/java/ssm/blog/controller/ChildHealthRecordController.java=UTF-8
 encoding//src/main/java/ssm/blog/controller/CommentController.java=UTF-8
@@ -14,9 +13,7 @@ encoding//src/main/java/ssm/blog/entity/BlogType.java=UTF-8
 encoding//src/main/java/ssm/blog/entity/ChildHealthRecord.java=UTF-8
 encoding//src/main/java/ssm/blog/entity/Exchange.java=UTF-8
 encoding//src/main/java/ssm/blog/entity/SexType.java=UTF-8
-encoding//src/main/java/ssm/blog/listener/InitBloggerData.java=GBK
 encoding//src/main/java/ssm/blog/service/BlogTypeService.java=UTF-8
-encoding//src/main/java/ssm/blog/util/PageUtil.java=UTF-8
 encoding//src/main/java/ssm/blog/util/QiniuHelper.java=UTF-8
 encoding//src/main/resources=UTF-8
 encoding//src/main/webapp/WEB-INF/views/blogManage.jsp=UTF-8

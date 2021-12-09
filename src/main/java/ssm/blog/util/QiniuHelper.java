@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.UUID;
 
 import com.qiniu.common.QiniuException;
-import com.qiniu.http.Response;
 import com.qiniu.storage.UploadManager;
 import com.qiniu.util.Auth;
 
@@ -46,7 +45,7 @@ public class QiniuHelper {
 	    	Auth auth = Auth.create(ACCESS_KEY, SECRET_KEY);
 	    	
 	    	//上传文件
-	    	Response res = uploadManager.put(file, key, auth.uploadToken(Scope, key));
+	    	uploadManager.put(file, key, auth.uploadToken(Scope, key));
     	} catch (Exception e) {
     		return "";
     	}
