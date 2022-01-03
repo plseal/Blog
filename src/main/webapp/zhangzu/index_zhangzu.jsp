@@ -37,6 +37,10 @@
 		        </div>
 				<br/>
 		        <div class="col-sm-12 ">
+					<button type="button" class="btn btn-lg btn-block btn-info" onclick="location.href = '<%=request.getContextPath() %>/zhangzu/to_zhangzu_analysis_2022.do?zhangzu_ac=${INDEX_AC}';">统计分析(2022年)</button>
+				  </div>
+				  <br/>
+		        <div class="col-sm-12 ">
 		          <button type="button" class="btn btn-lg btn-block btn-info" onclick="location.href = '<%=request.getContextPath() %>/zhangzu/to_zhangzu_analysis_2021.do?zhangzu_ac=${INDEX_AC}';">统计分析(2021年)</button>
 		        </div>
 				<br/>
@@ -52,6 +56,10 @@
 		          <button type="button" class="btn btn-lg btn-block btn-info" onclick="location.href = '<%=request.getContextPath() %>/zhangzu/to_zhangzu_analysis.do?zhangzu_ac=${INDEX_AC}';">统计分析(2018年)</button>
 		        </div>
 				<br/>
+		        <div class="col-sm-12 ">
+					<button type="button" class="btn btn-lg btn-block btn-warning" onclick="location.href = '<%=request.getContextPath() %>/zhangzu/to_index_zhangzu.do?FLG=2021';">2021年</button>
+				  </div>
+				  <br/>
 		        <div class="col-sm-12 ">
 		          <button type="button" class="btn btn-lg btn-block btn-warning" onclick="location.href = '<%=request.getContextPath() %>/zhangzu/to_index_zhangzu.do?FLG=2020';">2020年</button>
 		        </div>

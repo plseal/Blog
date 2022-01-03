@@ -29,6 +29,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM t_zhangzu WHERE z_date like CONCAT('%',#{0},'%') and z_name like CONCAT('%',#{1},'%') order by z_date desc 
 	</select>
 	<select id="get_all" parameterType="String" resultMap="zhangzuMap">
+		SELECT * FROM t_zhangzu WHERE z_date like '2022%' order by z_date desc 
+	</select>
+	<select id="get_2021" parameterType="String" resultMap="zhangzuMap">
 		SELECT * FROM t_zhangzu WHERE z_date like '2021%' order by z_date desc 
 	</select>
 	<select id="get_2020" parameterType="String" resultMap="zhangzuMap">
@@ -63,6 +66,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 	</select>
 	
+	<select id="get_analysis_2022" parameterType="String" resultMap="zhangzu_analysis_map">
+		SELECT 1,
+		ZHI.AC ac,
+		'XXXX' ac_type,
+		SHOU.AMOUNT ac_plus,
+		ZHI.AMOUNT ac_min,
+		SHOU.AMOUNT - ZHI.AMOUNT ac_result,
+		MAI.AMOUNT ac_maihuo
+		FROM v_zhangzu_zhichu_2022 ZHI 
+		left join v_zhangzu_shouru_2022 SHOU on  ZHI.AC = SHOU.AC
+		left join v_zhangzu_maihuo_2022 MAI on  ZHI.AC = MAI.AC
+		order by ac
+		
+	</select>
+
 	<select id="get_analysis_2021" parameterType="String" resultMap="zhangzu_analysis_map">
 		SELECT 1,
 		ZHI.AC ac,

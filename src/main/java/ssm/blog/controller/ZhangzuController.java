@@ -69,6 +69,8 @@ public class ZhangzuController {
 			zhangzus = zhangzuService.get_2019();
 		} else if ("2020".equals(FLG)){
 			zhangzus = zhangzuService.get_2020();
+		} else if ("2021".equals(FLG)){
+			zhangzus = zhangzuService.get_2021();
 		}else {
 			if ("PLUS".equals(IO)) {
 			     zhangzus = zhangzuService.get_one_month_plus(AC);
@@ -420,4 +422,76 @@ public class ZhangzuController {
 		logger.info("["+this.getClass()+"][to_zhangzu_analysis_2021][end] to zhangzu_analysis_2021.jsp");
 		return "../../zhangzu/zhangzu_analysis_2021";
 	}
+
+	@RequestMapping("/to_zhangzu_analysis_2022")
+	public String to_zhangzu_analysis_2022(
+			String zhangzu_ac,
+			HttpServletRequest request) throws Exception {
+		logger.info("["+this.getClass()+"][to_zhangzu_analysis_2022][start]");
+		logger.info("["+this.getClass()+"][to_zhangzu_analysis_2022][zhangzu_ac]"+zhangzu_ac);
+		
+		if ("".equals(zhangzu_ac)) {
+			zhangzu_ac = "2022/01";
+		}
+		
+		ZhangzuAnalysis zz_analysis;
+		List<ZhangzuAnalysis> list1_zz_analysis;
+		long ac_min ;
+		long ac_plus ;
+		long ac_result;
+		long ac_maihuo;
+		List<ZhangzuAnalysis> list_zz_analysis = new ArrayList<ZhangzuAnalysis>();
+		
+		zz_analysis = new ZhangzuAnalysis();
+		list1_zz_analysis = zhangzuService.get_analysis_all(zhangzu_ac);
+		ac_min = 0;
+		ac_plus = 0;
+		ac_result = 0;
+		ac_maihuo = 0;
+		//	2022/01	XXXX	0	    -911732	0  zhichu
+		//	2022/01	XXXX	374334	0	    0
+		//	2022/01	XXXX	0	    -911732	0  maihuo
+		logger.info("["+this.getClass()+"][to_zhangzu_analysis_2022][list1_zz_analysis.size()]"+list1_zz_analysis.size());
+		for(int i = 0 ; i < list1_zz_analysis.size() ; i++) {
+			if (i == 0 ) {
+				ac_min = list1_zz_analysis.get(i).getAc_min();
+			} else if (i == 1){
+				ac_plus = list1_zz_analysis.get(i).getAc_plus();
+			} else {
+				ac_maihuo = list1_zz_analysis.get(i).getAc_min();
+			}
+		}
+		ac_result = ac_plus + ac_min;
+		zz_analysis.setAc(zhangzu_ac);
+		zz_analysis.setAc_min(ac_min);
+		zz_analysis.setAc_plus(ac_plus);
+		zz_analysis.setAc_result(ac_result);
+		zz_analysis.setAc_maihuo(ac_maihuo);
+		logger.info("["+this.getClass()+"][to_zhangzu_analysis_2022][ac_maihuo]"+ac_maihuo);
+		list_zz_analysis.add(zz_analysis);
+
+		request.setAttribute("list_zz_analysis", list_zz_analysis);
+
+		List<ZhangzuAnalysis> list_zz_type_analysis = new ArrayList<ZhangzuAnalysis>();
+		zz_analysis = new ZhangzuAnalysis();
+		list_zz_type_analysis = zhangzuService.get_analysis_by_type(zhangzu_ac);
+		
+		//String strAcTypeE;
+		//for(int i = 0 ; i < list_zz_type_analysis.size() ; i++) {
+			//strAcTypeE = URLEncoder.encode(list_zz_type_analysis.get(i).getAc_type(),"UTF-8");
+			//logger.info("["+this.getClass()+"][to_zhangzu_analysis_2022][strAcTypeE]"+strAcTypeE);
+			//list_zz_type_analysis.get(i).setAc_type_e(strAcTypeE);
+		//}
+		request.setAttribute("list_zz_type_analysis", list_zz_type_analysis);
+		
+		
+		
+		List<ZhangzuAnalysis> list_2022_zz_analysis = zhangzuService.get_analysis_2022();
+		request.setAttribute("list_2022_zz_analysis", list_2022_zz_analysis);
+		//ResponseUtil.write(response, result);
+		logger.info("["+this.getClass()+"][to_zhangzu_analysis_2022][end] to zhangzu_analysis_2022.jsp");
+		return "../../zhangzu/zhangzu_analysis_2022";
+	}
+
+
 }
