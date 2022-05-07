@@ -13,7 +13,7 @@
 									  <option value="宋父母">宋父母</option>
 									  <option value="李父母">李父母</option>
 									  <option value="诚诚">诚诚</option>
-									  <option value="二宝">二宝</option>
+									  <option value="嘉怡">嘉怡</option>
 									  <option value="旅游娱乐">旅游娱乐</option>
 									  <option value="化妆品美容">化妆品美容</option>
 									  <option value="教育培训">教育培训</option>
@@ -26,14 +26,10 @@
 									  <option value="电器家居">电器家居</option>
 									  <option value="网站建设">网站建设</option>
 									  <option value="回国开支">回国开支</option>
-									  <option value="张家赫">张家赫</option>
-									  <option value="留学">留学</option>
 									  <option value="创世少儿教育">创世少儿教育</option>
+									  <option value="美甲">美甲</option>
 									  <option value="宋工资">宋工资</option>
 									  <option value="李工资">李工资</option>
-									  <option value="诚诚津贴">诚诚津贴</option>
-									  <option value="宋父母资助">宋父母资助</option>
-									  <option value="李父母资助">李父母资助</option>
 									</select>		
 								</div>
 							</div>
