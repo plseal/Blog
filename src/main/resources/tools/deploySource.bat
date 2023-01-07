@@ -1,1 +1,0 @@
-copy C:\GitHub\Blog\target\Blog.war C:\tomcat-7\webapps\Blog.war
